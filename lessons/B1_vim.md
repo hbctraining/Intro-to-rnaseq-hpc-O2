@@ -76,7 +76,7 @@ To edit your `draft.txt` document, open up the file again by calling vim and ent
 ![vim-quit](../img/vim_quit.png)
 
 ### Vim Editing
-Create the document "spider.txt" in vim. Enter the text as follows: 
+Create the document `spider.txt` in vim. Enter the text as follows: 
 
 ![image](../img/vim_spider.png)
 
@@ -104,11 +104,16 @@ In addition to shortcuts for navigation, vim also offers editing shortcuts such 
 | <kbd>dd</kbd>     | to delete line     |
 | <kbd>u</kbd>     | to undo |
 | <kbd>Ctrl + r</kbd>     | to redo     |
-	
+| <kbd>/*pattern*</kbd>     | to search for a pattern (*n/N* to move to next/previous match)    |
+| <kbd>%s/*search*/*replace*/g</kbd>     | to search for a pattern (*n/N* to move to next/previous match)    |
+
 Practice some of the editing shortcuts, then quit the document without saving any changes.
 
-*** 
+### Vim searching and replacing
 
+Vim has a lot of handy shortcuts and advanced functionality. One of the more useful functions is the search and replace command
+
+*** 
 **Exercise**
 
 We have covered some basic commands in vim, but practice is key for getting comfortable with the program. Let's
