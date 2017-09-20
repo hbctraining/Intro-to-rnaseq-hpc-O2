@@ -36,7 +36,7 @@ By default, there is no terminal for the bash shell available in the Windows OS,
 Type in the following command with your username to login:
 
 ```bash
-ssh username@orchestra.med.harvard.edu
+ssh username@login.rc.hms.harvard.edu
 ```
 
 You will receive a prompt for your password, and you should type in your associated password; note that the cursor will *not move* as you type in your password.
@@ -56,7 +56,7 @@ The command prompt will have some characters before it, something like `[rc_trai
 The first command we will type on the command prompt will be to start a so-called "interactive session" on Orchestra.
 
 ```bash
-$ bsub -Is -q interactive bash
+$ srun --pty -p interactive -t 0-12:00 --mem 8G /bin/bash
 ```
 
 Press enter after you type in that command. You will get a couple of messages, but in a few seconds you should get back the command prompt `$`; the string of characters before the command prompt, however, have changed. They should say something like `[rc_training01@clarinet002-074 ~]`. *We will be explaining what this means in more detail later when we talk about HPC and Orchestra.* 
