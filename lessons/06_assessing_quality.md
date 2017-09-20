@@ -84,7 +84,7 @@ The main functions of FastQC are:
 Before we run FastQC, let's start an interactive session on the cluster (if you don't already have one going):
 
 ```bash
-$ bsub -Is -n 1 -q interactive bash
+$ srun --pty -p interactive -t 0-12:00 --mem 8G /bin/bash
 ```
 
 ***An interactive session is very useful to test tools, workflows, run jobs that open new interactive windows (X11-forwarding) and so on.***
@@ -95,7 +95,7 @@ Once your interactive job starts, notice that the command prompt has changed; th
 $ cd ~/unix_workshop/rnaseq/raw_data
 ```  
 
-Before we start using software, we have to load the environments for each software package. On clusters, this is typically done using a **module** system. 
+Before we start using software, we have to load the environments for each software package. On the O2 cluster, this is done using an **LMOD** system. 
 
 If we check which modules we currently have loaded, we should not see FastQC.
 
@@ -112,7 +112,7 @@ $ echo $PATH
 To run the FastQC program, we first need to load the appropriate module, so it puts the program into our path:
 
 ```bash
-$ module load seq/fastqc/0.11.3
+$ module load fastqc/0.11.5
 ```
 
 Once a module for a tool is loaded, you have essentially made it directly available to you like any other basic UNIX command.
@@ -131,18 +131,18 @@ $ fastqc *.fq
 
 *Did you notice how each file was processed serially? How do we speed this up?*
 
-Exit the interactive session and start a new one with 3 cores, and use the multi-threading functionality of FastQC to run 3 jobs at once.
+Exit the interactive session and start a new one with 6 cores, and use the multi-threading functionality of FastQC to run 6 jobs at once.
 
 ```bash
 $ exit  #exit the current interactive session
 
-$ bsub -Is -n 3 -q interactive bash   #start a new session with 3 cores (-n 3)
+$ srun --pty -n 6 -p interactive -t 0-12:00 --mem 8G /bin/bash  #start a new one with 6 cpus (-n 6) and 8G RAM (--mem 8G)
 
-$ module load seq/fastqc/0.11.3  #reload the module for the new session
+$ module load fastqc/0.11.5  #reload the module for the new session
 
 $ cd ~/unix_workshop/rnaseq/raw_data
 
-$ fastqc -t 3 *.fq  #note the extra parameter we specified for 6 threads
+$ fastqc -t 6 *.fq  #note the extra parameter we specified for 6 threads
 ```
 
 How did I know about the -t argument for FastQC?
@@ -165,23 +165,23 @@ $ mv *fastqc* ~/unix_workshop/rnaseq/results/fastqc/
 ```
 
 ### Performing quality assessment using job submission scripts
-So far in our FASTQC analysis, we have been directly submitting commands to Orchestra using an interactive session (ie. `bsub -Is -n 3 -q interactive bash`). However, there are many more queues available on Orchestra than just the interactive queue. We can submit commands or series of commands to these queues using job submission scripts. 
+So far in our FASTQC analysis, we have been directly submitting commands to O2 using an interactive session (ie. `srun --pty -n 6 -p interactive -t 0-12:00 --mem 8G /bin/bash`). However, there are many more partitions available on O2 than just the interactive partition. We can submit commands or series of commands to these partitions using job submission scripts. 
 
-**Job submission scripts** for Orchestra are just regular scripts, but contain the Orchestra **options/directives** for job submission, such as *number of cores, name of queue, runtime limit, etc*. We can submit these scripts to whichever queue we specify in the script using the `bsub` command as follows:
+**Job submission scripts** for O2 are just regular scripts, but contain the O2 **options/directives** for job submission, such as *number of cores, name of partition, runtime limit, etc*. We can submit these scripts to whichever partition we specify in the script using the `sbatch` command as follows:
 
 ```bash
 # DO NOT RUN THIS
-$ bsub < job_submission_script.lsf
+$ sbatch < job_submission_script.run
 ```
 
-Submission of the script using the `bsub` command allows the load sharing facility (LSF) to run your job when its your turn. Let's create a job submission script to load the FASTQC module, run FASTQC on all of our fastq files, and move the files to the appropriate directory.
+Submission of the script using the `sbatch` command allows SLURM to run your job when its your turn. Let's create a job submission script to load the FASTQC module, run FASTQC on all of our fastq files, and move the files to the appropriate directory.
 
-Change directories to `~/unix_workshop/rnaseq/scripts`, and create a script named `mov10_fastqc.lsf` using `nano`.
+Change directories to `~/unix_workshop/rnaseq/scripts`, and create a script named `mov10_fastqc.run` using `nano`.
 
 ```bash
 $ cd ~/unix_workshop/rnaseq/scripts
 
-$ nano mov10_fastqc.lsf
+$ nano mov10_fastqc.run
 ```
 
 The first thing we need in our script is the **shebang line**:
@@ -193,12 +193,12 @@ The first thing we need in our script is the **shebang line**:
 Following the shebang line are the Orchestra options. For the script to run, we need to include options for **queue (-q) and runtime limit (-W)**. To specify our options, we precede the option with `#BSUB`, which tells Orchestra that the line contains options for job submission. 
 
 ```bash
-#BSUB -q training 		# queue name
-#BSUB -W 2:00 		# hours:minutes runlimit after which job will be killed
-#BSUB -n 6 		# number of cores requested -- this needs to be greater than or equal to the number of cores you plan to use to run your job
-#BSUB -J rnaseq_mov10_fastqc 		# Job name
-#BSUB -o %J.out			# File to which standard out will be written
-#BSUB -e %J.err 		# File to which standard err will be written
+#SBATCH -p priority 		# partition name
+#SBATCH -t 0-2:00 		# hours:minutes runlimit after which job will be killed
+#SBATCH -n 6 		# number of cores requested -- this needs to be greater than or equal to the number of cores you plan to use to run your job
+#SBATCH --jobname rnaseq_mov10_fastqc 		# Job name
+#SBATCH -o %j.out			# File to which standard out will be written
+#SBATCH -e %j.err 		# File to which standard err will be written
 ```
 Now in the body of the script, we can include any commands we want run:
 
@@ -207,7 +207,7 @@ Now in the body of the script, we can include any commands we want run:
 cd ~/unix_workshop/rnaseq/raw_data
 
 ## Loading modules required for script commands
-module load seq/fastqc/0.11.3
+module load fastqc/0.11.5
 
 ## Running FASTQC
 fastqc -t 6 *.fq
@@ -219,13 +219,13 @@ mv *fastqc* ../results/fastqc/
 Save and quit the script. Now, let's submit the job to the LSF:
 
 ```bash
-$ bsub < mov10_fastqc.lsf
+$ sbatch mov10_fastqc.run
 ```
 
 You can check on the status of your job with:
 
 ```bash
-$ bjobs
+$ squeue -u eCommonsID
 ```
 
 ```bash
@@ -241,7 +241,7 @@ $ mv *.out ../logs/fastqc.out
 ***
 **Exercise**
 
-How would you change the `mov10_fastqc.lsf` script if you had 9 fastq files you wanted to run in parallel.
+How would you change the `mov10_fastqc.run` script if you had 9 fastq files you wanted to run in parallel.
 
 ***
 
@@ -264,8 +264,8 @@ Open *FileZilla*, and click on the File tab. Choose 'Site Manager'.
 
 Within the 'Site Manager' window, do the following: 
 
-1. Click on 'New Site', and name it something intuitive (e.g. Orchestra)
-2. Host: transfer.orchestra.med.harvard.edu 
+1. Click on 'New Site', and name it something intuitive (e.g. O2)
+2. Host: transfer.rc.hms.harvard.edu 
 3. Protocol: SFTP - SSH File Transfer Protocol
 4. Logon Type: Normal
 5. User: ECommons ID
