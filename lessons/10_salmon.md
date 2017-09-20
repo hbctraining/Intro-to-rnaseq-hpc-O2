@@ -89,7 +89,7 @@ The quasi-mapping approach estimates the numbers of reads mapping to each transc
 - **Step 2: Improving abundance estimates**
 Using multiple complex modeling approaches, like Expectation Maximization (EM), Salmon can also correct the abundance estimates for any sample-specific biases/factors [[4](http://www.nature.com.ezp-prod1.hul.harvard.edu/nmeth/journal/v14/n4/full/nmeth.4197.html?WT.feed_name=subjects_software&foxtrotcallback=true)]. Generally, this step results in more accurate transcript abundance estimation.
 
-## Running Salmon on Orchestra
+## Running Salmon on O2
 
 First start an interactive session and create a new directory for our Salmon analysis:
 
@@ -183,7 +183,7 @@ ENST00000439842.1       11      2.95387 0       0
  
 ## Running Salmon on multiple samples 
 
-We just ran Salmon on a single sample (and keep in mind a subset of chr1 from the original data). To obtain meaningful results we need to run this on **all samples for the full dataset**. To do so, we will create a shell script which will submit each Salmon run as a job to Orchestra.
+We just ran Salmon on a single sample (and keep in mind a subset of chr1 from the original data). To obtain meaningful results we need to run this on **all samples for the full dataset**. To do so, we will create a shell script which will submit each Salmon run as a job to O2.
 
 Open up a script in `vim`:
 
