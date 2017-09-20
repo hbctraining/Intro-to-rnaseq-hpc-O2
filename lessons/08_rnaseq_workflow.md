@@ -107,7 +107,7 @@ Aligning reads using STAR is a two-step process:
 1. Create a genome index 
 2. Map reads to the genome
 
-> A quick note on shared databases for human and other commonly used model organisms. The Orchestra cluster has a designated directory at `/groups/shared_databases/` in which there are files that can be accessed by any user. These files contain, but are not limited to, genome indices for various tools, reference sequences, tool specific data, and data from public databases, such as NCBI and PDB. So when using a tool and requires a reference of sorts, it is worth taking a quick look here because chances are it's already been taken care of for you. 
+> A quick note on shared databases for human and other commonly used model organisms. The O2 cluster has a designated directory at `/groups/shared_databases/` in which there are files that can be accessed by any user. These files contain, but are not limited to, genome indices for various tools, reference sequences, tool specific data, and data from public databases, such as NCBI and PDB. So when using a tool and requires a reference of sorts, it is worth taking a quick look here because chances are it's already been taken care of for you. 
 
 ```bash
 $ ls -l /n/groups/shared_databases/igenome
@@ -209,7 +209,7 @@ Let's start by creating a directory for the output:
 ```bash
 $ mkdir results/counts
 ```
-`featureCounts` is not available as a module on Orchestra, but we have already added the path for it (`/opt/bcbio/local/bin`) to our `$PATH` variable last time. 
+`featureCounts` is not available as a module on O2, but we have already added the path for it (`/opt/bcbio/local/bin`) to our `$PATH` variable last time. 
 
 ``` bash
 $ which featureCounts  # should return /n/app/bcbio/tools/bin/featureCounts 
@@ -233,17 +233,14 @@ cp /n/groups/hbctraining/unix_workshop_other/bam_STAR/*bam ~/unix_workshop/rnase
 
 We are going to use the following options:
 
-`-T 4 # specify 4 cores`
-
-`-s 2 # these data are "reverse"ly stranded`
+* `-T 4 # specify 4 cores`
+* `-s 2 # these data are "reverse"ly stranded`
 
 and the following are the values for the required parameters:
 
-`-a ~/unix_workshop/rnaseq/reference_data/chr1-hg19_genes.gtf # required option for specifying path to GTF`
-
-`-o ~/unix_workshop/rnaseq/results/counts/Mov10_featurecounts.txt # required option for specifying path to, and name of the text output (count matrix)`
-
-`~/unix_workshop/rnaseq/results/STAR/*bam # the list of all the bam files we want to collect count information for`
+* `-a ~/unix_workshop/rnaseq/reference_data/chr1-hg19_genes.gtf # required option for specifying path to GTF`
+* `-o ~/unix_workshop/rnaseq/results/counts/Mov10_featurecounts.txt # required option for specifying path to, and name of the text output (count matrix)`
+* `~/unix_workshop/rnaseq/results/STAR/*bam # the list of all the bam files we want to collect count information for`
 
 #### Running featureCounts
 
@@ -313,10 +310,10 @@ Use _**FileZilla**_ to copy the following files to your local machine:
 >
 > Similar to the `cp` command, there is a command that allows you to securely copy files between computers. The command is called `scp` and allows files to be copied to, from, or between different hosts. It uses ssh for data transfer and provides the same authentication and same level of security as `ssh`. 
 >
-> First, identify the location of the _origin file_ you intend to copy, followed by the _destination_ of that file. Since the original file is located on Orchestra, this requires you to provide remote host and login information.
+> First, identify the location of the _origin file_ you intend to copy, followed by the _destination_ of that file. Since the original file is located on O2, this requires you to provide remote host and login information.
 
 > ```bash
-> $ scp user_name@transfer.orchestra.med.harvard.edu:/home/user_name/unix_workshop/rnaseq/results/STAR/Mov10_oe_1_Aligned.sortedByCoord.out.bam* /path/to/directory_on_laptop
+> $ scp user_name@transfer.rc.hms.harvard.edu:/home/user_name/unix_workshop/rnaseq/results/STAR/Mov10_oe_1_Aligned.sortedByCoord.out.bam* /path/to/directory_on_laptop
 > ```
 
 **Visualize**
