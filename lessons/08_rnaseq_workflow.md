@@ -48,7 +48,7 @@ Below is a general overview of the steps involved in RNA-seq analysis.
 So let's get started by loading up some of the modules for tools we need for this section to perform alignment and assess the alignment: 
 
 ```bash
- $ module load gcc/6.2.0 star/2.5.2b samtools/1.3.1
+$ module load gcc/6.2.0 star/2.5.2b samtools/1.3.1
 ```
 Create an output directory for our alignment files:
 
