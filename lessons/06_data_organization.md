@@ -1,7 +1,7 @@
 ---
 title: Data Management and Project Organization
 author: Mary Piper, Meeta Mistry, Michael Steinbaugh, Radhika Khetani
-date: 2017-05-31
+date: Wednesday, September 20, 2017
 duration: 35
 ---
 
