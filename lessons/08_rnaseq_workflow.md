@@ -212,10 +212,10 @@ $ mkdir results/counts
 `featureCounts` is not available as a module on Orchestra, but we have already added the path for it (`/opt/bcbio/local/bin`) to our `$PATH` variable last time. 
 
 ``` bash
-$ which featureCounts  # should return /opt/bcbio/local/bin/featureCounts 
+$ which featureCounts  # should return /n/app/bcbio/tools/bin/featureCounts 
 ```
 
-> ** If running the above command does not return `/opt/bcbio/ocal/bin/featureCounts`, run `export PATH=/opt/bcbio/centos/bin:$PATH` and try the `which` command again.**
+> ** If running the above command does not return `/n/app/bcbio/tools/bin/featureCounts`, run `export PATH=/n/app/bcbio/tools/bin:$PATH` and try the `which` command again.**
 
 How do we use this tool, what is the command and what options/parameters are available to us?
 
@@ -228,7 +228,7 @@ So, it looks like the usage is `featureCounts [options] -a <annotation_file> -o 
 It can also take multiple bam files as input. Since we have only run STAR on 1 FASTQ file, let's copy over the other bam files that we would need so we can generate the full count matrix.
 
 ```bash
-cp /groups/hbctraining/unix_workshop_other/bam_STAR/*bam ~/unix_workshop/rnaseq/results/STAR/
+cp /n/groups/hbctraining/unix_workshop_other/bam_STAR/*bam ~/unix_workshop/rnaseq/results/STAR/
 ```
 
 We are going to use the following options:
