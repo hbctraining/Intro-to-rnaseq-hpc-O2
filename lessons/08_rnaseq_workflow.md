@@ -17,7 +17,7 @@ Approximate time: 90 minutes
 To get started with this lesson, we will start an interactive session and ask for 6 cores, by adding `-n 3` to the bsub command:
 
 ```bash
-$ bsub -Is -n 3 -q interactive bash	
+$ srun --pty -p interactive -t 0-12:00 -n 6 --mem 8G --reservation=hbc /bin/bash	
 ```
 
 Change directories into the `unix_workshop` directory and copy the `reference_data` folder into your project directory:
@@ -48,7 +48,7 @@ Below is a general overview of the steps involved in RNA-seq analysis.
 So let's get started by loading up some of the modules for tools we need for this section to perform alignment and assess the alignment: 
 
 ```bash
- $ module load seq/STAR/2.5.3a seq/samtools/1.3
+ $ module load gcc/6.2.0 star/2.5.2b samtools/1.3.1
 ```
 Create an output directory for our alignment files:
 
@@ -110,12 +110,12 @@ Aligning reads using STAR is a two-step process:
 > A quick note on shared databases for human and other commonly used model organisms. The Orchestra cluster has a designated directory at `/groups/shared_databases/` in which there are files that can be accessed by any user. These files contain, but are not limited to, genome indices for various tools, reference sequences, tool specific data, and data from public databases, such as NCBI and PDB. So when using a tool and requires a reference of sorts, it is worth taking a quick look here because chances are it's already been taken care of for you. 
 
 ```bash
-$ ls -l /groups/shared_databases/igenome/
+$ ls -l /n/groups/shared_databases/igenome
 ```
 
 #### Creating a genome index
 
-For this workshop we are using reads that originate from a small subsection of chromosome 1 (~300,000 reads) and so we are using only chr1 as the reference genome. Therefore, we cannot use any of the ready-made indices available in the `/groups/shared_databases/` folder.
+For this workshop we are using reads that originate from a small subsection of chromosome 1 (~300,000 reads) and so we are using only chr1 as the reference genome. Therefore, we cannot use any of the ready-made indices available in the `/n/groups/shared_databases/` folder.
 
 For this workshop, we have already indexed the reference genome for you as this can take a while. We have provided the code below that you would use to index the genome for your future reference, but please **do not run the code below**. For indexing the reference genome, a reference genome (FASTA) is required and an annotation file (GTF or GFF3) is suggested a more accurate alignment of the reads. 
 
@@ -154,8 +154,8 @@ Now let's put it all together! The full STAR alignment command is provided below
 > If you like you can copy-paste it directly into your terminal. Alternatively, you can manually enter the command, but it is advisable to first type out the full command in a text editor (i.e. [Sublime Text](http://www.sublimetext.com/) or [Notepad++](https://notepad-plus-plus.org/)) on your local machine and then copy paste into the terminal. This will make it easier to catch typos and make appropriate changes. 
 
 ```bash
-$ STAR --runThreadN 3 \
---genomeDir /groups/hbctraining/unix_workshop_other/reference_STAR \
+$ STAR --runThreadN 6 \
+--genomeDir /n/groups/hbctraining/unix_workshop_other/reference_STAR \
 --readFilesIn raw_data/Mov10_oe_1.subset.fq \
 --outFileNamePrefix results/STAR/Mov10_oe_1_ \
 --outSAMtype BAM SortedByCoordinate \
