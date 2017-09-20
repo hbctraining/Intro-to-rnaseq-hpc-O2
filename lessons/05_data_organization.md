@@ -8,6 +8,8 @@ duration: 35
 [Data management slides]: https://github.com/hbc/NGS-Data-Analysis-long-course/raw/Fall_2016/sessionI/slides/data_management.pdf
 [SRA]: http://www.ncbi.nlm.nih.gov/sra  "Sequence Read Archive"
 
+## Learning Objectives
+
 - Recognize the need for data management.
 - Plan a good genomics experiment and getting started with project organization.
 - Explain the RNA-seq experiment and its objectives.
@@ -137,7 +139,7 @@ Keeping notes on what happened in what order, and what was done, is essential fo
 ```
 ## README ##
 ## This directory contains data generated during the Intro to RNA-seq course
-## Date: August 23rd, 2017
+## Date: September 25th, 2017
 
 There are six subdirectories in this directory:
 
