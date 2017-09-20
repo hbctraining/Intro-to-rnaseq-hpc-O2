@@ -84,7 +84,7 @@ The main functions of FastQC are:
 Before we run FastQC, let's start an interactive session on the cluster (if you don't already have one going):
 
 ```bash
-$ srun --pty -p interactive -t 0-12:00 --mem 8G /bin/bash
+$ srun --pty -p interactive -t 0-12:00 --mem 8G --reservation=hbc /bin/bash
 ```
 
 ***An interactive session is very useful to test tools, workflows, run jobs that open new interactive windows (X11-forwarding) and so on.***
