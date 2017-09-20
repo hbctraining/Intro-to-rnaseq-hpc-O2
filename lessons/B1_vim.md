@@ -105,7 +105,7 @@ In addition to shortcuts for navigation, vim also offers editing shortcuts such 
 | <kbd>u</kbd>     | to undo |
 | <kbd>Ctrl + r</kbd>     | to redo     |
 | <kbd>/*pattern*</kbd>     | to search for a pattern (*n/N* to move to next/previous match)    |
-| <kbd>:%s/*search*/*replace*/</kbd>     | to search for a pattern and replace for all occurences     |
+| <kbd>:%s/*search*/*replace*/g</kbd>     | to search for a pattern and replace for all occurences     |
 
 Practice some of the editing shortcuts, then quit the document without saving any changes.
 
@@ -117,12 +117,13 @@ practice what we just learned in a brief challenge.
 
 1. Open `spider.txt`, and delete the word "water" from line #2.
 2. Quit without saving.
-3. Open `spider.txt` again, and delete: "Down came the rain." 
-4. Save the file.
-5. Undo your previous deletion.
-6. Redo your previous deletion.
-7. Delete the first and last words from each of the lines.
-8. Save the file and see whether your results match your neighbors.
+3. Open `spider.txt` again, and replace every occurrence of "spider" with "unicorn".
+4. Delete: "Down came the rain." 
+5. Save the file.
+6. Undo your previous deletion.
+7. Redo your previous deletion.
+8. Delete the first and last words from each of the lines.
+9. Save the file and see whether your results match your neighbors.
 
 ***
 
