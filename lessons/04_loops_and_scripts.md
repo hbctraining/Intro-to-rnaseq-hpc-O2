@@ -27,10 +27,10 @@ We are finally ready to see what makes the shell such a powerful programming env
 1. Tell us our current working directory
 2. List the contents of the directory 
 
-First open a new file using `nano`:
+First open a new file using `vim`:
 
 ```bash
-$ nano listing.sh
+$ vim listing.sh
 ```
 
 Then type in the following lines in the `listing.sh` file:
@@ -42,7 +42,7 @@ echo "These are the contents of this directory:"
 ls -l 
 ```
 
-Exit `nano` and save the file. Now let's run the new script we have created. To run a shell script you usually use the `bash` or `sh` command.
+Exit `vim` and save the file. Now let's run the new script we have created. To run a shell script you usually use the `bash` or `sh` command.
 
 ```bash
 $ sh listing.sh
@@ -219,12 +219,12 @@ Now that you've learned how to use loops and variables, let's put this processin
 
 You might not realize it, but this is something that you now know how to do. Let's get started...
 
-Rather than doing all of this in the terminal we are going to create a script file with all relevant commands. Move back in to `unix_workshop` and use `nano` to create our new script file:
+Rather than doing all of this in the terminal we are going to create a script file with all relevant commands. Move back in to `unix_workshop` and use `vim` to create our new script file:
 
 ```bash
 $ cd ~/unix_workshop
 
-$ nano generate_bad_reads_summary.sh
+$ vim generate_bad_reads_summary.sh
 ```
 
 We always want to start our scripts with a shebang line: 
@@ -282,7 +282,7 @@ And now, as a best practice of capturing all of our work into a running summary 
 cat *badreads.count.summary >> runlog.txt
 ```
 
-Save and exit `nano`, and voila! You now have a script you can use to assess the quality of all your new datasets. Your finished script, complete with comments, should look like the following:
+Save and exit `vim`, and voila! You now have a script you can use to assess the quality of all your new datasets. Your finished script, complete with comments, should look like the following:
 
 ```bash
 #!/bin/bash 

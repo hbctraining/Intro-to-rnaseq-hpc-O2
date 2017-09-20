@@ -176,12 +176,12 @@ $ sbatch < job_submission_script.run
 
 Submission of the script using the `sbatch` command allows SLURM to run your job when its your turn. Let's create a job submission script to load the FASTQC module, run FASTQC on all of our fastq files, and move the files to the appropriate directory.
 
-Change directories to `~/unix_workshop/rnaseq/scripts`, and create a script named `mov10_fastqc.run` using `nano`.
+Change directories to `~/unix_workshop/rnaseq/scripts`, and create a script named `mov10_fastqc.run` using `vim`.
 
 ```bash
 $ cd ~/unix_workshop/rnaseq/scripts
 
-$ nano mov10_fastqc.run
+$ vim mov10_fastqc.run
 ```
 
 The first thing we need in our script is the **shebang line**:

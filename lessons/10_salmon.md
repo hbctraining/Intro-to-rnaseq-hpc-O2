@@ -185,9 +185,9 @@ ENST00000439842.1       11      2.95387 0       0
 
 We just ran Salmon on a single sample (and keep in mind a subset of chr1 from the original data). To obtain meaningful results we need to run this on **all samples for the full dataset**. To do so, we will create a shell script which will submit each Salmon run as a job to Orchestra.
 
-Open up a script in `nano`:
+Open up a script in `vim`:
 
-	$ nano salmon_all_samples.sh
+	$ vim salmon_all_samples.sh
 
 Now we can create a for loop to iterate over all FASTQ samples, and submit a job to **run Salmon on each sample in parallel**. We begin by listing all BSUB directives to specify the resources we are requesting including memory, cores and wall time.
 

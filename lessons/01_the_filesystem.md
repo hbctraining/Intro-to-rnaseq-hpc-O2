@@ -571,20 +571,20 @@ $ rm -ri backup_ref_data/ backup_fastq/
 
 We've been able to do a lot of work with files that already exist, but what if we want to write our own files. Obviously, we're not going to type in a FASTA file, but you'll see as we go through other tutorials, there are a lot of reasons we'll want to write a file, or edit an existing file.
 
-To write files, we're going to use the command `nano`. We're going to create
+To write files, we're going to use the command `vim`. We're going to create
 a file that contains some text. We'll name this file 'awesome.txt'.
 
 ```bash
-$ nano awesome.txt
+$ vim awesome.txt
 ```
 
 Now you have something that looks like
 
-![nano1.png](../img/nano1.png)
+![vim1.png](../img/vim1.png)
 
-Type in a sentence, something like "nano is awesome"
+Type in a sentence, something like "vim is awesome"
 
-Now we want to save the file and exit. At the bottom of nano, you see the "\^X Exit". That means that we use Ctrl-X to exit. Type `Ctrl-X`. It will ask if you want to save it. Type `y` for yes. Then it asks if you want that file name. Hit 'Enter'.
+Now we want to save the file and exit. At the bottom of vim, you see the "\^X Exit". That means that we use Ctrl-X to exit. Type `Ctrl-X`. It will ask if you want to save it. Type `y` for yes. Then it asks if you want that file name. Hit 'Enter'.
 
 Now you've written a file. You can take a look at it with less or cat, or open it up again and edit it.
 
@@ -592,7 +592,7 @@ Now you've written a file. You can take a look at it with less or cat, or open i
 ****
 **Exercise**
 
-* Open 'awesome.txt' and on a new line add the following `echo "This is my first file written in nano"`, and save the file.
+* Open 'awesome.txt' and on a new line add the following `echo "This is my first file written in vim"`, and save the file.
 
 ****
 
@@ -622,7 +622,7 @@ cp
 mdkir
 mv
 rm
-nano
+vim
 ```
 
 #### Information on the shell
@@ -644,7 +644,7 @@ General help:
 - Google - if you don't know how to do something, try Googling it. Other people
 have probably had the same question.
 - Learn by doing. There's no real other way to learn this than by trying it
-out.  Write your next paper in nano (really emacs or vi), open pdfs from
+out.  Write your next paper in vim (really emacs or vi), open pdfs from
 the command line, automate something you don't really need to automate.
 
 ---

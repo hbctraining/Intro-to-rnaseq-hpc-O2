@@ -157,7 +157,7 @@ Another aspect of staying organized is making sure that all the filenames in an 
 *** 
 ### Homework exercise
 
-- Take a moment to create a README for the `rnaseq/` folder (hint: use `nano` to create the file). Give a short description of the project and brief descriptions of the types of files you will be storing within each of the sub-directories. 
+- Take a moment to create a README for the `rnaseq/` folder (hint: use `vim` to create the file). Give a short description of the project and brief descriptions of the types of files you will be storing within each of the sub-directories. 
 ***
 
 ## The example dataset

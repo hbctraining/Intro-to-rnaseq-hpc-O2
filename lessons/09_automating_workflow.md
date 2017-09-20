@@ -178,12 +178,12 @@ It is okay to specify this everything else is set up, since you will have most c
 
 ### Saving and running script
 
-To transfer the contents of the script to Orchestra, you can copy and paste the contents into a new file using `nano`. 
+To transfer the contents of the script to Orchestra, you can copy and paste the contents into a new file using `vim`. 
 
 ```bash
 $ cd ~/unix_workshop/rnaseq/scripts/
 
-$ nano rnaseq_analysis_on_input_file.sh 
+$ vim rnaseq_analysis_on_input_file.sh 
 ```
 
 *Alternatively, you can save the script on your computer and transfer it to `~/unix_workshop/rnaseq/scripts/` using FileZilla.*
@@ -194,7 +194,7 @@ We should all have an interactive session with 2 or more cores, so we can start 
 $ sh rnaseq_analysis_on_input_file.sh ~/unix_workshop/rnaseq/raw_data/Mov10_oe_1.subset.fq
 ```
 
-**Before we move to the next section, modify the number of cores in the above script to 6 using `nano`, so we can have it run a lot faster when we submit it as an LSF job.**
+**Before we move to the next section, modify the number of cores in the above script to 6 using `vim`, so we can have it run a lot faster when we submit it as an LSF job.**
 
 ## Running the script iteratively as a job submission to the LSF scheduler
 
@@ -241,10 +241,10 @@ How would you run the above script?
 
 Parallelization will save you a lot of time with real (large) datasets. To parallelize our analysis, we will still need to write a second script that will call the original script we just wrote. We will still use a `for` loop, but we will be creating a regular shell script and we will be specifying the LSF directives differently. 
 
-Use `nano` to start a new shell script called `rnaseq_analysis_on_allfiles-for_lsf.sh`: 
+Use `vim` to start a new shell script called `rnaseq_analysis_on_allfiles-for_lsf.sh`: 
 
 ```bash
-$ nano rnaseq_analysis_on_allfiles_for-lsf.sh
+$ vim rnaseq_analysis_on_allfiles_for-lsf.sh
 ```
 
 This script loops through the same files as in the previous (demo) script, but the command being submitted within the `for` loop is `bsub` with LSF directives specified on the same line:
