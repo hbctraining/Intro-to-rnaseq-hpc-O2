@@ -105,7 +105,7 @@ In addition to shortcuts for navigation, vim also offers editing shortcuts such 
 | <kbd>u</kbd>     | to undo |
 | <kbd>Ctrl + r</kbd>     | to redo     |
 | <kbd>/*pattern*</kbd>     | to search for a pattern (*n/N* to move to next/previous match)    |
-| <kbd>%s/*search*/*replace*/g</kbd>     | to search for a pattern (*n/N* to move to next/previous match)    |
+| <kbd>:%s/*search*/*replace*/g</kbd>     | to search for a pattern and replace for all occurences    |
 
 Practice some of the editing shortcuts, then quit the document without saving any changes.
 
