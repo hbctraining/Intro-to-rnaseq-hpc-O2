@@ -1,7 +1,7 @@
 ---
 title: "Quality control using FASTQC"
 author: "Mary Piper, Radhika Khetani"
-date: 2017-08-14
+date: Wednesday, September 20, 2017
 duration: 85 minutes
 ---
 
