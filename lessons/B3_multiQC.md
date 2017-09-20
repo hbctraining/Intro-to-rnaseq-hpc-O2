@@ -1,7 +1,7 @@
 ---
 title: Counting reads
 author: Radhika Khetani
-date: 06/06/2017
+date: 09/20/2017
 ---
 
 Approximate time: 30 minutes
