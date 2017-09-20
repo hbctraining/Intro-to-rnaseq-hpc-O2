@@ -105,13 +105,9 @@ In addition to shortcuts for navigation, vim also offers editing shortcuts such 
 | <kbd>u</kbd>     | to undo |
 | <kbd>Ctrl + r</kbd>     | to redo     |
 | <kbd>/*pattern*</kbd>     | to search for a pattern (*n/N* to move to next/previous match)    |
-| <kbd>:%s/*search*/*replace*/g</kbd>     | to search for a pattern and replace for all occurences    |
+| <kbd>:%s/*search*/*replace*/</kbd>     | to search for a pattern and replace for all occurences     |
 
 Practice some of the editing shortcuts, then quit the document without saving any changes.
-
-### Vim searching and replacing
-
-Vim has a lot of handy shortcuts and advanced functionality. One of the more useful functions is the search and replace command
 
 *** 
 **Exercise**
@@ -119,7 +115,7 @@ Vim has a lot of handy shortcuts and advanced functionality. One of the more use
 We have covered some basic commands in vim, but practice is key for getting comfortable with the program. Let's
 practice what we just learned in a brief challenge.
 
-1. Open spider.txt, and delete the word "water" from line #2.
+1. Open `spider.txt`, and delete the word "water" from line #2.
 2. Quit without saving.
 3. Open `spider.txt` again, and delete: "Down came the rain." 
 4. Save the file.
@@ -173,6 +169,7 @@ practice what we just learned in a brief challenge.
 | <kbd>Ctrl + r</kbd>     | to redo     |
 | <kbd>:set number</kbd>     | to number lines |
 | <kbd>:set nonumber</kbd>     | to remove line numbers    |
-	
+| <kbd>/*pattern*</kbd>     | to search for a pattern (*n/N* to move to next/previous match)    |
+| <kbd>:%s/*search*/*replace*/</kbd>     | to search for a pattern and replace for all occurences     |	
 ---
 *This lesson has been developed by members of the teaching team at the [Harvard Chan Bioinformatics Core (HBC)](http://bioinformatics.sph.harvard.edu/). These are open access materials distributed under the terms of the [Creative Commons Attribution license](https://creativecommons.org/licenses/by/4.0/) (CC BY 4.0), which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.*
