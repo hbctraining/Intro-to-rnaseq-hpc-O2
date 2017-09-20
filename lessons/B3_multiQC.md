@@ -1,5 +1,5 @@
 ---
-title: Counting reads
+title: MultiQC
 author: Radhika Khetani
 date: 09/20/2017
 ---
