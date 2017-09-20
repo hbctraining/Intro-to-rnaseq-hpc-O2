@@ -1,7 +1,7 @@
 ---
 title: "Permissions and Environment variables"
 author: "Christina Koch, Radhika Khetani"
-date: "Wednesday, August 23, 2017"
+date: "Wednesday, September 20, 2017"
 ---
 
 Approximate time: 40 minutes
@@ -166,16 +166,13 @@ $ echo $PATH
 
 I have a lot of full/absolute paths in my $PATH variable, which are separated from each other by a ":"; here is the list in a more readable format:
 
-* /opt/lsf/7.0/linux2.6-glibc2.3-x86_64/bin
-* /groups/bcbio/bcbio/anaconda/bin
-* /opt/bcbio/local/bin
-* /opt/lsf/7.0/linux2.6-glibc2.3-x86_64/etc
+* /n/cluster/bin
+* /n/app/bcbio/tools/bin
 * /usr/local/bin
-* /bin
 * /usr/bin
 * /usr/local/sbin
 * /usr/sbin
-* /sbin
+* /opt/puppetlabs/bin
 
 These are the directories that the shell will look through (in the same order as they are listed) for an executable file that you type on the command prompt.
 
@@ -209,12 +206,12 @@ $ ls -al ~/
 
 Open the `.bashrc` file and at the end of the file add the export command that adds a specific location to the list in $PATH. This way when you start a new shell, that location will always be in your path. 
 
-The location we want to add to the beginning of the list is `/opt/bcbio/local/bin`, we need this for when we run the RNA-Seq workflow later.
+The location we want to add to the beginning of the list is `/n/app/bcbio/tools/bin`, we need this for when we run the RNA-Seq workflow later.
 
 ```bash
-$ nano ~/.bashrc
+$ vim ~/.bashrc
 
-# at the end of the file type in the following - "export PATH=/opt/bcbio/local/bin:$PATH"
+# at the end of the file type in the following - "export PATH=/n/app/bcbio/tools/bin:$PATH"
 # Don't forget the ":" between!
 ```
 
