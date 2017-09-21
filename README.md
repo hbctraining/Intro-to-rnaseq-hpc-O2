@@ -24,6 +24,7 @@ This repository has teaching materials for a 3-day Introduction to RNA-sequencin
 |:------------------------|:----------|
 |[Introduction to the shell](https://github.com/hbctraining/Intro-to-rnaseq-hpc-O2/blob/master/lessons/01_the_filesystem.md) | 70 min |
 |[Searching and redirection in shell](https://github.com/hbctraining/Intro-to-rnaseq-hpc-O2/blob/master/lessons/02_searching_files.md) | 45 min |
+|[Introduction to the Vim text editor ](https://github.com/hbctraining/Intro-to-rnaseq-hpc-O2/blob/master/lessons/03_vim.md) | 30 min |
 |[Shell scripts and `for` loops](https://github.com/hbctraining/Intro-to-rnaseq-hpc-O2/blob/master/lessons/03_loops_and_scripts.md) | 75 min |
 |[Permissions and environment variables](https://github.com/hbctraining/Intro-to-rnaseq-hpc-O2/blob/master/lessons/04_permissions_and_environment_variables.md) | 50 min |
 |[Project and data organization](https://github.com/hbctraining/Intro-to-rnaseq-hpc-O2/blob/master/lessons/05_data_organization.md) | 40 min |
