@@ -55,32 +55,50 @@ $ sh listing.sh
 This is a very simple shell script. In this session and in upcoming sessions, we will be learning how to write more complex ones, and use the power of scripts to make our lives much easier.
 
 ## Bash variables
+A *variable* is a common concept shared by many programming languages. Variables are essentially a symbolic/temporary name for, or a reference to, some information. Variables are analogous to "buckets", where information can be stored, maintained and modified without too much hassle. 
 
-A **variable** is a common concept shared by many programming languages. Variables are essentially a symbolic/temporary name for, or a reference to, some information. Variables are analogous to "buckets", where information can be stored, maintained and modified. 
+Extending the bucket analogy: the bucket has a name associated with it, i.e. the name of the variable, and when referring to the information in the bucket, we use the name of the bucket, and do not directly refer to the actual data stored in it.
 
-Extending the bucket analogy: the bucket has a name associated with it, i.e. the name of the variable, and when referring to the information in the bucket, we use the name of the bucket, and do not directly refer to the actual data stored in it (which is by design, since the stored data is variable).
-
-In the example below, we define a variable or a 'bucket' called `filename`. We will put the filename `Mov10_oe_1.subset.fq` as the value inside the bucket.
-
-```bash
-$ filename=Mov10_oe_1.subset.fq
-```
-Once you press return, you should be back at the command prompt. *How do we know that we actually created the bash variable?* We can use the echo command to list what's inside `filename`:
+Let's start with a simple variable that has a single number stored in it:
 
 ```bash
-$ echo $filename
+$ num=25
 ```
 
-What do you see in the terminal? If the variable was not created, the command will return nothing. Did you notice that when we created the variable we just typed in the variable name, but when using it as an argument to the `echo` command, we explicitly use a `$` in front of it (`$filename`)? Why? 
-
-Well, in the former, we're setting the value, while in the latter, we're retrieving the value. This is standard shell notation (syntax) for defining and using variables. **Don't forget the `$` when you want to retrieve the value of a variable!** 
-
-Let's try another command using the variable that we have created. In the last lesson, we introduced the `wc -l` command which allows us to count the number of lines in a file. We can count the number of lines in `Mov10_oe_1.subset.fq` by referencing the `filename` variable, but first move into the `raw_fastq` directory:
+*How do we know that we actually created the bash variable?* We can use the `echo` command to print to terminal:
 
 ```bash
-$ cd ~/unix_workshop/raw_fastq
-$ wc -l $filename
+$ echo num
 ```
+
+What do you see in the terminal? The `echo` utility takes what arguments you provide and prints to terminal. In this case it interpreted `num` as a a character string and simply printed it back to us. This is because **when trying to retrieve the value stored in the variable, we explicitly use a `$` in front of it**:
+
+```bash
+$ echo $num
+```
+
+Now you should see the number 25 returned to you. Did you notice that when we created the variable we just typed in the variable name? This is standard shell notation (syntax) for defining and using variables. When defining the variable (i.e. setting the value) you can just type it as is, but when **retrieving the value of a variable don't forget the `$`!** 
+
+Variables can also store a string of character values. In the example below, we define a variable or a 'bucket' called `file`. We will put a filename `Mov10_oe_1.subset.fq` as the value inside the bucket.
+
+```bash
+$ file=Mov10_oe_1.subset.fq
+```
+
+Once you press return, you should be back at the command prompt. Let's check what's stored inside `file`, but first move into the `raw_fastq` directory::
+
+```bash
+$ cd ~/ngs_course/unix_lesson/raw_fastq
+$ echo $file
+```
+
+Let's try another command using the variable that we have created. We can also count the number of lines in `Mov10_oe_1.subset.fq` by referencing the `file` variable:
+
+```bash
+$ wc -l $file
+```
+
+> *NOTE:* The variables we create in a session are system-wide, and independent of where you are in the filesystem. This is why we can reference it from any directory. However, it is only available for your current session. If you exit the cluster and login again at a later time, the variables you have created will no longer exist.
 
 ***
 
