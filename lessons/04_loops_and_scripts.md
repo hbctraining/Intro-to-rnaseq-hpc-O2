@@ -104,7 +104,7 @@ $ wc -l $file
 
 **Exercise**
 
-* Reuse the `$filename` variable to store a different file name, and rerun the commands we ran above (`wc -l`, `echo`)
+* Reuse the `$file` variable to store a different file name, and rerun the commands we ran above (`wc -l`, `echo`)
 
 ***
 
