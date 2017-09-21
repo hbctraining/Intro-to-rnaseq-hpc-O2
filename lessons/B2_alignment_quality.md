@@ -16,9 +16,9 @@ Approximate time: 120 minutes
 
 ## Assessing alignment quality
 
-After running our FASTQ files through the STAR aligner, you should have noticed a number of output files in the `~/ngs_course/rnaseq/results/STAR` directory. Let's take a quick look at some of the files that were generated and explore the content of some of them. 
+After running our FASTQ files through the STAR aligner, you should have noticed a number of output files in the `~/unix_workshop/rnaseq/results/STAR` directory. Let's take a quick look at some of the files that were generated and explore the content of some of them. 
 
-	$ cd ~/ngs_course/rnaseq/results/STAR
+	$ cd ~/unix_workshop/rnaseq/results/STAR
 	
 	$ ls -lh
 
@@ -57,7 +57,7 @@ Using the less command take a look at `Mov10_oe_1.subset.fq_Log.final.out` and a
 
 ## Other quality checks
 
-In addition to the aligner-specific summary we can also obtain quality metrics using tools like [Qualimap](http://qualimap.bioinfo.cipf.es/doc_html/intro.html#what-is-qualimap) or [RNASeQC](http://archive.broadinstitute.org/cancer/cga/rna-seqc). These tools examine sequencing alignment data according to the features of the mapped reads and their genomic properties and **provides an overall view of the data that helps to to the detect biases in the sequencing and/or mapping of the data**.The input can be one or more BAM files and the output consists of HTML or PDF reports with useful figures and tab delimited files of metrics data.
+In addition to the aligner-specific summary we can also obtain quality metrics using tools like [Qualimap](http://qualimap.bioinfo.cipf.es/doc_html/intro.html#what-is-qualimap) or [RNASeQC](http://archive.broadinstitute.org/cancer/cga/rna-seqc). These tools examine sequencing alignment data according to the features of the mapped reads and their genomic properties and **provide an overall view of the data that helps to to the detect biases in the sequencing and/or mapping of the data**.The input can be one or more BAM files and the output consists of HTML or PDF reports with useful figures and tab delimited files of metrics data.
 
 We will not be performing this step in the course, but we describe some of the features below to point out things to look for when assessing alignment quality of RNA-seq data:
 
@@ -159,9 +159,7 @@ Finally, you have the data from the original FASTQ file stored for each read. Th
 
 ## `samtools`
 
-[SAMtools](http://samtools.sourceforge.net/) is a tool that provides alot of functionality in dealing with SAM files. SAMtools utilities include, but are not limited to, viewing, sorting, filtering, merging, and indexing alignments in the SAM format. In this lesson we will explore a few of these utilities on our alignment files. Let's get started by loading the `samtools` module:
-
-	module load seq/samtools/1.3
+[SAMtools](http://samtools.sourceforge.net/) is a tool that provides alot of functionality in dealing with SAM files. SAMtools utilities include, but are not limited to, viewing, sorting, filtering, merging, and indexing alignments in the SAM format. In this lesson we will explore a few of these utilities on our alignment files. We have already loaded this module when setting up for the STAR alignment.
 
 ### Viewing the SAM file
 
@@ -218,18 +216,18 @@ Another method for assessing the quality of your alignment is to visualize the a
 
 ### Transfer files
 
-In order to visualize our alignments we will first need to move over the relevant files. We previously used FileZilla to transfer files from Orchestra to your laptop. However, there is another way to do so using the command line interface. **This option is only available for Mac and Linux users! PC users can use Filezilla.**  Similar to the `cp` command to copy there is a command that allows you to securely copy files between computers. The command is called `scp` and allows files to be copied to, from, or between different hosts. It uses ssh for data transfer and provides the same authentication and same level of security as ssh. 
+In order to visualize our alignments we will first need to move over the relevant files. We previously used FileZilla to transfer files from O2 to your laptop. However, there is another way to do so using the command line interface. **This option is only available for Mac and Linux users! PC users can use Filezilla.**  Similar to the `cp` command to copy there is a command that allows you to securely copy files between computers. **The command is called `scp` and allows files to be copied to, from, or between different hosts.** It uses ssh for data transfer and provides the same authentication and same level of security as ssh. 
 
-First, identify the location of the _origin file_ you intend to copy, followed by the _destination_ of that file. Since the origin file is located on Orchestra, this requires you to provide remote host and login information.
+First, identify the location of the _origin file_ you intend to copy, followed by the _destination_ of that file. Since the origin file is located on O2, this requires you to provide remote host and login information.
 
-The following 2 files need to be moved from Orchestra to your local machine,
+The following 2 files need to be moved from O2 to your local machine,
  
 `Mov10_oe_1.subset.fq_Aligned.sortedByCoord.out.bam`,
 
 `Mov10_oe_1.subset.fq_Aligned.sortedByCoord.out.bam.bai` 
 
 ```
-$ scp user_name@orchestra.med.harvard.edu:/home/user_name/ngs_course/rnaseq/results/Mov10_oe_1.subset.fq_Aligned.sortedByCoord.out.bam* /path/to/directory_on_laptop
+$ scp user_name@o2.hms.harvard.edu:/home/user_name/unix_workshop/rnaseq/results/Mov10_oe_1.subset.fq_Aligned.sortedByCoord.out.bam* /path/to/directory_on_laptop
 ```
 
 
