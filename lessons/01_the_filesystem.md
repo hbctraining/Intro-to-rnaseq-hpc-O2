@@ -567,34 +567,6 @@ $ rm -ri backup_ref_data/ backup_fastq/
 - `-r`: recursive, commonly used as an option when working with directories, e.g. with `cp`. 
 - `-i`: prompt before every removal.``
 
-## Writing files
-
-We've been able to do a lot of work with files that already exist, but what if we want to write our own files. Obviously, we're not going to type in a FASTA file, but you'll see as we go through other tutorials, there are a lot of reasons we'll want to write a file, or edit an existing file.
-
-To write files, we're going to use the command `vim`. We're going to create
-a file that contains some text. We'll name this file 'awesome.txt'.
-
-```bash
-$ vim awesome.txt
-```
-
-Now you have something that looks like
-
-![vim1.png](../img/vim1.png)
-
-Type in a sentence, something like "vim is awesome"
-
-Now we want to save the file and exit. At the bottom of vim, you see the "\^X Exit". That means that we use Ctrl-X to exit. Type `Ctrl-X`. It will ask if you want to save it. Type `y` for yes. Then it asks if you want that file name. Hit 'Enter'.
-
-Now you've written a file. You can take a look at it with less or cat, or open it up again and edit it.
-
-
-****
-**Exercise**
-
-* Open 'awesome.txt' and on a new line add the following `echo "This is my first file written in vim"`, and save the file.
-
-****
 
 
 ## Commands, options, and keystrokes covered
