@@ -46,29 +46,29 @@ featureCounts can also take into account whether your data are **stranded** or n
 First things first, start an interactive session with 4 cores:
 	
 ``` bash
-$ bsub -Is -n 4 -q interactive bash
+$ srun --pty -p interactive -t 0-12:00 -n 4 --mem 8G --reservation=hbc /bin/bash
 ```
 
 Now, change directories to your rnaseq directory and start by creating 2 directories, (1) a directory for the output and (2) a directory for the bam files we generated earlier:
 
 ``` bash
-$ cd ~/ngs_course/rnaseq/
+$ cd ~/unix_workshop/rnaseq/
 $ mkdir results/counts results/STAR/bams
 ```
 
 Let's move the bam files over to the `results/STAR/bams` directory
 	
 ``` bash
-$ mv ~/ngs_course/rnaseq/results/STAR/*fq_Aligned*bam ~/ngs_course/rnaseq/results/STAR/bams
+$ mv ~/unix_workshop/rnaseq/results/STAR/*fq_Aligned*bam ~/unix_workshop/rnaseq/results/STAR/bams
 # check to make sure the move worked and that only the files we wanted moved over
 ```
-featureCounts is not available as a module on Orchestra, but we have already added the path for it to our `$PATH` variable last time. 
+featureCounts is not available as a module on O2, but we have already added the path for it to our `$PATH` variable last time. 
 
 ``` bash
-$ echo $PATH  # You should see /opt/bcbio/centos/bin among other paths
+$ echo $PATH  # You should see /n/app/bcbio/tools/bin/ among other paths
 ```
 
-> ** If you don't see `/opt/bcbio/centos/bin` in your `$PATH` variable, add the following `export` command to your `~/.bashrc` file using vim: `export PATH=/opt/bcbio/centos/bin:$PATH`.**
+> ** If you don't see `/n/app/bcbio/tools/bin/` in your `$PATH` variable, add the following `export` command to your `~/.bashrc` file using vim: `export PATH=/n/app/bcbio/tools/bin/:$PATH`.**
 
 
 #### Running featureCounts
@@ -89,19 +89,19 @@ We are going to use the following options:
 
 and the following are the values for the required parameters:
 
-`-a ~/ngs_course/rnaseq/reference_data/chr1-hg19_genes.gtf # required option for specifying path to GTF`
+`-a ~/unix_workshop/rnaseq/reference_data/chr1-hg19_genes.gtf # required option for specifying path to GTF`
 
-`-o ~/ngs_course/rnaseq/results/counts/Mov10_featurecounts.txt # required option for specifying path to, and name of the text output (count matrix)`
+`-o ~/unix_workshop/rnaseq/results/counts/Mov10_featurecounts.txt # required option for specifying path to, and name of the text output (count matrix)`
 
-`~/ngs_course/rnaseq/results/STAR/bams/*bam # the list of all the bam files we want to collect count information for`
+`~/unix_workshop/rnaseq/results/STAR/bams/*bam # the list of all the bam files we want to collect count information for`
 
 Let's run this now:
 
 ``` bash
 $ featureCounts -T 4 -s 2 \ 
-  -a ~/ngs_course/rnaseq/reference_data/chr1-hg19_genes.gtf \
-  -o ~/ngs_course/rnaseq/results/counts/Mov10_featurecounts.txt \
-  ~/ngs_course/rnaseq/results/STAR/bams/*bam
+  -a ~/unix_workshop/rnaseq/reference_data/chr1-hg19_genes.gtf \
+  -o ~/unix_workshop/rnaseq/results/counts/Mov10_featurecounts.txt \
+  ~/unix_workshop/rnaseq/results/STAR/bams/*bam
 ```
 
 > If you wanted to collect the information that is on the screen as the job runs, you can modify the command and add the `2>` redirection at the end. This type of redirection will collect all the information from the terminal/screen into a file.
@@ -111,10 +111,10 @@ $ featureCounts -T 4 -s 2 \
 # note the last line of the command below
 	
 $ featureCounts -T 4 -s 2 \ 
-  -a ~/ngs_course/rnaseq/reference_data/chr1-hg19_genes.gtf \
-  -o ~/ngs_course/rnaseq/results/counts/Mov10_featurecounts.txt \
-  ~/ngs_course/rnaseq/results/STAR/bams/*bam \
-  2> /ngs_course/rnaseq/results/counts/Mov10_featurecounts.screen-output
+  -a ~/unix_workshoprnaseq/reference_data/chr1-hg19_genes.gtf \
+  -o ~/unix_workshop/rnaseq/results/counts/Mov10_featurecounts.txt \
+  ~/unix_workshop/rnaseq/results/STAR/bams/*bam \
+  2> /unix_workshop/rnaseq/results/counts/Mov10_featurecounts.screen-output
 ```
 #### featureCounts output
 
