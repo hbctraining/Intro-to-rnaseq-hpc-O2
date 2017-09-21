@@ -25,16 +25,16 @@ This repository has teaching materials for a 2-day Introduction to RNA-sequencin
 |[Introduction to the shell](lessons/01_the_filesystem.md) | 70 min |
 |[Searching and redirection in shell](lessons/02_searching_files.md) | 45 min |
 |[Introduction to the Vim text editor ](lessons/03_vim.md) | 30 min |
-|[Shell scripts and `for` loops](lessons/03_loops_and_scripts.md) | 75 min |
-|[Permissions and environment variables](lessons/04_permissions_and_environment_variables.md) | 50 min |
-|[Project and data organization](lessons/05_data_organization.md) | 40 min |
+|[Shell scripts and `for` loops](lessons/04_loops_and_scripts.md) | 75 min |
+|[Permissions and environment variables](lessons/05_permissions_and_environment_variables.md) | 50 min |
+|[Project and data organization](lessons/06_data_organization.md) | 40 min |
 |[RNA-seq experimental design best practices](lectures/rna-seq_design.pdf) | 50 min |
 |[Introduction to High-Performance Computing for HMS-RC's Orchestra](lectures/HPC_intro_slides_Radhika.pdf) | 45 min |
-|[RNA-seq data QC with FastQC)](lessons/06_assessing_quality.md) | 75 min |
-|[RNA-seq workflow: Alignment and Counting](lessons/07_rnaseq_workflow.md) | 90 min |
-|[Automating the RNA-seq workflow](lessons/08_automating_workflow.md) | 60 min |
+|[RNA-seq data QC with FastQC)](lessons/07_assessing_quality.md) | 75 min |
+|[RNA-seq workflow: Alignment and Counting](lessons/08_rnaseq_workflow.md) | 90 min |
+|[Automating the RNA-seq workflow](lessons/09_automating_workflow.md) | 60 min |
 |[Alternative workflows for analyzing RNA-seq data](lectures/RNAseq-analysis-methods.pdf) | 15 min |
-|[Quantifying expression using alignment-free methods (Salmon)](lessons/09_salmon.md) | 75 min |
+|[Quantifying expression using alignment-free methods (Salmon)](lessons/10_salmon.md) | 75 min |
 
 ### Dataset
 
