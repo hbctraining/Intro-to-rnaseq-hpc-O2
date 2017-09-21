@@ -66,13 +66,13 @@ Then the seeds are stitched together based on the best alignment for the read (s
 
 ### Set-up
 
-To get started with this lesson, start an interactive session with 3 cores:
+To get started with this lesson, start an interactive session with 6 cores:
 
 ```bash
-$ bsub -Is -n 3 -q interactive bash	
+$ srun --pty -p interactive -t 0-12:00 -n 6 --mem 8G --reservation=hbc /bin/bash	
 ```
 
-You should have a directory tree setup similar to that shown below. it is best practice to have all files you intend on using for your workflow present within the same directory. In our case, we have our original FASTQ files and post-trimming data generated in the previous section. We also have all reference data files that will be used in downstream analyses.
+You should have a directory tree setup similar to that shown below. it is best practice to have all files you intend on using for your workflow present within the same directory. In our case, we have our original FASTQ files generated in the previous section. We also have all reference data files that will be used in downstream analyses.
 
 ```bash
 rnaseq
@@ -95,13 +95,13 @@ rnaseq
 Change directories into the `reference_data` folder. 
 
 ```bash
-$ cd ~/ngs_course/rnaseq/reference_data
+$ cd ~/unix_workshop/rnaseq/reference_data
 ```
 
 To use the STAR aligner, load the Orchestra module: 
 
 ```bash
-$ module load seq/STAR/2.5.3a
+$ module load gcc/6.2.0 star/2.5.2b samtools/1.3.1
 ```
 
 Aligning reads using STAR is a two step process:   
@@ -109,10 +109,10 @@ Aligning reads using STAR is a two step process:
 1. Create a genome index 
 2. Map reads to the genome
 
-> A quick note on shared databases for human and other commonly used model organisms. The Orchestra cluster has a designated directory at `/groups/shared_databases/` in which there are files that can be accessed by any user. These files contain, but are not limited to, genome indices for various tools, reference sequences, tool specific data, and data from public databases, such as NCBI and PDB. So when using a tool that requires a reference of sorts, it is worth taking a quick look here because chances are it's already been taken care of for you. 
+> A quick note on shared databases for human and other commonly used model organisms. The Orchestra cluster has a designated directory at `/n/groups/shared_databases/` in which there are files that can be accessed by any user. These files contain, but are not limited to, genome indices for various tools, reference sequences, tool specific data, and data from public databases, such as NCBI and PDB. So when using a tool that requires a reference of sorts, it is worth taking a quick look here because chances are it's already been taken care of for you. 
 >
 >```bash
->$ ls -l /groups/shared_databases/igenome/
+>$ ls -l /n/groups/shared_databases/igenome/
 >```
 
 ### Creating a genome index
@@ -140,23 +140,23 @@ The basic options to **generate genome indices** using STAR are as follows:
 Now let's create a job submission script to generate the genome index:
 
 ```bash
-$ vim ~/ngs_course/rnaseq/scripts/genome_index.lsf
+$ vim ~/unix_workshop/rnaseq/scripts/genome_index.run
 ```
 Within `vim` we now add our shebang line, the Orchestra LSF directives, and our STAR command. 
 
 ```bash
 #!/bin/bash
 
-#BSUB -q priority # queue name
-#BSUB -W 2:00 # hours:minutes runlimit after which job will be killed.
-#BSUB -n 6 # number of cores requested
-#BSUB -J STAR_index         # Job name
-#BSUB -o %J.out       # File to which standard out will be written
-#BSUB -e %J.err       # File to which standard err will be written
+#SBATCH -p priority 		# partition name
+#SBATCH -t 0-2:00 		# hours:minutes runlimit after which job will be killed
+#SBATCH -n 6 		# number of cores requested -- this needs to be greater than or equal to the number of cores you plan to use to run your job
+#SBATCH --jobname STAR_index 		# Job name
+#SBATCH -o %j.out			# File to which standard out will be written
+#SBATCH -e %j.err 		# File to which standard err will be written
 
-cd ~/ngs_course/rnaseq/reference_data
+cd ~/unix_workshop/rnaseq/reference_data
 
-module load seq/STAR/2.5.3a
+module load gcc/6.2.0 star/2.5.2b samtools/1.3.1
 
 STAR --runThreadN 6 \
 --runMode genomeGenerate \
@@ -167,17 +167,17 @@ STAR --runThreadN 6 \
 ```
 
 ```bash
-$ bsub < ~/ngs_course/rnaseq/scripts/genome_index.lsf
+$ sbatch ~/unix_workshop/rnaseq/scripts/genome_index.run
 ```
 
 ### Aligning reads
 
-After you have the genome indices generated, you can perform the read alignment. We previously generated the genome indices for you in `/groups/hbctraining/ngs-data-longcourse/rnaseq/reference_data/reference_STAR` directory so that we don't get held up waiting on the generation of the indices.
+After you have the genome indices generated, you can perform the read alignment. We previously generated the genome indices for you in `/n/groups/hbctraining/ngs-data-longcourse/rnaseq/reference_data/reference_STAR` directory so that we don't get held up waiting on the generation of the indices.
 
 Create an output directory for our alignment files:
 
 ```bash
-$ cd ~/ngs_course/rnaseq/raw_data
+$ cd ~/unix_course/rnaseq/raw_data
 
 $ mkdir ../results/STAR
 ```
@@ -212,7 +212,7 @@ We can access the software by simply using the STAR command followed by the basi
 ```bash
 # DO NOT RUN THIS!
 
-STAR --genomeDir /groups/hbctraining/ngs-data-analysis-longcourse/rnaseq/reference_data/reference_STAR \
+STAR --genomeDir /n/groups/hbctraining/ngs-data-analysis-longcourse/rnaseq/reference_data/reference_STAR \
 --runThreadN 3 \
 --readFilesIn Mov10_oe_1.subset.fq \
 --outFileNamePrefix ../results/STAR/Mov10_oe_1_ \
@@ -225,7 +225,7 @@ STAR --genomeDir /groups/hbctraining/ngs-data-analysis-longcourse/rnaseq/referen
 
 ### Running STAR script to take a filename as input
 
-The interactive queue on Orchestra offers a great way to test commands to make sure they perform the way you intend before adding them a script. Now that we know the STAR command executed properly, we want to create a script with some flexibility that will take a filename as input to run the STAR command.
+The interactive partition on O2 offers a great way to test commands to make sure they perform the way you intend before adding them a script. Now that we know the STAR command executed properly, we want to create a script with some flexibility that will take a filename as input to run the STAR command.
 
 #### Positional parameters
 
@@ -242,7 +242,7 @@ The command is 'sh', and the arguments are the name of the script, "script.sh" a
 We can specify a filename to use as input to a script using **positional parameters**. To explore this using positional parameters, let's create a script called `word_count.sh` to count the number of words, lines, and characters in a specified file:
 
 ```bash
-$ vim ~/ngs_course/rnaseq/scripts/word_count.sh
+$ vim ~/unix_workshop/rnaseq/scripts/word_count.sh
 ```
 In the script, write the following:
 
@@ -257,7 +257,7 @@ wc $1
 We can run this script by entering the following:
 
 ```bash
-$ sh ~/ngs_course/rnaseq/scripts/word_count.sh Mov10_oe_1.subset.fq
+$ sh ~/unix_workshop/rnaseq/scripts/word_count.sh Mov10_oe_1.subset.fq
 ```
 In this command, `word_count.sh` is $0 and `Mov10_oe_1.subset.fq` is $1. Whatever we enter in the $1 position when we run the command will be used in place of $1 inside the script for `wc $1`.
 
@@ -273,7 +273,7 @@ wc -$2 $1
 Now we can determine the number of **lines** in the Mov10 rep1 file with:
 
 ```bash
-sh ~/ngs_course/rnaseq/scripts/word_count.sh Mov10_oe_1.subset.fq l
+sh ~/unix_workshop/rnaseq/scripts/word_count.sh Mov10_oe_1.subset.fq l
 ```
 
 In this command, `word_count.sh` is $0 and `Mov10_oe_1.subset.fq` is $1 and `l` is $2. When these parameters are used in the script, the full command executed is: `wc -l Mov10_oe_1.subset.fq`.
@@ -285,7 +285,7 @@ In this command, `word_count.sh` is $0 and `Mov10_oe_1.subset.fq` is $1 and `l` 
 Now let's write a script to run the STAR command and use positional parameters to specify which filename to run the script on:
 
 ```bash
-$ vim ~/ngs_course/rnaseq/scripts/star_analysis_on_input_file.sh
+$ vim ~/unix_workshop/rnaseq/scripts/star_analysis_on_input_file.sh
 ```
 
 Within the script, add the shebang line and create a variable named `fq` to be the first command line parameter used when running the script:
@@ -301,11 +301,11 @@ Next, we'll initialize variables that contain the paths to where the common file
 ```bash
 # location of genome reference index files
 
-genome=/groups/hbctraining/ngs-data-analysis-longcourse/rnaseq/reference_data/reference_STAR 
+genome=/n/groups/hbctraining/ngs-data-analysis-longcourse/rnaseq/reference_data/reference_STAR 
 
 # set up our software environment
 
-module load seq/STAR/2.5.3a
+module load gcc/6.2.0 star/2.5.2b samtools/1.3.1
 
 # feedback from our script to help with future debugging
 
@@ -313,7 +313,7 @@ echo "Processing file $fq ..."
 
 # set up output filenames and locations
 
-align_out=~/ngs_course/rnaseq/results/STAR/${fq}_
+align_out=~/unix_workshop/rnaseq/results/STAR/${fq}_
 ```
 
 Our variables are now staged. We now need to modify the STAR command to use it so that it will run the steps of the analytical workflow with more flexibility:
@@ -338,9 +338,9 @@ It is always nice to have comments at the top of a more complex script to make s
 Once you save this new script, it is ready for running:
 
 ```bash
-$ chmod u+rwx ~/ngs_course/rnaseq/scripts/star_analysis_on_input_file.sh      # make it executable, this is good to do, even if your script runs fine without it to ensure that it always does and you are able to tell that it's an executable shell script.
+$ chmod u+rwx ~/unix_workshop/rnaseq/scripts/star_analysis_on_input_file.sh      # make it executable, this is good to do, even if your script runs fine without it to ensure that it always does and you are able to tell that it's an executable shell script.
 
-$ sh ~/ngs_course/rnaseq/scripts/star_analysis_on_input_file.sh <name of fastq>
+$ sh ~/unix_workshop/rnaseq/scripts/star_analysis_on_input_file.sh <name of fastq>
 ```
 
 #### Running our script iteratively as a job submission to the LSF scheduler
@@ -353,21 +353,21 @@ To run the above script iteratively for all of the files on a worker node via th
 # DO NOT RUN THIS!
 
 #!/bin/bash
-#BSUB -q priority       # Queue
-#BSUB -n 6                  # Number of cores, since we are running the STAR command with 6 threads
-#BSUB -W 1:30               # Runtime in D-HH:MM (or use minutes)
-#BSUB -R "rusage[mem=4000]"    # Memory in MB
-#BSUB -J rnaseq_mov10         # Job name
-#BSUB -o %J.out       # File to which standard out will be written
-#BSUB -e %J.err       # File to which standard err will be written
+#SBATCH -p priority 		# partition name
+#SBATCH -t 0-1:30 		# hours:minutes runlimit after which job will be killed
+#SBATCH -n 6 		# number of cores requested 
+#SBATCH --mem-per-cpu=4G # Memory in GB
+#SBATCH --jobname rnaseq_mov10 		# Job name
+#SBATCH -o %j.out			# File to which standard out will be written
+#SBATCH -e %j.err 		# File to which standard err will be written
 
 # this 'for loop', will take our raw fastq files as input and run the script for all of them one after the other. 
 
-cd ~/ngs_course/rnaseq/raw_data
+cd ~unix_workshop/rnaseq/raw_data
 
 for file in *.fq 
 do
-sh ~/ngs_course/rnaseq/scripts/star_analysis_on_input_file.sh $file
+sh ~/unix_workshop/rnaseq/scripts/star_analysis_on_input_file.sh $file
 done
 
 # DO NOT RUN THIS!
@@ -382,7 +382,7 @@ Let's make a modified version of the above script to parallelize our analysis. T
 Let's make a new file called `star_analysis_on_allfiles-for_lsf.sh`. Note this is a normal shell script.
 
 ```bash
-$ vim ~/ngs_course/rnaseq/scripts/star_analysis_on_allfiles_for-lsf.sh
+$ vim ~/unix_workshop/rnaseq/scripts/star_analysis_on_allfiles_for-lsf.sh
 ```
 
 This file will loop through the same files as in the previous script, but the command it submits will be the actual bsub command:
@@ -390,7 +390,7 @@ This file will loop through the same files as in the previous script, but the co
 ```bash
 #!/bin/bash
 
-cd ~/ngs_course/rnaseq/raw_data/
+cd ~/unix_workshop/rnaseq/raw_data/
 
 for file in *.fq
 do
@@ -402,16 +402,16 @@ done
 Now, let's run the job to submit jobs to LSF for each fastq file in the `raw_data` folder:
 
 ```bash
-$ sh ~/ngs_course/rnaseq/scripts/star_analysis_on_allfiles_for-lsf.sh
+$ sh ~/unix_workshop/rnaseq/scripts/star_analysis_on_allfiles_for-lsf.sh
 ```
 
 >NOTE: All job schedulers are similar, but not the same. Once you understand how one works, you can transition to another one without too much trouble. They all have their pros and cons that the system administrators for your setup have taken into consideration and picked one that fits the needs of the users best.
 
 What you should see on the output of your screen would be the jobIDs that are returned from the scheduler for each of the jobs that your script submitted.
 
-You can see their progress by using the `bjobs` command (though there is a lag of about 60 seconds between what is happening and what is reported).
+You can see their progress by using the `squeue -u ecommonsId` command (though there is a lag of about 60 seconds between what is happening and what is reported).
 
-Don't forget about the `bkill` command, should something go wrong and you need to cancel your jobs.
+Don't forget about the `scancl` command, should something go wrong and you need to cancel your jobs.
 
 ### Log files
 
