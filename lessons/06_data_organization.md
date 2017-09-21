@@ -75,7 +75,7 @@ Create subdirectories for the project by changing into `rnaseq/` and then using 
 
 ```bash
 $ cd ~/unix_workshop/rnaseq
-$ mkdir -p logs meta raw_data reference_data results scripts
+$ mkdir -p logs meta raw_data results scripts
 ``` 
 Verify that the subdirectories now exist.
 
