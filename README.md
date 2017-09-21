@@ -30,7 +30,10 @@ This repository has teaching materials for a 3-day Introduction to RNA-sequencin
 |[RNA-seq experimental design best practices](https://github.com/hbctraining/Intro-to-rnaseq-hpc-O2/blob/master/lectures/rna-seq_design.pdf) | 50 min |
 |[Introduction to High-Performance Computing for HMS-RC's Orchestra](https://github.com/hbctraining/Intro-to-rnaseq-hpc-O2/blob/master/lectures/HPC_intro_slides_Radhika.pdf) | 45 min |
 |[RNA-seq data QC with FastQC)](https://github.com/hbctraining/Intro-to-rnaseq-hpc-O2/blob/master/lessons/06_assessing_quality.md) | 75 min |
-|[RNA-seq workflow: Alignment and Counting](https://github.com/hbctraining/Intro-to-rnaseq-hpc-O2/blob/master/lessons/07_rnaseq_workflow.md) | 90 min |
+|[RNA-seq Alignment with STAR](lessons/B1_alignment.md) | 75 min |
+|[Assessing alignment quality](lessons/B2_alignment_quality.md) | 45 min |
+|[Generating a count matrix](lessons/B3_counting_reads.md) | 75 min |
+|[Documenting and MultiQC](lessons/B4_multiQC.md) | 30 min |
 |[Automating the RNA-seq workflow](https://github.com/hbctraining/Intro-to-rnaseq-hpc-O2/blob/master/lessons/08_automating_workflow.md) | 60 min |
 |[Alternative workflows for analyzing RNA-seq data](https://github.com/hbctraining/Intro-to-rnaseq-hpc-O2/blob/master/lectures/RNAseq-analysis-methods.pdf) | 15 min |
 |[Quantifying expression using alignment-free methods (Salmon)](https://github.com/hbctraining/Intro-to-rnaseq-hpc-O2/blob/master/lessons/09_salmon.md) | 75 min |
