@@ -16,7 +16,7 @@ Approximate time: 120 minutes
 
 ## Assessing alignment quality
 
-After running our FASTQ files through the STAR aligner, you should have noticed a number of output files in the `~/unix_workshop/rnaseq/results/STAR` directory. Let's take a quick look at some of the files that were generated and explore the content of some of them. 
+After running our single FASTQ file through the STAR aligner, you should have noticed a number of output files in the `~/unix_workshop/rnaseq/results/STAR` directory. Let's take a quick look at some of the files that were generated and explore the content of some of them. 
 
 	$ cd ~/unix_workshop/rnaseq/results/STAR
 	
@@ -59,7 +59,7 @@ Using the less command take a look at `Mov10_oe_1.subset.fq_Log.final.out` and a
 
 In addition to the aligner-specific summary we can also obtain quality metrics using tools like [Qualimap](http://qualimap.bioinfo.cipf.es/doc_html/intro.html#what-is-qualimap) or [RNASeQC](http://archive.broadinstitute.org/cancer/cga/rna-seqc). These tools examine sequencing alignment data according to the features of the mapped reads and their genomic properties and **provide an overall view of the data that helps to to the detect biases in the sequencing and/or mapping of the data**.The input can be one or more BAM files and the output consists of HTML or PDF reports with useful figures and tab delimited files of metrics data.
 
-We will not be performing this step in the course, but we describe some of the features below to point out things to look for when assessing alignment quality of RNA-seq data:
+We will not be performing this step in the workshop, but we describe some of the features below to point out things to look for when assessing alignment quality of RNA-seq data:
 
 * **Reads genomic origin**: Even if you have high genomic mapping rate for all samples, check to see where the reads are mapping. Ensure that there is not an unusually high number of **reads mapping to intronic regions** (~30% expected) and fewer than normally observed **mapping to exons** (~55%). A high intronic mapping suggests possible genomic DNA contamination and/or pre-mRNA. 
 * **Ribosomal RNA (rRNA)** constitutes a large majority of the RNA species in any total RNA preparation. Despite depletion methods, you can never achieve complete rRNA removal. Even with Poly-A enrichment a small percentage of ribosomal RNA can stick to the enrichment beads non-specifically. **Excess ribosomal content (> 2%)** will normally have to be filtered out so that differences in rRNA mapped reads across samples do not affect alignment rates and skew subsequent normalization of the data.
@@ -118,7 +118,7 @@ The `FLAG` value that is displayed can be translated into information about the 
 
 In our example we have a number that exist in the table, making it relatively easy to translate. But suppose our read alignment has a flag of 163 -- what does this translate to? It is the sum of 4 different flags:
 
-`163 = 1 + 2 + 32 + 128  `
+`163 = 1 + 2 + 32 + 128`
 
 Which tells us that:  
 
@@ -250,12 +250,7 @@ $ scp user_name@o2.hms.harvard.edu:/home/user_name/unix_workshop/rnaseq/results/
 
 **Exercise**
 
-Now that we have done this for one sample, let's try using the same commands on the Irrelevant replicate 1 sample.
-
-1. Create an index for the BAM file.
-2. Copy over the index (bai) file along with the corresponding BAM file to your laptop. Then upload the BAM file into IGV for visualization. 
-3. How does the MOV10 gene look in the control sample in comparison to the overexpression sample?
-4. Take a look at a few other genes by typing into the search bar. For example, PPM1J and PTPN22. How do these genes compare? 
+Take a look at a few other genes by typing into the search bar. For example, PPM1J and PTPN22. How do these genes look?
 
 ***
 
