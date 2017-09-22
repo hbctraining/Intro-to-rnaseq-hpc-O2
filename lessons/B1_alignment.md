@@ -377,7 +377,7 @@ done
 
 The above script will run through the analysis for all your input fastq files, but it will do so in serial. **We can set it up so that the pipeline is working on all the fastq files in parallel (at the same time)**. This will save us a lot of time when we have realistic datasets.
 
-Let's make a modified version of the above script to parallelize our analysis. To do this need to modify one major aspect which will enable us to work with some of the constraints that this scheduler (SLURM) has. We will be using a `for loop` for submission and putting the directives for each submission in the bsub command.
+Let's make a modified version of the above script to parallelize our analysis. To do this need to modify one major aspect which will enable us to work with some of the constraints that this scheduler (SLURM) has. We will be using a `for loop` for submission and putting the directives for each submission as an argument to the `sbatch` command.
 
 Let's make a new file called `star_analysis_on_allfiles-for_slurm.sh`. Note this is a normal shell script.
 
@@ -385,7 +385,7 @@ Let's make a new file called `star_analysis_on_allfiles-for_slurm.sh`. Note this
 $ vim ~/unix_workshop/rnaseq/scripts/star_analysis_on_allfiles_for-slurm.sh
 ```
 
-This file will loop through the same files as in the previous script, but the command it submits will be the actual bsub command:
+This file will loop through the same files as in the previous script, but the jobs will be run in parallel since each one is submitted with a separate `sbatch` command:
 
 ```bash
 #!/bin/bash
