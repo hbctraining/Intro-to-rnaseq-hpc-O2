@@ -46,21 +46,23 @@ featureCounts can also take into account whether your data are **stranded** or n
 First things first, start an interactive session with 4 cores:
 	
 ``` bash
-$ srun --pty -p interactive -t 0-12:00 -n 4 --mem 8G --reservation=hbc /bin/bash
+$ srun --pty -p interactive -t 0-12:00 -n 4 --mem 8G --reservation=hbc bash
 ```
 
-Now, change directories to your rnaseq directory and start by creating 2 directories, (1) a directory for the output and (2) a directory for the bam files we generated earlier:
+Now, change directories to your rnaseq directory and start by creating 2 directories, (1) a directory for the output and (2) a directory for the bam files:
 
 ``` bash
 $ cd ~/unix_workshop/rnaseq/
 $ mkdir results/counts results/STAR/bams
 ```
 
-Let's move the bam files over to the `results/STAR/bams` directory
+Let's move over the bam file for Mov10_oe_1 over to the `results/STAR/bams` directory, and also copy over the rest of the bam files that we have already generated for you:
 	
 ``` bash
 $ mv ~/unix_workshop/rnaseq/results/STAR/*fq_Aligned*bam ~/unix_workshop/rnaseq/results/STAR/bams
 # check to make sure the move worked and that only the files we wanted moved over
+
+$ cp /n/groups/hbctraining/unix_workshop_other/bam_STAR/*bam ~/unix_workshop/rnaseq/results/STAR/bams
 ```
 featureCounts is not available as a module on O2, but we have already added the path for it to our `$PATH` variable last time. 
 
