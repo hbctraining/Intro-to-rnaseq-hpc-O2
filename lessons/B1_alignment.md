@@ -150,7 +150,7 @@ Within `vim` we now add our shebang line, the Orchestra LSF directives, and our 
 #SBATCH -p priority 		# partition name
 #SBATCH -t 0-2:00 		# hours:minutes runlimit after which job will be killed
 #SBATCH -n 6 		# number of cores requested -- this needs to be greater than or equal to the number of cores you plan to use to run your job
-#SBATCH --jobname STAR_index 		# Job name
+#SBATCH --job-name STAR_index 		# Job name
 #SBATCH -o %j.out			# File to which standard out will be written
 #SBATCH -e %j.err 		# File to which standard err will be written
 
@@ -357,7 +357,7 @@ To run the above script iteratively for all of the files on a worker node via th
 #SBATCH -t 0-1:30 		# hours:minutes runlimit after which job will be killed
 #SBATCH -n 6 		# number of cores requested 
 #SBATCH --mem-per-cpu=4G # Memory in GB
-#SBATCH --jobname rnaseq_mov10 		# Job name
+#SBATCH --job-name rnaseq_mov10 		# Job name
 #SBATCH -o %j.out			# File to which standard out will be written
 #SBATCH -e %j.err 		# File to which standard err will be written
 
