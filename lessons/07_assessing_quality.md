@@ -171,7 +171,7 @@ So far in our FASTQC analysis, we have been directly submitting commands to O2 u
 
 ```bash
 # DO NOT RUN THIS
-$ sbatch < job_submission_script.run
+$ sbatch job_submission_script.run
 ```
 
 Submission of the script using the `sbatch` command allows SLURM to run your job when its your turn. Let's create a job submission script to load the FASTQC module, run FASTQC on all of our fastq files, and move the files to the appropriate directory.
