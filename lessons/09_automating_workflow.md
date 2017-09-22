@@ -11,25 +11,25 @@ date: "Tuesday, August 22, 2017"
 
 ## Automating the analysis path from Sequence reads to Count matrix
 
-Once you have optimized all the tools and parameters using a single sample, you can write a script to run the analysis on all the samples at the same time.
+Once you have optimized all the tools and parameters using a single sample (likely using an interactive session), you can write a script to run the whole workflow on all the samples in parallel.
 
-This will ensure that you run every sample with the exact same parameters, and will enable you to keep track of all the tools and their versions. In addition, the script is like a lab notebook, in the future you (or your colleagues) can go back and check the workflow for methods, which enables efficiency and reproducibility.
+This will ensure that you run every sample with the exact same parameters, and will enable you to keep track of all the tools and their versions. In addition, the script is like a lab notebook; in the future, you (or your colleagues) can go back and check the workflow for methods, which enables efficiency and reproducibility.
 
 Before we start with the script, let's check how many cores our interactive session has by using `bjobs`. 
 
 ```bash
-$ bjobs
+$ squeue -u eCommonsID
 ```
 
-If you already have an interactive session with 2 or more cores, then **do not** start a new interactive session. If you don't, then `exit` out of the one you have and run the following command.
+We need to have an interactive session with 6 cores, if you already have one you are set. If you have a session with fewer cores then `exit` out of your current interactive session and start a new one with `-n 6`.
 
 ```bash
-$ bsub -Is -n 2 -q interactive bash
+$ srun --pty -p interactive -t 0-12:00 -n 6 --mem 8G --reservation=hbc bash
 ```
 
 ### More Flexibility with variables
 
-We can write a shell script that will run on a specific file, but to make it more flexible and efficient we would prefer that it lets us give it an input fastq file when we run the script. To be able to provide an input to any shell script, we need to use so-called **Positional Parameters**. 
+We can write a shell script that will run on a specific file, but to make it more flexible and efficient we would prefer that it lets us give it an input fastq file when we run the script. To be able to provide an input to any shell script, we need to use **Positional Parameters**.
 
 For example, we can refer to the components of the following command as numbered variables **within** the actual script:
 
@@ -52,7 +52,7 @@ The variables $1, $2, $3,...$9 and so on are **positional parameters** in the co
 
 > [This is an example of a simple script that used the concept of positional parameters and the associated variables](http://steve-parker.org/sh/eg/var3.sh.txt). You should try this script out after the class to get a better handle on positional parameters for shell scripting.
 
-Let's use this new concept we have just learned in the script we are writing. We want the first positional parameter ($1) to be the name of our fastq file. We could just use the variable `$1` throughout the script to refer to the fastq file, but this variable name is not intuitive, so we want to create a new variable called `fq` and copy the contents of `$1` into it.
+Let's use this new concept in the script we are writing. We want the first positional parameter ($1) to be the name of our fastq file. We could just use the variable `$1` throughout the script to refer to the fastq file, but this variable name is not intuitive, so we want to create a new variable called `fq` and copy the contents of `$1` into it.
 
 ```bash
 #!/bin/bash/
@@ -89,7 +89,7 @@ Next we want to specify how many cores the script should use to run the analysis
 ```
 # specify the number of cores to use
 
-cores=2
+cores=6
 ```
 Next we'll initialize 2 more variables named `genome` and `gtf`, these will contain the paths to where the reference files are stored. This makes it easier to modify the script for when you want to use a different genome, i.e. you'll just have to change the contents of these variable at the beginning of the script.
 
@@ -131,9 +131,10 @@ All of our variables are now staged. Next, let's make sure all the modules are l
 # set up the software environment
 
 module load seq/fastqc/0.11.3
-module load seq/STAR/2.5.3a
-module load seq/samtools/1.3
-PATH=/opt/bcbio/centos/bin:$PATH 	# for using featureCounts if not already in $PATH
+module load gcc/6.2.0  
+module load star/2.5.2b
+module load samtools/1.3.1
+PATH=/n/app/bcbio/tools/bin:$PATH 	# for using featureCounts if not already in $PATH
 ```
 
 ### Preparing for future debugging
@@ -185,24 +186,22 @@ $ cd ~/unix_workshop/rnaseq/scripts/
 
 $ vim rnaseq_analysis_on_input_file.sh 
 ```
+> *Alternatively, you can save the script on your computer and transfer it to `~/unix_workshop/rnaseq/scripts/` using FileZilla.*
 
-*Alternatively, you can save the script on your computer and transfer it to `~/unix_workshop/rnaseq/scripts/` using FileZilla.*
 
-We should all have an interactive session with 2 or more cores, so we can start the script:
+We should all have an interactive session with 6 cores, so we can run the script as follows:
 
 ```bash
 $ sh rnaseq_analysis_on_input_file.sh ~/unix_workshop/rnaseq/raw_data/Mov10_oe_1.subset.fq
 ```
 
-**Before we move to the next section, modify the number of cores in the above script to 6 using `vim`, so we can have it run a lot faster when we submit it as an LSF job.**
-
-## Running the script iteratively as a job submission to the LSF scheduler
+## Running the script to submit jobs in parallel to the SLURM scheduler
 
 The above script will run in an interactive session **one file at a time**. But the whole point of writing this script was to run it on all files at once. How do you think we can do this?
 
-To run the above script "in serial" for all of the files on a worker node via the job scheduler, we can create a separate submission script that will need 2 components:
+To run the above script **"in serial"** for all of the files on a worker node via the job scheduler, we can create a separate submission script that will need 2 components:
 
-1. **LSF directives** at the **beginning** of the script. This is so that the scheduler knows what resources we need in order to run our job on the compute node(s).
+1. **SLURM directives** at the **beginning** of the script. This is so that the scheduler knows what resources we need in order to run our job on the compute node(s).
 2. a `for` loop that iterates through and runs the above script for all the fastq files.
 
 Below is what this second script would look like **\[DO NOT RUN THIS\]**:
@@ -210,13 +209,12 @@ Below is what this second script would look like **\[DO NOT RUN THIS\]**:
 ```
 #!/bin/bash
 
-#BSUB -q training		# Partition to submit to (comma separated)
-#BSUB -n 6              	# Number of cores, since we are running the STAR and featureCounts commands with 6 threads
-#BSUB -W 1:30           	# Runtime in D-HH:MM (or use minutes)
-#BSUB -R "rusage[mem=4000]"    	# Memory in MB
-#BSUB -J rnaseq_mov10          	# Job name
-#BSUB -o %J.out       		# File to which standard output will be written
-#BSUB -e %J.err       		# File to which standard error will be written
+#SBATCH -p medium 		# partition name
+#SBATCH -t 0-2:00 		# hours:minutes runlimit after which job will be killed
+#SBATCH -n 6 		# number of cores requested -- this needs to be greater than or equal to the number of cores you plan to use to run your job
+#SBATCH --job-name STAR_mov10 		# Job name
+#SBATCH -o %j.out			# File to which standard out will be written
+#SBATCH -e %j.err 		# File to which standard err will be written
 
 # this `for` loop, will take the fastq files as input and run the script for all of them one after the other. 
 for fq in ~/unix_workshop/rnaseq/raw_data/*.fq
@@ -228,7 +226,7 @@ done
 
 **But we don't want to run the analysis on these 6 samples one after the other!** We want to run them "in parallel" as 6 separate jobs. 
 
-**Note:** If you create and run the above script, or something similar to it, i.e. with LSF directives at the top, you should give the script name `.lsf` as the extension. This will make it obvious that it is meant to submit jobs to the LSF scheduler. 
+**Note:** If you create and run the above script, or something similar to it, i.e. with SLURM directives at the top, you should give the script name `.run` or `.slurm` as the extension. This will make it obvious that it is meant to submit jobs to the SLURM scheduler. 
 
 ***
 **Exercise**
@@ -239,39 +237,36 @@ How would you run the above script?
 
 ## Parallelizing the analysis for efficiency
 
-Parallelization will save you a lot of time with real (large) datasets. To parallelize our analysis, we will still need to write a second script that will call the original script we just wrote. We will still use a `for` loop, but we will be creating a regular shell script and we will be specifying the LSF directives differently. 
+Parallelization will save you a lot of time with real (large) datasets. To parallelize our analysis, we will still need to write a second script that will call the original script we just wrote. We will still use a `for` loop, but we will be creating a regular shell script and we will be specifying the SLURM directives differently. 
 
-Use `vim` to start a new shell script called `rnaseq_analysis_on_allfiles-for_lsf.sh`: 
+Use `vim` to start a new shell script called `rnaseq_analysis_on_allfiles-for_slurm.sh`: 
 
 ```bash
-$ vim rnaseq_analysis_on_allfiles_for-lsf.sh
+$ vim rnaseq_analysis_on_allfiles_for-slurm.sh
 ```
 
-This script loops through the same files as in the previous (demo) script, but the command being submitted within the `for` loop is `bsub` with LSF directives specified on the same line:
+This script loops through the same files as in the previous (demo) script, but the command being submitted within the `for` loop is `sbatch` with SLURM directives specified on the same line:
 
 ```bash
 #! /bin/bash
 
 for fq in ~/unix_workshop/rnaseq/raw_data/*.fq
 do
-  
-  bsub -q training -n 6 -W 1:30 -R "rusage[mem=4000]" -J rnaseq_mov10 -o %J.out -e %J.err "sh ~/unix_workshop/rnaseq/scripts/rnaseq_analysis_on_input_file.sh $fq"
-  
-  sleep 1	# wait 1 second between each job submission
+
+sbatch -p short -t 0-2:00 -n 3 --job-name star --wrap="sh ~/unix_workshop/rnaseq/scripts/rnaseq_analysis_on_input_file.sh $fq"
+sleep 1	# wait 1 second between each job submission
   
 done
 ```
-Please note that after the `bsub` directives the command `sh ~/unix_workshop/rnaseq/scripts/rnaseq_analysis_on_input_file.sh $fq` is in quotes.
+> Please note that after the `sbatch` directives the command `sh ~/unix_workshop/rnaseq/scripts/rnaseq_analysis_on_input_file.sh $fq` is in quotes.
 
 What you should see on the output of your screen would be the jobIDs that are returned from the scheduler for each of the jobs that your script submitted.
 
-You can use the `bjobs` command to check progress (though there is a lag of about 60 seconds between what is happening and what is reported).
+You can use `squeue -u eCommonsID` to check progress.
 
-Don't forget about the `bkill` command, should something go wrong and you need to cancel your jobs.
+Don't forget about the `scancel` command, should something go wrong and you need to cancel your jobs.
 
 > **NOTE:** All job schedulers are similar, but not the same. Once you understand how one works, you can transition to another one without too much trouble. They all have their pros and cons which are considered by the system administrators when picking one for a given HPC environment. 
->
-> This fall, HMS-RC is introducing a new cluster called O2 (Orchestra 2), which used the SLURM scheduler instead of LSF. 
 
 #### Generating a Count Matrix
 
@@ -279,7 +274,7 @@ The above script will generate separate count files for each sample. Hence, afte
 
 <img src="../img/count_matrix.png" width=500>
 
-Alternatively, you could remove featureCounts from the original script, and run it after all the jobs finish generating the BAM files.
+Alternatively, you could remove featureCounts from the original script, and run it after all the jobs finish generating BAM files.
 
 ---
 *This lesson has been developed by members of the teaching team at the [Harvard Chan Bioinformatics Core (HBC)](http://bioinformatics.sph.harvard.edu/). These are open access materials distributed under the terms of the [Creative Commons Attribution license](https://creativecommons.org/licenses/by/4.0/) (CC BY 4.0), which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.*
