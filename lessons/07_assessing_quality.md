@@ -216,7 +216,7 @@ fastqc -t 6 *.fq
 mv *fastqc* ../results/fastqc/
 ```
 
-Save and quit the script. Now, let's submit the job to the LSF:
+Save and quit the script. Now, let's submit the job to the SLURM:
 
 ```bash
 $ sbatch mov10_fastqc.run
