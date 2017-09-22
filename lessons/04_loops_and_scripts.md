@@ -119,7 +119,7 @@ $ ls *.fq
 Now we want to *assign* the output of `ls` to the variable:
 
 ```bash
-$ filenames=`ls *.fq`
+$ filenames=$(ls *.fq)
 ```
 
 > Note the syntax for assigning output of commands to variables, i.e. the ticks around the `ls` command.
