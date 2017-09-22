@@ -45,10 +45,10 @@ A warning might pop up the first time you try to connect to a remote machine, ty
 
 #### Copying example data folder
 
-Once logged in, you should see the Orchestra news and the command prompt: 
+Once logged in, you should see the O2 icon, some news, and the command prompt: 
 
 ```bash
-$
+[rc_training10@login01 ~]$ 
 ```
 
 The command prompt will have some characters before it, something like `[rc_training01@login01 ~]`, this is telling you what the name of the computer you are working on is.
