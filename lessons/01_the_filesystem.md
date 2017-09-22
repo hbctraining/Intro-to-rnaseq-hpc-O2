@@ -555,7 +555,7 @@ just nicely put the files in the Trash. They're really gone.
 >
 > Same with moving and renaming files. It will **not** ask you if you are sure that you want to "replace existing file". You can use `rm -f` if you want it to ask before deleting the file(s).
 
-We really don't need these backup directories, so, let's delete both. Make sure you have navigated to `~/ngs_course/unix_lesson/`, and now we will use the `rm` command to delete. By default, `rm`, will NOT delete directories, but you use the `-r` flag if you are sure that you want to delete the directories and everything within them. To be safe, let's use it with the `-i` flag.
+We really don't need these backup directories, so, let's delete both. By default, `rm`, will NOT delete directories, but you use the `-r` flag if you are sure that you want to delete the directories and everything within them. To be safe, let's use it with the `-i` flag.
 
 ```bash
 $ rm -ri backup_ref_data/ backup_fastq/ 
