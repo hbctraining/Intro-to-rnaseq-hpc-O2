@@ -56,7 +56,7 @@ The command prompt will have some characters before it, something like `[rc_trai
 The first command we will type on the command prompt will be to start a so-called "interactive session" on O2.
 
 ```bash
-$ srun --pty -p interactive -t 0-12:00 --mem 8G /bin/bash
+$ srun --pty -p interactive -t 0-12:00 --mem 8G bash
 ```
 
 Press enter after you type in that command. You will get a couple of messages, but in a few seconds you should get back the command prompt `$`; the string of characters before the command prompt, however, have changed. They should say something like `[rc_training01@compute-a-16-73 ~]`. *We will be explaining what this means in more detail later when we talk about HPC and O2.* 
@@ -287,9 +287,8 @@ Over time, it will become easier for you to keep a mental note of the structure 
 
 ***
 **Exercise**
-* Change directories to `/home/username/unix_workshop/raw_fastq/`, and list the contents of `unix_workshop/other` without changing directories again.
 
-* List the contents of the `/bin` directory. Do you see anything familiar in there? How can you tell these are programs rather than plain files?
+Change directories to `/home/username/unix_workshop/raw_fastq/`, and list the contents of `unix_workshop/other` without changing directories again.
 ***
 
 ### Saving time with tab completion, wildcards and other shortcuts 
@@ -527,9 +526,7 @@ $ mv *copy.fq backup
 ```bash
 $ ls -l backup
 
-	drwxrwsr-x 2 mp298 mp298       43 Sep 30 13:59 .
-	drwxrwsr-x 8 mp298 mp298      203 Sep 30 13:58 ..
-	-rw-rw-r-- 1 mp298 mp298 75706556 Sep 30 13:56 Mov10_oe_1.subset-copy.fq
+-rw-rw-r-- 1 mp298 mp298 75706556 Sep 30 13:56 Mov10_oe_1.subset-copy.fq
 ```
 
 The `mv` command is also how you rename files. Since this file is so
@@ -565,9 +562,7 @@ $ rm -ri backup_ref_data/ backup_fastq/
 ```
 
 - `-r`: recursive, commonly used as an option when working with directories, e.g. with `cp`. 
-- `-i`: prompt before every removal.``
-
-
+- `-i`: prompt before every removal.
 
 ## Commands, options, and keystrokes covered
 
