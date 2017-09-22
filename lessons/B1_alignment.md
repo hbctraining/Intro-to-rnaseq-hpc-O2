@@ -399,6 +399,8 @@ sleep 1
 done
 ```
 
+Please note that after the `sbatch` directives the command `sh ~/unix_workshop/rnaseq/scripts/star_analysis_on_input_file.sh $file` is in quotes and preceded by `--wrap=`.
+
 Now, let's run the job to submit jobs to SLURM for each fastq file in the `raw_data` folder:
 
 ```bash
