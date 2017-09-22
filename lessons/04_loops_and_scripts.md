@@ -88,7 +88,7 @@ $ file=Mov10_oe_1.subset.fq
 Once you press return, you should be back at the command prompt. Let's check what's stored inside `file`, but first move into the `raw_fastq` directory::
 
 ```bash
-$ cd ~/ngs_course/unix_lesson/raw_fastq
+$ cd ~/unix_workshop/raw_fastq
 $ echo $file
 ```
 
