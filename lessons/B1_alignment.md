@@ -394,7 +394,7 @@ cd ~/unix_workshop/rnaseq/raw_data/
 
 for file in *.fq
 do
-sbatch -p short -t 0-2:00 -n 3 --job-name star --wrap="sh ~/ngs_course/rnaseq/scripts/star_analysis_on_input_file.sh $file"
+sbatch -p short -t 0-2:00 -n 3 --job-name star --wrap="sh ~/unix_workshop/rnaseq/scripts/star_analysis_on_input_file.sh $file"
 sleep 1
 done
 ```
