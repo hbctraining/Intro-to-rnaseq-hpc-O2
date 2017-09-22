@@ -177,7 +177,7 @@ After you have the genome indices generated, you can perform the read alignment.
 Create an output directory for our alignment files:
 
 ```bash
-$ cd ~/unix_course/rnaseq/raw_data
+$ cd ~/unix_workshop/rnaseq/raw_data
 
 $ mkdir ../results/STAR
 ```
