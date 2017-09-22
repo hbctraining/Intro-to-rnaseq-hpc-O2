@@ -98,7 +98,7 @@ Change directories into the `reference_data` folder.
 $ cd ~/unix_workshop/rnaseq/reference_data
 ```
 
-To use the STAR aligner, load the Orchestra module: 
+To use the STAR aligner, load the module: 
 
 ```bash
 $ module load gcc/6.2.0 star/2.5.2b samtools/1.3.1
@@ -109,7 +109,7 @@ Aligning reads using STAR is a two step process:
 1. Create a genome index 
 2. Map reads to the genome
 
-> A quick note on shared databases for human and other commonly used model organisms. The Orchestra cluster has a designated directory at `/n/groups/shared_databases/` in which there are files that can be accessed by any user. These files contain, but are not limited to, genome indices for various tools, reference sequences, tool specific data, and data from public databases, such as NCBI and PDB. So when using a tool that requires a reference of sorts, it is worth taking a quick look here because chances are it's already been taken care of for you. 
+> A quick note on shared databases for human and other commonly used model organisms. The O2 cluster has a designated directory at `/n/groups/shared_databases/` in which there are files that can be accessed by any user. These files contain, but are not limited to, genome indices for various tools, reference sequences, tool specific data, and data from public databases, such as NCBI and PDB. So when using a tool that requires a reference of sorts, it is worth taking a quick look here because chances are it's already been taken care of for you. 
 >
 >```bash
 >$ ls -l /n/groups/shared_databases/igenome/
@@ -142,12 +142,12 @@ Now let's create a job submission script to generate the genome index:
 ```bash
 $ vim ~/unix_workshop/rnaseq/scripts/genome_index.run
 ```
-Within `vim` we now add our shebang line, the Orchestra LSF directives, and our STAR command. 
+Within `vim` we now add our shebang line, the SLURM directives, and our STAR command. 
 
 ```bash
 #!/bin/bash
 
-#SBATCH -p priority 		# partition name
+#SBATCH -p medium 		# partition name
 #SBATCH -t 0-2:00 		# hours:minutes runlimit after which job will be killed
 #SBATCH -n 6 		# number of cores requested -- this needs to be greater than or equal to the number of cores you plan to use to run your job
 #SBATCH --job-name STAR_index 		# Job name
@@ -343,9 +343,9 @@ $ chmod u+rwx ~/unix_workshop/rnaseq/scripts/star_analysis_on_input_file.sh     
 $ sh ~/unix_workshop/rnaseq/scripts/star_analysis_on_input_file.sh <name of fastq>
 ```
 
-#### Running our script iteratively as a job submission to the LSF scheduler
+#### Running our script iteratively as a job submission to the SLURM scheduler
 
-The above script will run in an interactive session for one file at a time, but **what if we wanted to run this script as a job submission to LSF, and with only one command have LSF run through the analysis for all your input fastq files**?
+The above script will run in an interactive session for one file at a time, but **what if we wanted to run this script as a job submission to SLUM, and with only one command have SLURM run through the analysis for all your input fastq files**?
 
 To run the above script iteratively for all of the files on a worker node via the job scheduler, we could write a **new submission script** that uses a **for loop** to iterate through and run the above script for all the fastq files.
 
@@ -353,7 +353,7 @@ To run the above script iteratively for all of the files on a worker node via th
 # DO NOT RUN THIS!
 
 #!/bin/bash
-#SBATCH -p priority 		# partition name
+#SBATCH -p medium 		# partition name
 #SBATCH -t 0-1:30 		# hours:minutes runlimit after which job will be killed
 #SBATCH -n 6 		# number of cores requested 
 #SBATCH --mem-per-cpu=4G # Memory in GB
@@ -377,12 +377,12 @@ done
 
 The above script will run through the analysis for all your input fastq files, but it will do so in serial. **We can set it up so that the pipeline is working on all the fastq files in parallel (at the same time)**. This will save us a lot of time when we have realistic datasets.
 
-Let's make a modified version of the above script to parallelize our analysis. To do this need to modify one major aspect which will enable us to work with some of the constraints that this scheduler (LSF) has. We will be using a `for loop` for submission and putting the directives for each submission in the bsub command.
+Let's make a modified version of the above script to parallelize our analysis. To do this need to modify one major aspect which will enable us to work with some of the constraints that this scheduler (SLURM) has. We will be using a `for loop` for submission and putting the directives for each submission in the bsub command.
 
-Let's make a new file called `star_analysis_on_allfiles-for_lsf.sh`. Note this is a normal shell script.
+Let's make a new file called `star_analysis_on_allfiles-for_slurm.sh`. Note this is a normal shell script.
 
 ```bash
-$ vim ~/unix_workshop/rnaseq/scripts/star_analysis_on_allfiles_for-lsf.sh
+$ vim ~/unix_workshop/rnaseq/scripts/star_analysis_on_allfiles_for-slurm.sh
 ```
 
 This file will loop through the same files as in the previous script, but the command it submits will be the actual bsub command:
@@ -394,15 +394,19 @@ cd ~/unix_workshop/rnaseq/raw_data/
 
 for file in *.fq
 do
-bsub -q priority -n 6 -W 1:30 -R "rusage[mem=4000]" -J rnaseq_mov10 -o %J.out -e %J.err sh ~/ngs_course/rnaseq/scripts/star_analysis_on_input_file.sh $file
+sbatch -p short -t 0-2:00 -n 3 --job-name star --wrap="sh ~/ngs_course/rnaseq/scripts/star_analysis_on_input_file.sh $file"
 sleep 1
 done
 ```
 
-Now, let's run the job to submit jobs to LSF for each fastq file in the `raw_data` folder:
+Now, let's run the job to submit jobs to SLURM for each fastq file in the `raw_data` folder:
 
 ```bash
-$ sh ~/unix_workshop/rnaseq/scripts/star_analysis_on_allfiles_for-lsf.sh
+$ sh ~/unix_workshop/rnaseq/scripts/star_analysis_on_allfiles_for-slurm.sh
+```
+
+```bash
+$ squeue -u eCommonsID
 ```
 
 >NOTE: All job schedulers are similar, but not the same. Once you understand how one works, you can transition to another one without too much trouble. They all have their pros and cons that the system administrators for your setup have taken into consideration and picked one that fits the needs of the users best.
