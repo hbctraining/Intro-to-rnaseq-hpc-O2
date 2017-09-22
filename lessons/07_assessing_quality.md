@@ -196,7 +196,7 @@ Following the shebang line are the Orchestra options. For the script to run, we 
 #SBATCH -p priority 		# partition name
 #SBATCH -t 0-2:00 		# hours:minutes runlimit after which job will be killed
 #SBATCH -n 6 		# number of cores requested -- this needs to be greater than or equal to the number of cores you plan to use to run your job
-#SBATCH --jobname rnaseq_mov10_fastqc 		# Job name
+#SBATCH --job-name rnaseq_mov10_fastqc 		# Job name
 #SBATCH -o %j.out			# File to which standard out will be written
 #SBATCH -e %j.err 		# File to which standard err will be written
 ```
