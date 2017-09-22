@@ -174,7 +174,7 @@ $ samtools view -h Mov10_oe_1.subset.fq_Aligned.sortedByCoord.out.bam | less
 
 ### Filtering the SAM file
 
-Now we know that we have all of this information for each of the reads -- wouldn't it be useful to summarize and filter based on selected criteria? Suppose we wanted to set a threshold on mapping quality. For example, we want to know how many reads aligned with a quality score higher than 30. To do this, we can combine the `view` command with additional flags `q 30` and `-c` (to count):
+Now we know that we have all of this information for each of the reads -- wouldn't it be useful to summarize and filter based on selected criteria? Suppose we wanted to set a **threshold on mapping quality**. For example, we want to know how many reads aligned with a quality score higher than 30. To do this, we can combine the `view` command with additional flags `q 30` and `-c` (to count):
 
 ```
 $ samtools view -q 30 -c Mov10_oe_1.subset.fq_Aligned.sortedByCoord.out.bam
@@ -182,11 +182,18 @@ $ samtools view -q 30 -c Mov10_oe_1.subset.fq_Aligned.sortedByCoord.out.bam
 ```
 *How many of reads have a mapping quality of 30 or higher?*
 
-We can also apply filters to select reads based on where they fall within the `FLAG` categories. Remember that the bitwise flags are like boolean values. If the flag exists, the statement is true. Similar to when filtering by quality we need to use the `samtools view` command, however this time use the `-F` or `-f` flags.
+We can also **apply filters to select reads based on where they fall within the `FLAG` categories**. Remember that the bitwise flags are like boolean values. If the flag exists, the statement is true. Similar to when filtering by quality we need to use the `samtools view` command, however this time use the `-F` or `-f` flags.
 
 * `-f` - to find the reads that agree with the flag statement 
 * `-F`  - to find the reads that do not agree with the flag statement
 
+```
+## This will tell us how many reads are unmapped
+$ samtools view -f 4 -c Mov10_oe_1.subset.fq_Aligned.sortedByCoord.out.bam
+
+## This should give us the remaining reads that do not have this flag set (i.e reads that are mapped)
+$ samtools view -F 4 -c Mov10_oe_1.subset.fq_Aligned.sortedByCoord.out.bam
+```
 
 ### Indexing the BAM file
 
