@@ -270,7 +270,7 @@ For each file that we process we can use `basename` to create a variable that wi
 ```bash
 do
   # create a prefix for all output files
-  base=`basename $filename .subset.fq`
+  base=$(basename $filename .subset.fq)
 ```
 
 and then we execute the commands for each loop:
@@ -313,7 +313,7 @@ for filename in *.fq
 do 
 
   # create a prefix for all output files
-  base=`basename $filename .subset.fq`
+  base=$(basename $filename .subset.fq)
 
   # tell us what file we're working on	
   echo $filename
