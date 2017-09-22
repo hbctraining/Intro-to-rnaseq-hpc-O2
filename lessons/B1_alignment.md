@@ -172,7 +172,7 @@ $ sbatch ~/unix_workshop/rnaseq/scripts/genome_index.run
 
 ### Aligning reads
 
-After you have the genome indices generated, you can perform the read alignment. We previously generated the genome indices for you in `/n/groups/hbctraining/ngs-data-longcourse/rnaseq/reference_data/reference_STAR` directory so that we don't get held up waiting on the generation of the indices.
+After you have the genome indices generated, you can perform the read alignment. We previously generated the genome indices for you in `/n/groups/hbctraining/ngs-data-analysis-longcourse/rnaseq/reference_data/reference_STAR/` directory so that we don't get held up waiting on the generation of the indices.
 
 Create an output directory for our alignment files:
 
