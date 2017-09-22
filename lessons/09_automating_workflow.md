@@ -179,7 +179,7 @@ It is okay to specify this everything else is set up, since you will have most c
 
 ### Saving and running script
 
-To transfer the contents of the script to Orchestra, you can copy and paste the contents into a new file using `vim`. 
+To transfer the contents of the script to O2, you can copy and paste the contents into a new file using `vim`. 
 
 ```bash
 $ cd ~/unix_workshop/rnaseq/scripts/
