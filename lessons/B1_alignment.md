@@ -69,7 +69,7 @@ Then the seeds are stitched together based on the best alignment for the read (s
 To get started with this lesson, start an interactive session with 6 cores:
 
 ```bash
-$ srun --pty -p interactive -t 0-12:00 -n 6 --mem 8G --reservation=hbc /bin/bash	
+$ srun --pty -p interactive -t 0-12:00 -n 6 --mem 8G --reservation=hbc bash	
 ```
 
 You should have a directory tree setup similar to that shown below. it is best practice to have all files you intend on using for your workflow present within the same directory. In our case, we have our original FASTQ files generated in the previous section. We also have all reference data files that will be used in downstream analyses.
