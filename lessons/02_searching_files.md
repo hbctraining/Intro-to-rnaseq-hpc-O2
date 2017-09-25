@@ -82,7 +82,7 @@ Let's try it out and put all the sequences that contain 'NNNNNNNNNN'
 from all the files into another file called `bad_reads.txt`.
 
 ```bash
-$ grep -B1 -A2 NNNNNNNNNN Mov10_oe_1.subset.fq > bad_reads.txt
+$ grep -B 1 -A 2 NNNNNNNNNN Mov10_oe_1.subset.fq > bad_reads.txt
 ```
 
 The prompt should sit there a little bit, and then it should look like nothing
@@ -98,7 +98,7 @@ Take a look at the file and see if it contains what you think it should. *NOTE: 
 If we use `>>`, it will append to rather than overwrite a file.  This can be useful for saving more than one search, for example.
     
 ```bash
-$ grep -B1 -A2 NNNNNNNNNN Mov10_oe_2.subset.fq >> bad_reads.txt
+$ grep -B 1 -A 2 NNNNNNNNNN Mov10_oe_2.subset.fq >> bad_reads.txt
 
 $ ls -l
 ```
@@ -116,7 +116,7 @@ There's one more useful redirection command that we're going to show, and that's
 It's probably not a key on your keyboard you use very much. What `|` does is take the output that went scrolling by on the terminal and runs it through another command. When it was all whizzing by before, we wished we could just slow it down and look at it, like we can with `less`. Well it turns out that we can! We pipe the `grep` command to `less` or to `head` to just see the first few lines.
 
 ```bash
-$ grep -B1 -A2 NNNNNNNNNN Mov10_oe_1.subset.fq | less
+$ grep -B 1 -A 2 NNNNNNNNNN Mov10_oe_1.subset.fq | less
 ```
 
 Now we can use the arrows to scroll up and down and use `q` to get out.
