@@ -17,11 +17,15 @@ duration: 35
 
 ## Data Management
 
-Project organization is one of the most important parts of a sequencing project, but is often overlooked in the excitement to get a first look at new data. While it's best to get yourself organized before you begin analysis, it's never too late to start.
+The data management lifecycle courtesy of the [HMS Data Management Working Group](https://datamanagement.hms.harvard.edu/hms-data-management-working-group):
 
-Importantly, the methods and approaches needed for bioinformatics are the same required in a wet lab environment. **Planning, documentation, and organization** are essential to good, reproducible science. 
+<img src="../img/data_life_cycle_gouldv2.png" width="350">
 
-Today we will breifly talk about each of these concepts. If you are interested in Research Data Management (RDM), the [HMS Data Management Working Group](https://datamanagement.hms.harvard.edu/hms-data-management-working-group) has [a website](https://datamanagement.hms.harvard.edu/) with more information, resources and contacts.
+Today we will cover some parts of this lifecycle by talking about best practices for  the **Research** half of the above lifecycle. Later in this workshop we will talk a little more about the data storage. For more information about the full lifecycle and more guidelines, please look at the resources linked below.
+
+**Resources**
+* The HMS [Data Management Working Group's website](https://datamanagement.hms.harvard.edu/)
+* A guide from the [Harvard library](http://guides.library.harvard.edu/dmp).
 
 ### Planning
 
@@ -30,6 +34,8 @@ You should approach your sequencing project in a very similar way to how you do 
 During this stage it is important to keep track of how the experiment was performed and clearly tracking the source of starting materials and kits used. It is also best practice to include information about any small variations within the experiment or variation relative to standard experiments. 
 
 ### Organization
+
+Project organization is one of the most important parts of a sequencing project, but is often overlooked in the excitement to get a first look at new data. While it's best to get yourself organized before you begin analysis, it's never too late to start.
 
 Every computational analysis you do is going to spawn many files, and inevitability you'll want to run some of those analyses again. For each experiment you work on and analyze data for, it is considered best practice to get organized by creating a planned storage space (directory structure).
 
