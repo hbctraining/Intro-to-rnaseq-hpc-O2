@@ -553,7 +553,7 @@ $ rm backup/Mov*
 > The `rm` file permanently removes the file. Be careful with this command. The shell doesn't
 just nicely put the files in the Trash. They're really gone.
 >
-> Same with moving and renaming files. It will **not** ask you if you are sure that you want to "replace existing file". You can use `rm -f` if you want it to ask before deleting the file(s).
+> Same with moving and renaming files. It will **not** ask you if you are sure that you want to "replace existing file". You can use `rm -i` if you want it to ask before deleting the file(s).
 
 We really don't need these backup directories, so, let's delete both. By default, `rm`, will NOT delete directories, but you use the `-r` flag if you are sure that you want to delete the directories and everything within them. To be safe, let's use it with the `-i` flag.
 
