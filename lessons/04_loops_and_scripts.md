@@ -297,7 +297,7 @@ And now, as a best practice of capturing all of our work into a running summary 
 
 ```bash
 # and add this summary to our run log
-cat *badreads.count.summary >> runlog.txt
+cat *badreads.count.summary > runlog.txt
 ```
 
 Save and exit `vim`, and voila! You now have a script you can use to assess the quality of all your new datasets. Your finished script, complete with comments, should look like the following:
