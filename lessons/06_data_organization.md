@@ -71,7 +71,7 @@ rnaseq
 *This is a generic structure and can be tweaked based on personal preference and analysis workflow.*
 
 - `logs`: to keep track of the commands run and the specific parameters used, but also to have a record of any standard output that is generated while running the command. 
-- `meta`: for any information that describes the samples you are using, which we refer to as [metadata](https://datamanagement.hms.harvard.edu/metadata-overview). 
+- `meta`: for any information that describes the samples you are using, which we refer to as [metadata](https://datamanagement.hms.harvard.edu/metadata-overview). We will discuss this in more detail as it pertains to our example dataset, later in this lesson.
 - `raw_data`: for any **unmodified** (raw) data obtained prior to computational analysis here, e.g. FASTQ files from the sequencing center. We strongly recommend leaving this directory unmodified through the analysis.
 - `reference_data`: for known information related to the reference genome that will be used in the analysis, e.g. genome sequence (FASTA), gene annotation file (GTF) associated with the genome.
 - `results`: for output from the different tools you implement in your workflow. Create sub-folders specific to each tool/step of the workflow within this folder. 
@@ -166,11 +166,17 @@ Another aspect of staying organized is making sure that all the filenames in an 
 - Take a moment to create a README for the `rnaseq/` folder (hint: use `vim` to create the file). Give a short description of the project and brief descriptions of the types of files you will be storing within each of the sub-directories. 
 ***
 
-## The example dataset
+## Exploring the example dataset
 
 The dataset we are using is part of a larger study described in [Kenny PJ et al., *Cell Rep* 2014](http://www.ncbi.nlm.nih.gov/pubmed/25464849). The authors are investigating interactions between various genes involved in Fragile X syndrome, a disease of aberrant protein production, which results in cognitive impairment and autistic-like features. **The authors sought to show that RNA helicase MOV10 regulates the translation of RNAs involved in Fragile X syndrome.**
 
-From this study we are using the [RNA-seq](http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE50499) data which is publicly available in the [Sequence Read Archive (SRA)][https://www.ncbi.nlm.nih.gov/sra/?term=SRP029367]. In addition to the raw sequence data we also need to collect **information about the data**, also known as **metadata**.  We are usually quick to want to begin analysis of the sequence data (FASTQ files), but how useful is it if we know nothing about the samples that this sequence data originated from? Some relevant metadata for our dataset is provided below:
+### Raw data
+
+From this study we are using the [RNA-seq](http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE50499) data which is publicly available in the [Sequence Read Archive (SRA)][https://www.ncbi.nlm.nih.gov/sra/?term=SRP029367]. 
+
+### Metadata
+
+In addition to the raw sequence data we also need to collect **information about the data**, also known as **metadata**.  We are usually quick to want to begin analysis of the sequence data (FASTQ files), but how useful is it if we know nothing about the samples that this sequence data originated from? Some relevant metadata for our dataset is provided below:
 
 * The RNA was extracted from **HEK293F cells** that were transfected with a **MOV10 transgene**, **MOV10 siRNA**, or an **irrelevant siRNA**.  (*For this workshop we won't be using the MOV10 knock down samples.*)
 * The libraries for this dataset are **stranded** and were generated using the standard Tru-seq prep kit (using the dUTP method). 
@@ -180,20 +186,6 @@ From this study we are using the [RNA-seq](http://www.ncbi.nlm.nih.gov/geo/query
 
 ![Automation](../img/exp_design.png)
 
-## The RNA-seq workflow
-
-For any bioinformatics experiment you will have to go through a series of steps in order to obtain your final desired output. The execution of these steps in a sequential manner is what we often refer to as a **workflow or pipeline**. A simplified version of the workflow we will be using in this course is provided below. We have some of the steps briefly outlined here, but we will be covering some of these (\#2, \#4 and \#5) in more detail during this workshop.
-
-<img src="../img/RNAseqWorkflow.png" width="450">
-
-1. Library preparation of biological samples (pre-sequencing)
-2. Quality control - Assessing quality of sequence reads using FastQC
-3. Quality control *(Optional)* - Adapter Trimming
-4. Align reads to reference genome using STAR (splice-aware aligner)
-5. Quantifying expression/Counting the number of reads mapping to each gene
-6. Statistical analysis to identify differentially expressed genes (count normalization, linear modeling using R-based tools)
-
-These workflows in bioinformatics adopt a plug-and-play approach in that the output of one tool can be easily used as input to another tool without any extensive configuration. Having standards for data formats is what makes this feasible. Standards ensure that data is stored in a way that is generally accepted and agreed upon within the community. The tools that are used to analyze data at different stages of the workflow are therefore built under the assumption that the data will be provided in a specific format.  
 
 ## Best practices for NGS Analysis 
 
@@ -206,6 +198,22 @@ Ok so now you are all set up and have begun your analysis. You have followed bes
 3. **Do not re-invent the wheel.** If you run into problems, more often than not someone has already encountered that same problem. A solution is either already available or someone is working on it -- so find it! Ask colleagues or search/ask online forums such as [BioStars](https://www.biostars.org/).
 
 4. **Testing is essential.** If you are using a tool for the first time, test it out on a single sample or a subset of the data before running your entire dataset through. This will allow you to debug quicker and give you a chance to also get a feel for the tool and the different parameters.
+
+
+## The RNA-seq workflow
+
+A simplified version of the workflow we will be using in this course is provided below. We have some of the steps briefly outlined here, but we will be covering some of these (\#2, \#4 and \#5) in more detail during this workshop.
+
+<img src="../img/RNAseqWorkflow.png" width="450">
+
+1. Library preparation of biological samples (pre-sequencing)
+2. Quality control - Assessing quality of sequence reads using FastQC
+3. Quality control *(Optional)* - Adapter Trimming
+4. Align reads to reference genome using STAR (splice-aware aligner)
+5. Quantifying expression/Counting the number of reads mapping to each gene
+6. Statistical analysis to identify differentially expressed genes (count normalization, linear modeling using R-based tools)
+
+These workflows in bioinformatics adopt a plug-and-play approach in that the output of one tool can be easily used as input to another tool without any extensive configuration. The tools that are used to analyze data at different stages of the workflow are built under the assumption that the data will be provided in a specific format to facilitate a more streamlined analysis.  
 
 ---
 
