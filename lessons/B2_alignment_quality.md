@@ -34,7 +34,7 @@ What you should see, is that for each FASTQ file you have **5 output files** and
 
 Having completed the alignment, the first thing we want to know is how well did our reads align to the reference. Rather than looking at each read alignment, it can be more useful to evaluate statistics that give a general overview for the sample. One of the output files from the STAR aligner contains mapping statistics, let's take a closer look at one of those files. We'll use the `less` command which allows us to scroll through it easily: 
 
-	$ less Mov10_oe_1.subset.fq_Log.final.out
+	$ less Mov10_oe_1_Log.final.out
 	
 The log file provides information on reads that 1) mapped uniquely, 2) reads that mapped to mutliple locations and 3) reads that are unmapped. Additionally, we get details on splicing, insertion and deletion. From this file the most informative statistics include the **mapping rate and the number of multimappers**.
 
@@ -46,7 +46,7 @@ The log file provides information on reads that 1) mapped uniquely, 2) reads tha
 
 **Exercise**
 
-Using the less command take a look at `Mov10_oe_1.subset.fq_Log.final.out` and answer the following questions:
+Using the less command take a look at `Mov10_oe_1_Log.final.out` and answer the following questions:
 
 1. How many reads map to more than 10 locations on the genome?
 2. How many reads are unmapped due to read length?
@@ -168,7 +168,7 @@ Now that we have learned so much about the SAM file format, let's use `samtools`
 We will do the latter (since we don't really need it for downstream analysis) and scroll through the SAM file (using the up and down arrows) to see how the fields correspond to what we expected. Adding the `-h` flag allows to also view the header.
 
 ```
-$ samtools view -h Mov10_oe_1.subset.fq_Aligned.sortedByCoord.out.bam | less
+$ samtools view -h Mov10_oe_1_Aligned.sortedByCoord.out.bam | less
 
 ``` 
 
@@ -177,7 +177,7 @@ $ samtools view -h Mov10_oe_1.subset.fq_Aligned.sortedByCoord.out.bam | less
 Now we know that we have all of this information for each of the reads -- wouldn't it be useful to summarize and filter based on selected criteria? Suppose we wanted to set a **threshold on mapping quality**. For example, we want to know how many reads aligned with a quality score higher than 30. To do this, we can combine the `view` command with additional flags `q 30` and `-c` (to count):
 
 ```
-$ samtools view -q 30 -c Mov10_oe_1.subset.fq_Aligned.sortedByCoord.out.bam
+$ samtools view -q 30 -c Mov10_oe_1_Aligned.sortedByCoord.out.bam
 
 ```
 *How many of reads have a mapping quality of 30 or higher?*
@@ -189,10 +189,10 @@ We can also **apply filters to select reads based on where they fall within the 
 
 ```
 ## This will tell us how many reads are unmapped
-$ samtools view -f 4 -c Mov10_oe_1.subset.fq_Aligned.sortedByCoord.out.bam
+$ samtools view -f 4 -c Mov10_oe_1_Aligned.sortedByCoord.out.bam
 
 ## This should give us the remaining reads that do not have this flag set (i.e reads that are mapped)
-$ samtools view -F 4 -c Mov10_oe_1.subset.fq_Aligned.sortedByCoord.out.bam
+$ samtools view -F 4 -c Mov10_oe_1_Aligned.sortedByCoord.out.bam
 ```
 
 ### Indexing the BAM file
@@ -201,7 +201,7 @@ To perform some functions (i.e. subsetting, visualization) on the BAM file, an i
 
 To index the BAM file we use the `index` command:
 
-    $ samtools index Mov10_oe_1.subset.fq_Aligned.sortedByCoord.out.bam
+    $ samtools index Mov10_oe_1_Aligned.sortedByCoord.out.bam
 
 This will create an index in the same directory as the BAM file, which will be identical to the input file in name but with an added extension of `.bai`.
 
@@ -229,12 +229,12 @@ First, identify the location of the _origin file_ you intend to copy, followed b
 
 The following 2 files need to be moved from O2 to your local machine,
  
-`Mov10_oe_1.subset.fq_Aligned.sortedByCoord.out.bam`,
+`Mov10_oe_1_Aligned.sortedByCoord.out.bam`,
 
-`Mov10_oe_1.subset.fq_Aligned.sortedByCoord.out.bam.bai` 
+`Mov10_oe_1_Aligned.sortedByCoord.out.bam.bai` 
 
 ```
-$ scp user_name@o2.hms.harvard.edu:/home/user_name/unix_workshop/rnaseq/results/Mov10_oe_1.subset.fq_Aligned.sortedByCoord.out.bam* /path/to/directory_on_laptop
+$ scp user_name@o2.hms.harvard.edu:/home/user_name/unix_workshop/rnaseq/results/Mov10_oe_1_Aligned.sortedByCoord.out.bam* /path/to/directory_on_laptop
 ```
 
 
