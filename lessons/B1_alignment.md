@@ -11,7 +11,6 @@ Approximate time: 90 minutes
 * Understanding the alignment method STAR utilizes to align sequence reads to the reference genome
 * Identifying the intricacies of alignment tools used in NGS analysis (parameters, usage, etc)
 * Choosing appropriate STAR alignment parameters for our dataset
-* Running STAR on multiple samples
 
 ## Read Alignment
 
