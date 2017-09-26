@@ -8,9 +8,7 @@ duration: 85 minutes
 ## Learning Objectives:
 
 * Evaluate the quality of your NGS data using FastQC
-* Use a `for loop` to automate operations on multiple files
 * Create and run a job submission script to automate quality assessment
-* Describe best practices for NGS analysis
 
 ## Quality Control of FASTQ files
 
