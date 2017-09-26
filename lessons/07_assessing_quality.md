@@ -109,7 +109,13 @@ This is because the FastQC program is not in our $PATH (i.e. its not in a direct
 $ echo $PATH
 ```
 
-To run the FastQC program, we first need to load the appropriate module, so it puts the program into our path:
+To run the FastQC program, we first need to load the appropriate module, so it puts the program into our path. To find the FastQC module to load we need to search the versions available:
+
+```bash
+$ module spider
+```
+
+Then we can load the FastQC module:
 
 ```bash
 $ module load fastqc/0.11.5
