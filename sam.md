@@ -1,23 +1,26 @@
 ## samtools  extras
 
+To play around with a few `samtools` commands, first change directories into the directory containing all BAM files.
 
-# Write only mapped reads to file (filter out unmapped reads)
+`$ cd ~/unix_workshop/rnaseq/results/STAR/bams`
 
-samtools view -b -h -F 4 Mov10_oe_1_Aligned.sortedByCoord.out.bam > Mov10_oe_1_Aligned.onlyAligned.bam 
+### Write only mapped reads to file (filter out unmapped reads)
 
-# Index BAM file
+`$ samtools view -b -h -F 4 Mov10_oe_1_Aligned.sortedByCoord.out.bam > Mov10_oe_1_Aligned.onlyAligned.bam`
 
-samtools index Mov10_oe_1_Aligned.sortedByCoord.out.bam
+### Index BAM file
 
-# Extract reads from a specific region of the chromosome
+`$ samtools index Mov10_oe_1_Aligned.sortedByCoord.out.bam`
 
-samtools view  Mov10_oe_1_Aligned.sortedByCoord.out.bam chr1:200000-500000
+### Extract reads from a specific region of the chromosome
 
-# Simple stats for alignment file
+`$samtools view  Mov10_oe_1_Aligned.sortedByCoord.out.bam chr1:200000-500000`
 
-samtools flagstat Mov10_oe_1_Aligned.sortedByCoord.out.bam
+### Simple stats for alignment file
 
-# Visualizing mismatches
+`$ samtools flagstat Mov10_oe_1_Aligned.sortedByCoord.out.bam`
 
-samtools view -h Mov10_oe_1_Aligned.sortedByCoord.out.bam | head -n 5 | samtools fillmd -e - ~/unix_workshop/rnaseq/reference_data/chr1.fa
+### Visualizing mismatches
+
+`$ samtools view -h Mov10_oe_1_Aligned.sortedByCoord.out.bam | head -n 5 | samtools fillmd -e - ~/unix_workshop/rnaseq/reference_data/chr1.fa`
 
