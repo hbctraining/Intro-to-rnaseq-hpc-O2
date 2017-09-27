@@ -96,7 +96,7 @@ Next we'll initialize 2 more variables named `genome` and `gtf`, these will cont
 ```
 # directory with genome reference FASTA and index files + name of the gene annotation file
 
-genome=/groups/hbctraining/unix_workshop_other/reference_STAR/
+genome=/n/groups/hbctraining/unix_workshop_other/reference_STAR/
 gtf=~/unix_workshop/rnaseq/reference_data/chr1-hg19_genes.gtf
 ```
 
