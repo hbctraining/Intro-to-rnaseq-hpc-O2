@@ -15,7 +15,7 @@ Once you have optimized all the tools and parameters using a single sample (like
 
 This will ensure that you run every sample with the exact same parameters, and will enable you to keep track of all the tools and their versions. In addition, the script is like a lab notebook; in the future, you (or your colleagues) can go back and check the workflow for methods, which enables efficiency and reproducibility.
 
-Before we start with the script, let's check how many cores our interactive session has by using `bjobs`. 
+Before we start with the script, let's check how many cores our interactive session has by using `squeue`. 
 
 ```bash
 $ squeue -u eCommonsID
