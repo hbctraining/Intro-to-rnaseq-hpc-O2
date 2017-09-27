@@ -50,7 +50,7 @@ Now, let's run multiQC!
 
 ```bash
 multiqc -n multiqc_report_rnaseq \
-~/unix_workshop/rnaseq/results/fastqc_untrimmed_reads/*zip \
+~/unix_workshop/rnaseq/results/fastqc/*zip \
 ~/unix_workshop/rnaseq/logs/*Log.final.out \
 ~/unix_workshop/rnaseq/results/counts/Mov10_featurecounts.txt.summary
 ```
