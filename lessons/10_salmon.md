@@ -20,13 +20,13 @@ In the standard RNA-seq pipeline that we have presented so far, we have taken ou
 
 <img src="../img/alignmentfree_workflow_aug2017.png" width="500">
 
-The improvement in accuracy for lightweight alignment tools in comparison with the standard alignment/counting methods primarily relate to the ability of the lightweight alignment tools to quantify multimapping reads. This has been shown by Robert et. al by comparing the accuracy of 12 different alignment/quantification methods using simulated data to estimate the gene expression of 1000 perfect RNA-Seq read pairs from each of of the genes [[1](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-015-0734-x)]. As shown in the figures below taken from the paper, the standard alignment and counting methods such as STAR/htseq or Tophat2/htseq result in underestimates of many genes - particularly those genes comprised of multimapping reads [[1](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-015-0734-x)]. 
+The improvement in accuracy for lightweight alignment tools in comparison with the standard alignment/counting methods primarily relate to the ability of the lightweight alignment tools to quantify multimapping reads. This has been shown by Robert et. al by comparing the accuracy of 12 different alignment/quantification methods using simulated data to estimate the gene expression of 1000 perfect RNA-Seq read pairs from each of of the genes [[1](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-015-0734-x)]. As shown in the figures below taken from the paper, the **standard alignment and counting methods such as STAR/htseq or Tophat2/htseq result in underestimates of many genes - particularly those genes comprised of multimapping reads** [[1](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-015-0734-x)]. 
 
 <img src="../img/pseudo_count_comparison-star_sm.png" width="400">
 
 _**NOTE:** Tails to the left indicate underestimates of gene expression, while tails to the right indicate overestimates of gene expression._
 
-While the STAR/htseq standard method of alignment and counting is a bit conservative and can result in false negatives, Cufflinks tends to overestimate gene expression and results in many false positives, which is why Cufflinks is generally not recommended for gene expression quantification.
+While the STAR/htseq standard method of alignment and counting is a bit conservative and can result in false negatives, **Cufflinks tends to overestimate gene expression and results in many false positives**, which is why Cufflinks is generally not recommended for gene expression quantification.
 
 <img src="../img/pseudo_count_comparison-cufflinks.png" width="750">
 
@@ -39,7 +39,7 @@ Lightweight alignment tools such as Sailfish, Kallisto, and Salmon have generall
 
 ### What is Salmon?
 
-[Salmon](http://salmon.readthedocs.io/en/latest/salmon.html#using-salmon) is based on the philosophy of lightweight algorithms, which use the reference transcriptome (in FASTA format) and raw sequencing reads (in FASTQ format) as input, but do not align the full reads. These tools perform both mapping and quantification. Unlike most lightweight and standard alignment/quantification tools, Salmon utilizes sample-specific bias models for transcriptome-wide abundance estimation. Sample-specific bias models are helpful when needing to account for known biases present in RNA-Seq data including:
+[Salmon](http://salmon.readthedocs.io/en/latest/salmon.html#using-salmon) is based on the philosophy of lightweight algorithms, which use the reference transcriptome (in FASTA format) and raw sequencing reads (in FASTQ format) as input, but do not align the full reads. These tools perform both mapping and quantification. Unlike most lightweight and standard alignment/quantification tools, **Salmon utilizes sample-specific bias models for transcriptome-wide abundance estimation**. Sample-specific bias models are helpful when needing to account for known biases present in RNA-Seq data including:
 
 - GC bias
 - positional coverage biases
