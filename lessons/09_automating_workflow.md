@@ -253,7 +253,7 @@ This script loops through the same files as in the previous (demo) script, but t
 for fq in ~/unix_workshop/rnaseq/raw_data/*.fq
 do
 
-sbatch -p short -t 0-2:00 -n 3 --job-name star --wrap="sh ~/unix_workshop/rnaseq/scripts/rnaseq_analysis_on_input_file.sh $fq"
+sbatch -p short -t 0-2:00 -n 6 --job-name rnaseq-workflow --wrap="sh ~/unix_workshop/rnaseq/scripts/rnaseq_analysis_on_input_file.sh $fq"
 sleep 1	# wait 1 second between each job submission
   
 done
