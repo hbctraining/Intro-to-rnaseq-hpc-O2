@@ -145,7 +145,7 @@ Vim has nice shortcuts for cleaning up the header of our file using the followin
 2. Remove the file name following the sample name by typing `:%s/_Aligned.sortedByCoord.out.bam//g` (in command mode).
 3. Remove the path leading up to the file name by typing `:%s/\/home\/rc_training10\/unix_workshop\/rnaseq\/results\/STAR\/bams\///g` (in command mode).
 	
-	> Note that we have a `\` preceding each `/`, which tells vim that we are not using the `/` as part of our search and replace command, but instead is part of the pattern that we are replacing. This is called escaping the `/`.
+	> Note that we have a `\` preceding each `/`, which tells vim that we are not using the `/` as part of our search and replace command, but instead the `/` is part of the pattern that we are replacing. This is called *escaping* the `/`.
 
 ### Note on counting PE data
 
