@@ -56,11 +56,9 @@ $ cd ~/unix_workshop/rnaseq/
 $ mkdir results/counts results/STAR/bams
 ```
 
-Let's move over the bam file for Mov10_oe_1 over to the `results/STAR/bams` directory, and also copy over the rest of the bam files that we have already generated for you:
+Rather than using the BAM file we generated in the last lesson, let's copy over all of the BAM files that we have already generated for you:
 	
 ``` bash
-$ mv ~/unix_workshop/rnaseq/results/STAR/*fq_Aligned*bam ~/unix_workshop/rnaseq/results/STAR/bams
-# check to make sure the move worked and that only the files we wanted moved over
 
 $ cp /n/groups/hbctraining/unix_workshop_other/bam_STAR/*bam ~/unix_workshop/rnaseq/results/STAR/bams
 ```
@@ -103,7 +101,7 @@ Let's run this now:
 $ featureCounts -T 4 -s 2 \ 
   -a ~/unix_workshop/rnaseq/reference_data/chr1-hg19_genes.gtf \
   -o ~/unix_workshop/rnaseq/results/counts/Mov10_featurecounts.txt \
-  ~/unix_workshop/rnaseq/results/STAR/bams/*bam
+  ~/unix_workshop/rnaseq/results/STAR/bams/*.out.bam
 ```
 
 > If you wanted to collect the information that is on the screen as the job runs, you can modify the command and add the `2>` redirection at the end. This type of redirection will collect all the information from the terminal/screen into a file.
@@ -115,7 +113,7 @@ $ featureCounts -T 4 -s 2 \
 $ featureCounts -T 4 -s 2 \ 
   -a ~/unix_workshoprnaseq/reference_data/chr1-hg19_genes.gtf \
   -o ~/unix_workshop/rnaseq/results/counts/Mov10_featurecounts.txt \
-  ~/unix_workshop/rnaseq/results/STAR/bams/*bam \
+  ~/unix_workshop/rnaseq/results/STAR/bams/*.out.bam \
   2> /unix_workshop/rnaseq/results/counts/Mov10_featurecounts.screen-output
 ```
 #### featureCounts output
@@ -143,7 +141,7 @@ $ vim results/counts/Mov10_featurecounts.Rmatrix.txt
 
 ### Note on counting PE data
 
-For paired-end (PE) data, the bam file contains information about whether both read1 and read2 mapped and if they were at roughly the correct distance from each other, that is to say if they were "properly" paired. For most counting tools, only properly paired reads are considered by default, and each read pair is counted only once as a single "fragment". 
+For paired-end (PE) data, the bam file contains information about whether both read1 and read2 mapped and if they were at roughly the correct distance from each other, that is to say if they were "properly" paired. For most counting tools, **only properly paired reads are considered by default, and each read pair is counted only once as a single "fragment"**. 
 
 For counting PE fragments associated with genes, the input bam files need to be sorted by read name (i.e. alignment information about both read pairs in adjoining rows). The alignment tool might sort them for you, but watch out for how the sorting was done. If they are sorted by coordinates (like with STAR), you will need to use `samtools sort` to re-sort them by read name before using as input in featureCounts. If you do not sort you BAM file by read name before using as input, featureCounts assumes that almost all the reads are not properly paired.
 
