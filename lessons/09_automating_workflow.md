@@ -130,7 +130,7 @@ All of our variables are now staged. Next, let's make sure all the modules are l
 ```
 # set up the software environment
 
-module load seq/fastqc/0.11.3
+module load fastqc/0.11.5
 module load gcc/6.2.0  
 module load star/2.5.2b
 module load samtools/1.3.1
