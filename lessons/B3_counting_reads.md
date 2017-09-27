@@ -128,6 +128,8 @@ Now let's look at the count matrix:
 ``` bash
 $ less results/counts/Mov10_featurecounts.txt
 ```	
+
+##### Cleaning up the featureCounts matrix
 There is information about the genomic coordinates and the length of the gene, we don't need this for the next step, so we are going to extract the columns that we are interested in.
 	
 ``` bash
