@@ -276,7 +276,7 @@ Within the 'Site Manager' window, do the following:
 6. Password: ECommons password
 7. Click 'Connect'
 
-<img src=../img/Filezilla_step2.png width="500">	
+<img src="../img/Filezilla_step2.png" width="500">	
 	
 ***FastQC is just an indicator of what's going on with your data, don't take the "PASS"es and "FAIL"s too seriously.***
 
