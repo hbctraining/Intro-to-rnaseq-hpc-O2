@@ -12,9 +12,9 @@
 
 At the end of the workflow from the last lesson, our final end product was a count matrix. This is a matrix in which each row represents a gene (or feature) and each column corresponds to a sample. In our dataset, we have two sample classes (control and Mov10oe) and we want to assess the difference in expression between these groups on a gene-by-gene basis.
 
-<img src="../img/de_variation.png" width=400>
+<img src="../img/de_variation.png" width="400">
 
-<cite>Illustration adapted from [paper]()</cite>
+<figcaption>Illustration adapted from [paper]()</figcaption>
 
 Intuitively, it would seem that since we know which samples belong to which group we could just compute a fold-change for each gene and then rank genes by that value. Easy, right? Not exactly. The problem is, the gene expression that we are observing is not just a result of the differences between the groups that we are investigating, rather it is a measurement of the sum of many effects. In a given biological sample the transcriptional patterns will also be changing with respect to various extraneous factors; some that we are aware of (i.e demographic factors, batch information) and other noise that we cannot attribute to any particular source. The goal of differential expression analysis to determine the relative role of these effects, and to separate the “interesting” from the “uninteresting”.
 
