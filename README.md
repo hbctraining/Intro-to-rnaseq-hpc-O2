@@ -20,6 +20,7 @@ This repository has teaching materials for a 2-day Introduction to RNA-sequencin
 
 
 ### Contents
+
 | Lessons            | Estimated Duration |
 |:------------------------|:----------|
 |[Introduction to the shell](lessons/01_the_filesystem.md) | 70 min |
