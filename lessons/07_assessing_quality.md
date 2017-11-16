@@ -194,7 +194,7 @@ The first thing we need in our script is the **shebang line**:
 #!/bin/bash
 ```
 
-Following the shebang line are the Orchestra options. For the script to run, we need to include options for **queue/partition (-p) and runtime limit (-t)**. To specify our options, we precede the option with `#SBATCH`, which tells O2 that the line contains options for job submission to SLURM. 
+Following the shebang line are the O2 options. For the script to run, we need to include options for **queue/partition (-p) and runtime limit (-t)**. To specify our options, we precede the option with `#SBATCH`, which tells O2 that the line contains options for job submission to SLURM. 
 
 ```bash
 #SBATCH -p short 		# partition name
