@@ -62,6 +62,7 @@ In addition to finding the sequence, have your search also return
 the name of the sequence.
 
 2. Search for that sequence in all Mov10 replicate fastq files.
+
 ***
 
 ## Redirection
@@ -91,6 +92,7 @@ happened. But you should have a new file called `bad_reads.txt`.
 ```bash
 $ ls -l
 ```
+
 Take a look at the file and see if it contains what you think it should. *NOTE: If we already had a file named `bad_reads.txt` in our directory, it would have overwritten it without any warning.*
  
 **The redirection command for appending something to an existing file is `>>`.**
