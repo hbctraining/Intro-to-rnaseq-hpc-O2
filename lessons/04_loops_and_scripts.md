@@ -119,10 +119,10 @@ $ ls *.fq
 Now we want to *assign* the output of `ls` to the variable:
 
 ```bash
-$ filenames=$(ls *.fq)
+$ filenames=`ls *.fq`
 ```
 
-> Note the syntax for assigning output of commands to variables, i.e. the ticks around the `ls` command.
+> Note the syntax for assigning output of commands to variables, i.e. the backticks around the `ls` command.
 
 Check and see what's stored inside our newly created variable using `echo`:
 	
@@ -165,25 +165,8 @@ done
 
 where the ***variable_name*** defines (or initializes) a variable that takes the value of every member of the specified ***list*** one at a time. At each iteration, the loop retrieves the value stored in the variable (which is a member of the input list) and runs through the commands indicated between the `do` and `done` one at a time. *This syntax/structure is virtually set in stone.* 
 
-For example, we can run the same commands (`echo` and `wc -l`) used in the "Bash variables" section but this time run them sequentially on each file:
-
-```bash
-for var in *.fq
- do
-   echo $var
-   wc -l $var
- done
-```
 
 #### What does this loop do? 
-
-Most simply, it writes to the terminal (`echo`) the name of the file and the number of lines (`wc -l`) for each files that end in `.fq` in the current directory. The output is almost identical to what we had before.
-
-In this case the list of files is specified using the asterisk wildcard: `*.fq`, i.e. all files that end in `.fq`. Then, we execute 2 commands between the `do` and `done`. With a loop, we execute these commands for each file at a time. Once the commands are executed for one file, the loop then executes the same commands on the next file in the list. 
-
-Essentially, **the number of items in the list (variable name) == number of times the code will loop through**, in our case that is 2 times since we have 2 files in `~/unix_workshop/raw_fastq` that end in `.fq`, and these filenames are stored in the `var` variable.
-
-Of course, `var` is a useless variable name. But since it doesn't matter what variable name we use, we can make it something more intuitive.
 
 ```bash
 for filename in *.fq
@@ -192,19 +175,29 @@ for filename in *.fq
    wc -l $filename
  done
 ```
-In the long run, it's best to use a name that will help point out a variable's functionality, so your future self will understand what you are thinking now.
 
-Pretty simple and cool, huh?
+Most simply, it writes to the terminal (`echo`) the name of the file and the number of lines (`wc -l`) for each files that end in `.fq` in the current directory. The output is almost identical to what we had before.
+
+In this case the list of files is specified using the asterisk wildcard: `*.fq`, i.e. all files that end in `.fq`. 
+
+> **What else could we have used in place of the `ls *.fq`?**
+
+Then, we execute 2 commands between the `do` and `done`. With a loop, we execute these commands for each file at a time. Once the commands are executed for one file, the loop then executes the same commands on the next file in the list. 
+
+Essentially, **the number of items in the list (variable name) == number of times the code will loop through**, in our case that is 2 times since we have 2 files in `~/unix_workshop/raw_fastq` that end in `.fq`, and these filenames are stored in the `filename` variable.
+
+It doesn't matter what variable name we use, but it is advisable to make it something more intuitive. In the long run, it's best to use a name that will help point out a variable's functionality, so your future self will understand what you are thinking now.
+
 
 ### The `basename` command
 
-Before we get started on creating more complex scripts, we want to introduce you to a command that will be useful for future scripting. The `basename` command is used for extracting the base name of a file, which is accomplished using string splitting to strip the directory and any suffix from filenames. Let's try an example, by first moving back to your home directory:
+Before we get started on creating more complex scripts, we want to introduce you to a command that will be useful for future scripting. The `basename` command is used for extracting the base name of a file, which is accomplished using **string splitting to strip the directory and any suffix from filenames**. Let's try an example, by first moving back to your home directory:
 
 ```bash
 $ cd
 ```
 
-The we will run the `basename` command on one of the FASTQ files. Be sure to specify the path to the file:
+Then we will run the `basename` command on one of the FASTQ files. Be sure to specify the path to the file:
 
 ```bash
 $ basename ~/unix_workshop/raw_fastq/Mov10_oe_1.subset.fq
@@ -233,7 +226,6 @@ Now that you've learned how to use loops and variables, let's put this processin
 - Generate a prefix to use for naming our output files
 - Dump out bad reads into a new file
 - Get the count of the number of bad reads and generate a summary for each file
-- And after all the FASTQ files are processed, write the summary to a log file
 
 You might not realize it, but this is something that you now know how to do. Let's get started...
 
@@ -270,7 +262,7 @@ For each file that we process we can use `basename` to create a variable that wi
 ```bash
 do
   # create a prefix for all output files
-  base=$(basename $filename .subset.fq)
+  base=`basename $filename .subset.fq`
 ```
 
 and then we execute the commands for each loop:
@@ -292,13 +284,6 @@ done
 ```
 
 If you've noticed, we used a new `grep` flag `-H` above; this flag will report the filename along with the match string. This is useful for when we generate the summary file.
-
-And now, as a best practice of capturing all of our work into a running summary log:
-
-```bash
-# and add this summary to our run log
-cat *badreads.count.summary > runlog.txt
-```
 
 Save and exit `vim`, and voila! You now have a script you can use to assess the quality of all your new datasets. Your finished script, complete with comments, should look like the following:
 
@@ -324,9 +309,6 @@ do
   # grab the number of bad reads and write it to a summary file
   grep -cH NNNNNNNNNN $filename > $base-badreads.count.summary
 done
-
-# and add this summary to our run log
-cat *badreads.count.summary >> runlog.txt
 
 ```
 
