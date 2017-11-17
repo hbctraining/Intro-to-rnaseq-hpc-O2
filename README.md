@@ -1,4 +1,4 @@
-## Introduction to RNA-seq using high-performance computing (HPC)
+# Introduction to RNA-seq using high-performance computing (HPC)
 
 | Audience | Computational Skills | Prerequisites | Duration |
 :----------|:----------|:----------|:----------|
