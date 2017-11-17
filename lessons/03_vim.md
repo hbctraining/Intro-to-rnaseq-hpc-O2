@@ -88,24 +88,24 @@ While we cannot point and click to navigate the document, we can use the arrow k
 
 | key              | action                 |
 | ---------------- | ---------------------- |
-| <kbd>gg</kbd>     | to move to top of file |
-| <kbd>G</kbd>     | to move to bottom of file     |
-| <kbd>$</kbd>     | to move to end of line |
-| <kbd>0</kbd>     | to move to beginning of line     |
-| <kbd>w</kbd>     | to move to next word     |
-| <kbd>b</kbd>     | to move to previous word     |
+| <button>gg</button>     | to move to top of file |
+| <button>G</button>     | to move to bottom of file     |
+| <button>$</button>     | to move to end of line |
+| <button>0</button>     | to move to beginning of line     |
+| <button>w</button>     | to move to next word     |
+| <button>b</button>     | to move to previous word     |
 
 
 In addition to shortcuts for navigation, vim also offers editing shortcuts such as:
 
 | key              | action                 |
 | ---------------- | ---------------------- |
-| <kbd>dw</kbd>     | to delete word |
-| <kbd>dd</kbd>     | to delete line     |
-| <kbd>u</kbd>     | to undo |
-| <kbd>Ctrl + r</kbd>     | to redo     |
-| <kbd>/*pattern*</kbd>     | to search for a pattern (*n/N* to move to next/previous match)    |
-| <kbd>:%s/*search*/*replace*/g</kbd>     | to search for a pattern and replace for all occurences     |
+| <button>dw</button>     | to delete word |
+| <button>dd</button>     | to delete line     |
+| <button>u</button>     | to undo |
+| <button>Ctrl + r</button>     | to redo     |
+| <button>/*pattern*</button>     | to search for a pattern (*n/N* to move to next/previous match)    |
+| <button>:%s/*search*/*replace*/g</button>     | to search for a pattern and replace for all occurences     |
 
 Practice some of the editing shortcuts, then quit the document without saving any changes.
 
@@ -133,42 +133,42 @@ practice what we just learned in a brief challenge.
 
 | key              | action                 |
 | ---------------- | ---------------------- |
-| <button type="text">i</button>     | insert mode - to write and edit text |
-| <kbd>esc</kbd>     | command mode - to issue commands / shortcuts  |
+| <button>i</button>     | insert mode - to write and edit text |
+| <button>esc</button>     | command mode - to issue commands / shortcuts  |
 
 
 **Saving and quiting:**
 
 | key              | action                 |
 | ---------------- | ---------------------- |
-| <kbd>:w</kbd>     | to write to file (save) |
-| <kbd>:wq</kbd>     | to write to file and quit     |
-| <kbd>:q!</kbd>     | to quit without saving |
+| <button>:w</button>     | to write to file (save) |
+| <button>:wq</button>     | to write to file and quit     |
+| <button>:q!</button>     | to quit without saving |
 
 
 **Shortcuts for navigation:**
 
 | key              | action                 |
 | ---------------- | ---------------------- |
-| <kbd>gg</kbd>     | to move to top of file |
-| <kbd>G</kbd>     | to move to bottom of file     |
-| <kbd>$</kbd>     | to move to end of line |
-| <kbd>0</kbd>     | to move to beginning of line     |
-| <kbd>w</kbd>     | to move to next word     |
-| <kbd>b</kbd>     | to move to previous word     |
+| <button>gg</button>     | to move to top of file |
+| <button>G</button>     | to move to bottom of file     |
+| <button>$</button>     | to move to end of line |
+| <button>0</button>     | to move to beginning of line     |
+| <button>w</button>     | to move to next word     |
+| <button>b</button>     | to move to previous word     |
 
 **Shortcuts for editing:**
 
 | key              | action                 |
 | ---------------- | ---------------------- |
-| <kbd>dw</kbd>     | to delete word |
-| <kbd>dd</kbd>     | to delete line     |
-| <kbd>u</kbd>     | to undo |
-| <kbd>Ctrl + r</kbd>     | to redo     |
-| <kbd>:set number</kbd>     | to number lines |
-| <kbd>:set nonumber</kbd>     | to remove line numbers    |
-| <kbd>/pattern</kbd>     | to search for a pattern (*n/N* to move to next/previous match)    |
-| <kbd>:%s/search/replace/g</kbd>     | to search for a pattern and replace for all occurences     |	
+| <button>dw</button>     | to delete word |
+| <button>dd</button>     | to delete line     |
+| <button>u</button>     | to undo |
+| <button>Ctrl + r</button>     | to redo     |
+| <button>:set number</button>     | to number lines |
+| <button>:set nonumber</button>     | to remove line numbers    |
+| <button>/pattern</button>     | to search for a pattern (*n/N* to move to next/previous match)    |
+| <button>:%s/search/replace/g</button>     | to search for a pattern and replace for all occurences     |	
 
 ---
 
