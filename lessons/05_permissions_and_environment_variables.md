@@ -110,9 +110,9 @@ The **middle triplet** shows us the **group's permissions**. If the permission i
 
 The **final triplet** shows us what everyone who isn't the file's owner, or in the file's group, can do. In this case, it's `r--` again, so **everyone else** on the system can read the file's contents.
 
-Now, if we take a look at the permissions for directories (e.g. `drwxrwsr-x`): the 'x' for the permissions here indicates that "execute" is turned on. What does that mean, given that a directory isn't a program or an executable file, we can't "execute" it? 
+Now, if we take a look at the permissions for directories (e.g. `drwxrwsr-x`): the `x` for the permissions here indicates that "execute" is turned on. What does that mean, given that a directory isn't a program or an executable file, we can't "execute" it? 
 
-Well, 'x' means something different for directories. It gives someone the right to *traverse* the directory, but not to look at its contents. This is beyond the scope of today's class, but note that you can give access to a specific file that's deep inside a directory structure without giving them access to all the files and sub-directories within.
+Well, `x` means something different for directories. It gives someone the right to *traverse* the directory, but not to look at its contents. This is beyond the scope of today's class, but note that you can give access to a specific file that's deep inside a directory structure without giving them access to all the files and sub-directories within.
 
 ### Changing permissions
 
@@ -130,7 +130,7 @@ $ ls -l ~/unix_workshop/README.txt
 -rw-rw---- 1 rsk27 rsk27 377 Oct  6 10:28 /home/rsk27/unix_workshop/README.txt
 ```
 
-The 'o' signals that we're changing the privileges of "others".
+The `o` signals that we're changing the privileges of "others".
 
 Let's change it back to allow it to be readable by others:
 
@@ -142,7 +142,7 @@ $ ls -l ~/unix_workshop/README.txt
 -rw-rw-r-- 1 rsk27 rsk27 377 Oct  6 10:28 /home/rsk27/unix_workshop/README.txt
 ```
 
-If we wanted to make this an executable file for ourselves (the file's owners) we would say `chmod u+rwx`, where the 'u' signals that we are changing permission for the file's owner. To change permissions for the "group", you'd use the letter "g", e.g. `chmod g-w`. 
+If we wanted to make this an executable file for ourselves (the file's owners) we would say `chmod u+rwx`, where the `u` signals that we are changing permission for the file's owner. To change permissions for the "group", you'd use the letter `g`, e.g. `chmod g-w`. 
 
 >> The fact that something is marked as executable doesn't actually mean it contains or is a program of some kind. We could easily mark the `~/unix_workshop/raw_fastq/Irrel_kd_1.subset.fq` file as executable using `chmod`. Depending on the operating system we're using, trying to "run" it will fail (because it doesn't contain instructions the computer recognizes, i.e. it is not a script of some type).
 
