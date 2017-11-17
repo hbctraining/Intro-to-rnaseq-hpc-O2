@@ -133,7 +133,7 @@ practice what we just learned in a brief challenge.
 
 | key              | action                 |
 | ---------------- | ---------------------- |
-| <button>i</button>     | insert mode - to write and edit text |
+| <button type="text">i</button>     | insert mode - to write and edit text |
 | <kbd>esc</kbd>     | command mode - to issue commands / shortcuts  |
 
 
