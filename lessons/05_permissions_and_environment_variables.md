@@ -94,11 +94,11 @@ Let's have a closer look at one of those permission strings for README.txt:
 
 The next 9 characters are usually some combination of the following in the order listed below:
 
-<button>r<\button> = read permission
+<button>r</button> = read permission
 
-<button>w<\button> = write/modify permission
+<button>w</button> = write/modify permission
  
-<button>x<\button> = execute permission (run a script/program or traverse a directory).
+<button>x</button> = execute permission (run a script/program or traverse a directory).
 
 > Sometimes the `x` is replaced by another character, but it is beyond the scope of today's class. You can [get more information here](https://en.wikipedia.org/wiki/File_system_permissions#Notation_of_traditional_Unix_permissions), if you are interested.
 >
