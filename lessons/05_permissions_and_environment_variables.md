@@ -40,15 +40,22 @@ The user-and-group model means that for each file every user on the system falls
 
 For each of these three categories, the computer keeps track of whether people in that category can read the file, write to the file, or execute the file (i.e., run it if it is a program).
 
-Let's look at this model in action by running the command `ls -l ~/unix_workshop`, to list the files in that directory:
+Let's look at this model in action by running the command `ls -l /n/groups/hbctraining/`, to list the files in that directory:
 
 ```bash
-$ ls -l
-
-drwxrwsr-x 2 rsk27 rsk27  78 Oct  6 10:29 genomics_data
-drwxrwsr-x 2 rsk27 rsk27 228 Oct  6 10:28 raw_fastq
--rw-rw-r-- 1 rsk27 rsk27 377 Oct  6 10:28 README.txt
-drwxrwsr-x 2 rsk27 rsk27 238 Oct  6 10:28 reference_data
+drwxrwsr-x  4 mm573 hbctraining 831 Feb 29  2016 bcbio-rnaseq
+drwxrwsr-x 12 mm573 hbctraining 318 May 24 11:13 chip-seq
+-rw-r--r--  1 root  hbctraining   0 Apr  5  2015 copy_me.txt
+drwxrwsr-x  3 rsk27 hbctraining 201 Apr  5  2015 exercises
+drwxrwsr-x  6 rsk27 hbctraining 293 Oct 27 09:40 for_chipseq
+drwxrwsr-x  4 mp298 hbctraining  51 Dec  6  2016 mep-data
+drwxrwsr-x  4 rsk27 hbctraining  53 Jun  2 15:57 ngs_course
+drwxrwsr-x  4 rsk27 hbctraining  53 Nov  2  2016 ngs-course_backup_Nov1-2016
+drwxrwsr-x  6 mm573 hbctraining 107 Mar 24  2016 ngs-data-analysis2016
+.
+.
+.
+.
 ```
 
 The `-l` flag tells `ls` to give us a long-form listing. It's a lot of information, so let's go through the columns in turn.
