@@ -417,9 +417,9 @@ to see a numbered list of recent commands, including this just issues
 
 **Other handy command-related shortcuts**
 
-- <kbd>Ctrl + C</kbd> will cancel the command you are writing, and give you a fresh prompt.
-- <kbd>Ctrl + A</kbd> will bring you to the start of the command you are writing.
-- <kbd>Ctrl + E</kbd> will bring you to the end of the command.
+- <button>Ctrl + C</button> will cancel the command you are writing, and give you a fresh prompt.
+- <button>Ctrl + A</button> will bring you to the start of the command you are writing.
+- <button>Ctrl + E</button> will bring you to the end of the command.
 
 ## Examining Files
 
