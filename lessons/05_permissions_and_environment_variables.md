@@ -43,6 +43,8 @@ For each of these three categories, the computer keeps track of whether people i
 Let's look at this model in action by running the command `ls -l /n/groups/hbctraining/`, to list the files in that directory:
 
 ```bash
+$ ls -l /n/groups/hbctraining/
+
 drwxrwsr-x  4 mm573 hbctraining 831 Feb 29  2016 bcbio-rnaseq
 drwxrwsr-x 12 mm573 hbctraining 318 May 24 11:13 chip-seq
 -rw-r--r--  1 root  hbctraining   0 Apr  5  2015 copy_me.txt
