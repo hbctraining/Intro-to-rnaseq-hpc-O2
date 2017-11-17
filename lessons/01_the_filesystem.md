@@ -589,7 +589,6 @@ cp
 mdkir
 mv
 rm
-vim
 ```
 
 #### Information on the shell
