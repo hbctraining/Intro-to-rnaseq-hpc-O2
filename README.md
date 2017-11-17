@@ -1,11 +1,9 @@
----
-Audience: Biologists
-Computational Skills: Beginner/Intermediate
-Prerequisites: None
-Duration: 2-day workshop (~13 hours of trainer-led time)
----
 
 ## Introduction to RNA-seq using high-performance computing (HPC)
+
+| Audience | Computational Skills | Prerequisites | Duration |
+:----------|:----------|:----------|:----------|
+| Biologists | Beginner/Intermediate | None | 2-day workshop (~13 hours of trainer-led time)|
 
 ### Description
 
