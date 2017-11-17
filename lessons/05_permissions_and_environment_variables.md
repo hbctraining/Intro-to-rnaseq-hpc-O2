@@ -99,8 +99,10 @@ The next 9 characters are usually some combination of the following in the order
 <button>w<\button> = write/modify permission
  
 <button>x<\button> = execute permission (run a script/program or traverse a directory).
->> Sometimes the `x` is replaced by another character, but it is beyond the scope of today's class. You can [get more information here](https://en.wikipedia.org/wiki/File_system_permissions#Notation_of_traditional_Unix_permissions), if you are interested.
->> To see an example of a file that is actually executable, try `ls -l /bin/ls`.
+
+> Sometimes the `x` is replaced by another character, but it is beyond the scope of today's class. You can [get more information here](https://en.wikipedia.org/wiki/File_system_permissions#Notation_of_traditional_Unix_permissions), if you are interested.
+>
+> To see an example of a file that is actually executable, try `ls -l /bin/ls`.
 
 The **next three characters** tell us what permissions the file's **owner** has. Here, the owner can read and write the file: `rw-`. 
 
