@@ -94,7 +94,7 @@ Using multiple complex modeling approaches, like Expectation Maximization (EM), 
 First start an interactive session and create a new directory for our Salmon analysis:
 
 ```bash
-$ srun --pty -p interactive -t 0-12:00 --mem 8G --reservation=hbc /bin/bash
+$ srun --pty -p interactive -t 0-12:00 --mem 8G --reservation=HSPH /bin/bash
 
 $ mkdir ~/unix_workshop/rnaseq/salmon
 
@@ -200,7 +200,7 @@ Next comes the Salmon command. Note, that we are adding a parameter called `--nu
 for fq in /n/groups/hbctraining/unix_workshop_other/full_dataset/*.fastq
  do 
    base=`basename $fq .fastq`
-   sbatch -p priority -n 6 -t 0-1:30 --mem 8G --reservation=hbc -j $base.mov10_salmon -o %j.$base.out -e %j.$base.err \
+   sbatch -p priority -n 6 -t 0-1:30 --mem 8G --reservation=HSPH -j $base.mov10_salmon -o %j.$base.out -e %j.$base.err \
    salmon quant -i /n/groups/hbctraining/unix_workshop_other/salmon.ensembl37.idx/ \
    -p 6 -l SR -r $fq --useVBOpt --numBootstraps 30 -o $base.salmon
  done

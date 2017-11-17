@@ -233,7 +233,7 @@ Check what hidden files exist in our home directory using the `-a` flag:
 $ ls -al ~/
 ```
 
-We want to add to the beginning of the list in `$PATH` is `/n/app/bcbio/tools/bin`, we need this for when we run the RNA-Seq workflow later. We can add the appropriate `export` command to the `.bashrc` file, this will make it so that when you start a new shell session the location will always be in your path. 
+We want to add `/n/app/bcbio/tools/bin` to the beginning of the list in `$PATH`, we need tools within this directory for the RNA-Seq workflow. We can add the appropriate `export` command to do this at the end of the `.bashrc` file, this will make it so that when you start a new shell session the location will always be in your path. 
 
 Open the `.bashrc` file using `vim` and at the end of the file add the export command that adds a specific location to the list in `$PATH`. 
 
@@ -244,7 +244,7 @@ $ vim ~/.bashrc
 # Don't forget the ":" between the full path and the "$PATH"!
 ```
 
-**In closing, permissions and environment variables, especially $PATH, are very useful and important concepts to understand in the context of UNIX and HPC.**
+**In closing, permissions and environment variables, especially `$PATH`, are very useful and important concepts to understand in the context of UNIX and HPC.**
 
 ---
 *This lesson has been developed by members of the teaching team at the [Harvard Chan Bioinformatics Core (HBC)](http://bioinformatics.sph.harvard.edu/). These are open access materials distributed under the terms of the [Creative Commons Attribution license](https://creativecommons.org/licenses/by/4.0/) (CC BY 4.0), which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.*
