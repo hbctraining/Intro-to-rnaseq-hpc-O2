@@ -27,7 +27,7 @@ This repository has teaching materials for a 2-day Introduction to RNA-sequencin
 |[Permissions and environment variables](lessons/05_permissions_and_environment_variables.md) | 50 min |
 |[Project and data organization](lessons/06_data_organization.md) | 40 min |
 |[RNA-seq experimental design best practices](lectures/rna-seq_design.pdf) | 50 min |
-|[Introduction to High-Performance Computing for HMS-RC's Orchestra](lectures/HPC_intro_slides_Radhika.pdf) | 45 min |
+|[Introduction to High-Performance Computing for HMS-RC's Orchestra](lectures/HPC_intro_O2.pdf) | 45 min |
 |[RNA-seq data QC with FastQC](lessons/07_assessing_quality.md) | 75 min |
 |[RNA-seq workflow: Alignment and Counting](lessons/08_rnaseq_workflow.md) | 90 min |
 |[Automating the RNA-seq workflow](lessons/09_automating_workflow.md) | 60 min |
