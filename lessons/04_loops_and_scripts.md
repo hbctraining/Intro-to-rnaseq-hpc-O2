@@ -298,7 +298,7 @@ for filename in *.fq
 do 
 
   # create a prefix for all output files
-  base=$(basename $filename .subset.fq)
+  base=`basename $filename .subset.fq`
 
   # tell us what file we're working on	
   echo $filename
