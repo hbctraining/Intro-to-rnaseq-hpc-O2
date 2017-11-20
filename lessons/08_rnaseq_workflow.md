@@ -171,7 +171,9 @@ $ STAR --runThreadN 6 \
 	1. How many reads are uniquely mapped?
 	2. How many reads map to more than 10 locations on the genome?
 	3. How many reads are unmapped due to read length?
+	
 ***
+
 
 ### Alignment Outputs (SAM/BAM)
 
