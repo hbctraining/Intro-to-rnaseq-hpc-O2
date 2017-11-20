@@ -276,7 +276,22 @@ $ cut -f1,7,8,9,10,11,12 results/counts/Mov10_featurecounts.txt > results/counts
 less results/counts/Mov10_featurecounts.Rmatrix.txt
 ```
 
-To ready this text file (count matrix) for the next step of differential gene expression analysis, you will need to clean it up further by removing the first header line, and modifying the column names (headers) to simpler, smaller sampleIDs.
+To ready this text file (count matrix) for the next step of differential gene expression analysis, you will need to clean it up further by removing the first header line, and modifying the column names (headers) to simpler, smaller sampleIDs. We can do this using a GUI text editor on our local laptops, or we can try using some of the shortcuts available in `vim`!
+	
+``` bash
+$ vim results/counts/Mov10_featurecounts.Rmatrix.txt
+```
+
+Vim has nice shortcuts for cleaning up the header of our file using the following steps: 
+
+1. Move the cursor to the beginning of the document by typing: `gg` (in command mode). 
+2. Remove the first line by typing: `dd` (in command mode).
+2. Remove the file name following the sample name by typing: `:%s/_Aligned.sortedByCoord.out.bam//g` (in command mode).
+3. Remove the path leading up to the file name by typing: `:%s/\/home\/rc_training10\/unix_workshop\/rnaseq\/results\/STAR\/bams\///g` (in command mode).
+	
+	> Note that we have a `\` preceding each `/`, which tells vim that we are not using the `/` as part of our search and replace command, but instead the `/` is part of the pattern that we are replacing. This is called *escaping* the `/`.
+
+> **NOTE:** The home directory will need to be changed to either or eCommons ID or the training account your are using.
 
 ***
 
