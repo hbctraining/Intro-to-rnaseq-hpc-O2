@@ -17,7 +17,9 @@ duration: 35
 
 ## Data Management
 
-The data management lifecycle courtesy of the [HMS Data Management Working Group](https://datamanagement.hms.harvard.edu/hms-data-management-working-group):
+> *"Data Management is the process of providing the appropriate labeling, storage, and access for data at all stages of a research project. We recognize that best practices for each of these aspects of data management can and often do change over time, and are different for different stages in the data lifecycle."*
+> 
+> *[- HMS Data Management Working Group](https://datamanagement.hms.harvard.edu/hms-data-management-working-group)*
 
 <img src="../img/data_life_cycle_gouldv2.png" width="350">
 
