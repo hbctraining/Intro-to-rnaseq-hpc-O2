@@ -169,10 +169,10 @@ where the ***variable_name*** defines (or initializes) a variable that takes the
 #### What does this loop do? 
 
 ```bash
-for filename in *.fq
+for x in *.fq
  do
-   echo $filename
-   wc -l $filename
+   echo $x
+   wc -l $x
  done
 ```
 
