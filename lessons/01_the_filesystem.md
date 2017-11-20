@@ -56,7 +56,7 @@ The command prompt will have some characters before it, something like `[rc_trai
 The first command we will type on the command prompt will be to start a so-called "interactive session" on O2.
 
 ```bash
-$ srun --pty -p interactive -t 0-12:00 --mem 8G --reservation=HSPH bash
+$ srun --pty -p short -t 0-12:00 --mem 8G --reservation=HSPH bash
 ```
 
 Press enter after you type in that command. You will get a couple of messages, but in a few seconds you should get back the command prompt `$`; the string of characters before the command prompt, however, have changed. They should say something like `[rc_training01@compute-a-16-73 ~]`. *We will be explaining what this means in more detail later when we talk about HPC and O2.* 

@@ -17,7 +17,7 @@ Approximate time: 90 minutes
 To get started with this lesson, we will start an interactive session and ask for 6 cores, by adding `-n 6` to the `srun` command:
 
 ```bash
-$ srun --pty -p interactive -t 0-12:00 -n 6 --mem 8G --reservation=HSPH bash	
+$ srun --pty -p short -t 0-12:00 -n 6 --mem 8G --reservation=HSPH bash	
 ```
 
 Change directories into the `unix_workshop` directory and copy the `reference_data` folder into your project directory:
