@@ -45,10 +45,10 @@ Below is a general overview of the steps involved in RNA-seq analysis.
 <img src="../img/RNAseqWorkflow.png" width="400">
 
 
-So let's get started by loading up some of the modules for tools we need for this section to perform alignment and assess the alignment: 
+So let's get started by loading up the STAR module required for alignment: 
 
 ```bash
-$ module load gcc/6.2.0 star/2.5.2b samtools/1.3.1
+$ module load star/2.5.2b
 ```
 Create an output directory for our alignment files:
 
@@ -186,11 +186,16 @@ These fields are described briefly below, but for more detailed information the 
 
 ![SAM](../img/sam_bam3.png)
 
-Let's take a quick look at our alignment. To do so we first convert our BAM file into SAM format using samtools and then pipe it to the `less` command. This allows us to look at the contents without having to write it to file (since we don't need a SAM file for downstream analyses).
+Let's take a quick look at our alignment. To do so we first convert our BAM file into SAM format using samtools and then pipe it to the `less` command. This allows us to look at the contents without having to write it to file (since we don't need a SAM file for downstream analyses). 
 
 ```bash
+$ module load gcc/6.2.0 samtools/1.3.1
+
 $ samtools view -h results/STAR/Mov10_oe_1_Aligned.sortedByCoord.out.bam | less
 ```
+
+> **NOTE:** When loading the `samtools` module we also needed to load the `gcc` module. This is because on O2 there are some tools that need the compiler loaded before it can run. When in doubt try `module spider` on the tool you are interested in using.
+
 Scroll through the SAM file and see how the fields correspond to what we expected.
 
 ### Counting reads
