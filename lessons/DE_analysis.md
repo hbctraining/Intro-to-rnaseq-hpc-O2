@@ -25,7 +25,7 @@ Intuitively, it would seem that since we know which samples belong to which grou
 
 R is a powerful language that can be very useful for NGS data analysis, and there are many popular packages for working with RNA-Seq count data. Some of these packages include [edgeR](https://www.bioconductor.org/packages/release/bioc/vignettes/edgeR/inst/doc/edgeRUsersGuide.pdf), [DESeq2](http://bioconductor.org/packages/release/bioc/vignettes/DESeq2/inst/doc/DESeq2.pdf), and [limma-voom](http://www.genomebiology.com/2014/15/2/R29). All of these tools use statistical modeling of the count data to test each gene against the null hypothesis and evaluate whether or not it is significantly differentially expressed. 
 
-<img src="../img/de_norm_counts_var.png" width=400>
+<img src="../img/de_norm_counts_var.png" width="400">
 
 These methods determine, for each gene, whether the differences in expression (counts) **between groups** is significant given the amount of variation observed **within groups** (replicates). To test for significance, we need an appropriate statistical model that accurately performs normalization (to account for differences in sequencing depth, etc.) and variance modeling (to account for few numbers of replicates and large dynamic expression range). The details on how each package works is described thoroughly within each of the respective vignettes.
 
@@ -143,7 +143,7 @@ First, you have to download the directory with the quant.sf files for the 8 full
 
 Your Rstudio interface should look something like the screenshot below:
 
-<img src="../img/salmon_rstudio.png" size=600>
+<img src="../img/salmon_rstudio.png" size="600">
 
 To perform this analysis you will have to install the following libraries:
 
