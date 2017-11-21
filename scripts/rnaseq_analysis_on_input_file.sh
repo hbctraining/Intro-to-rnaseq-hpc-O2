@@ -9,7 +9,7 @@ fq=$1
 
 # grab base of filename for naming outputs
 
-base=$(basename $fq .subset.fq)
+base=`basename $fq .subset.fq`
 echo "Sample name is $base"           
 
 # specify the number of cores to use
