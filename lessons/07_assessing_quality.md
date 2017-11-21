@@ -116,7 +116,7 @@ $ module spider
 Then we can load the FastQC module:
 
 ```bash
-$ module load fastqc/0.11.5
+$ module load fastqc/0.11.3
 ```
 
 Once a module for a tool is loaded, you have essentially made it directly available to you like any other basic UNIX command.
@@ -142,7 +142,7 @@ $ exit  #exit the current interactive session
 
 $ srun --pty -n 6 -p short -t 0-12:00 --mem 8G --reservation=HSPH bash  #start a new one with 6 cpus (-n 6) and 8G RAM (--mem 8G)
 
-$ module load fastqc/0.11.5  #reload the module for the new session
+$ module load fastqc/0.11.3  #reload the module for the new session
 
 $ cd ~/unix_workshop/rnaseq/raw_data
 
@@ -211,7 +211,7 @@ Now in the body of the script, we can include any commands we want run:
 cd ~/unix_workshop/rnaseq/raw_data
 
 ## Loading modules required for script commands
-module load fastqc/0.11.5
+module load fastqc/0.11.3
 
 ## Running FASTQC
 fastqc -t 6 *.fq
