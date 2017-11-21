@@ -44,27 +44,14 @@ Below is a general overview of the steps involved in RNA-seq analysis.
 
 <img src="../img/RNAseqWorkflow.png" width="400">
 
-
-So let's get started by loading up the STAR module required for alignment: 
-
-```bash
-$ module load star/2.5.2b
-```
-Create an output directory for our alignment files:
-
-```bash
-$ mkdir results/STAR
-```
-In the automation script, we will eventually loop over all of our files and have the cluster work on the files in parallel. For now, we're going to work on just one to test and set up our workflow. To start we will use the first replicate in the Mov10 overexpression group, `Mov10_oe_1_subset.fq`.
-
 ## Read Alignment
-The alignment process consists of choosing an appropriate reference genome to map our reads against, and performing the read alignment using one of several splice-aware alignment tools such as [STAR](https://github.com/alexdobin/STAR) or [HISAT2](https://ccb.jhu.edu/software/hisat2/index.shtml) (HISAT2 is a successor to both HISAT and TopHat2). The choice of aligner is a personal preference and also dependent on the computational resources that are available to you.
+The alignment process consists of choosing an appropriate reference genome to map our reads against, and performing the read alignment using one of several splice-aware alignment tools such as [STAR](https://github.com/alexdobin/STAR) or [HISAT2](https://ccb.jhu.edu/software/hisat2/index.shtml) (HISAT2 is a successor to both HISAT and TopHat2). The choice of aligner is a personal preference and also dependent on the computational resources that are available to you. The splice-aware feature is especially important for RNA-seq data, because we want an alignment tool that considers splice junctions when performing alignments.
  
 For this workshop we will be using STAR (Spliced Transcripts Alignment to a Reference), an aligner designed to specifically address many of the challenges of RNAseq read mapping. STAR is shown to have **high accuracy** and outperforms other aligners by more than a **factor of 50 in mapping speed (but also requires quite a bit of memory**). 
 
 ### STAR Alignment Strategy
 
-STAR is shown to have **high accuracy** and outperforms other aligners by more than a **factor of 50 in mapping speed (but also requires quite a bit of memory)**. The algorithm achieves this highly efficient mapping by performing a two-step process:
+The algorithm achieves this highly efficient mapping by performing a two-step process:
 
 1. Seed searching
 2. Clustering, stitching, and scoring
@@ -81,7 +68,6 @@ STAR will then search again for only the unmapped portion of the read to find th
 
 ![STAR_step2](../img/alignment_STAR_step2.png)
 
-This sequential searching of only the unmapped portions of reads underlies the efficiency of the STAR algorithm. STAR uses an uncompressed suffix array (SA) to efficiently search for the longest matching portions of the read, this allows for quick searching against even the largest reference genomes. Other slower aligners use algorithms that often search for the entire read sequence before splitting reads and performing iterative rounds of mapping. More details on the algorithm itself can be found in the [STAR publication](http://bioinformatics.oxfordjournals.org/content/early/2012/10/25/bioinformatics.bts635). 
 
 **If STAR does not find an exact matching sequence** for each part of the read due to mismatches or indels, the seed will be extended.
 
@@ -90,6 +76,8 @@ This sequential searching of only the unmapped portions of reads underlies the e
 **If extension does not give a good alignment**, then the poor quality or adapter sequence (or other contaminating sequence) will be soft clipped.
 
 ![STAR_step4](../img/alignment_STAR_step4.png)
+
+This sequential searching of only the unmapped portions of reads underlies the efficiency of the STAR algorithm. STAR uses an uncompressed suffix array (SA) to efficiently search for the longest matching portions of the read, this allows for quick searching against even the largest reference genomes. Other slower aligners use algorithms that often search for the entire read sequence before splitting reads and performing iterative rounds of mapping. More details on the algorithm itself can be found in the [STAR publication](http://bioinformatics.oxfordjournals.org/content/early/2012/10/25/bioinformatics.bts635). 
 
 
 #### Clustering, stitching, and scoring
@@ -100,6 +88,20 @@ Then the seeds are stitched together based on the best alignment for the read (s
 
 ![STAR_step5](../img/alignment_STAR_step5.png)
 
+### Setting up
+
+Let's get started by loading up the STAR module required for alignment: 
+
+```bash
+$ module load star/2.5.2b
+```
+Create an output directory for our alignment files:
+
+```bash
+$ mkdir results/STAR
+```
+In the automation script, we will eventually loop over all of our files and have the cluster work on the files in parallel. For now, we're going to work on just one to test and set up our workflow. To start we will use the first replicate in the Mov10 overexpression group, `Mov10_oe_1_subset.fq`.
+
 ### Running STAR
 
 Aligning reads using STAR is a two-step process:   
@@ -107,17 +109,10 @@ Aligning reads using STAR is a two-step process:
 1. Create a genome index 
 2. Map reads to the genome
 
-> A quick note on shared databases for human and other commonly used model organisms. The O2 cluster has a designated directory at `/n/groups/shared_databases/` in which there are files that can be accessed by any user. These files contain, but are not limited to, genome indices for various tools, reference sequences, tool specific data, and data from public databases, such as NCBI and PDB. So when using a tool and requires a reference of sorts, it is worth taking a quick look here because chances are it's already been taken care of for you. 
-
-```bash
-$ ls -l /n/groups/shared_databases/igenome
-```
 
 #### Creating a genome index
 
-For this workshop we are using reads that originate from a small subsection of chromosome 1 (~300,000 reads) and so we are using only chr1 as the reference genome. Therefore, we cannot use any of the ready-made indices available in the `/n/groups/shared_databases/` folder.
-
-For this workshop, we have already indexed the reference genome for you as this can take a while. We have provided the code below that you would use to index the genome for your future reference, but please **do not run the code below**. For indexing the reference genome, a reference genome (FASTA) is required and an annotation file (GTF or GFF3) is suggested a more accurate alignment of the reads. 
+The genome index is analagous to an index in a textbook, it is used to organize the genome in a way that can be easily accessed and makes for more efficient searching. For this workshop, we have already indexed the reference genome for you as this can take a while. We have provided the code below that you would use to index the genome for your future reference, but please **do not run the code below**. For indexing the reference genome, a reference genome (FASTA) is required and an annotation file (GTF or GFF3) is suggested a more accurate alignment of the reads. 
 
 The basic options to **generate genome indices** using STAR are as follows:
 
@@ -132,6 +127,16 @@ The basic options to **generate genome indices** using STAR are as follows:
 ** DO NOT RUN**
 STAR --runThreadN 6 --runMode genomeGenerate --genomeDir ./ --genomeFastaFiles chr1.fa --sjdbGTFfile chr1-hg19_genes.gtf --sjdbOverhang 99
 ```
+> **NOTE:** For human and other commonly used model organisms, the O2 cluster has a designated directory at `/n/groups/shared_databases/` in which there are files that can be accessed by any user. These files contain, but are not limited to, genome indices for various tools, reference sequences, tool specific data, and data from public databases, such as NCBI and PDB. So when using a tool and requires a reference of sorts, it is worth taking a quick look here because chances are it's already been taken care of for you. 
+
+```bash
+$ ls -l /n/groups/shared_databases/igenome
+```
+
+For this workshop we are using reads that originate from a small subsection of chromosome 1 (~300,000 reads) and so we are using only chr1 as the reference genome. Therefore, we cannot use any of the ready-made indices available in the shared folder. The index we have created is located at `/n/groups/hbctraining/unix_workshop_other/reference_STAR` if you wanted to take a look at what files comprise a STAR index.
+
+
+#### Mapping reads
 
 The basic options for **mapping reads** to the genome using STAR are as follows:
 
@@ -141,9 +146,10 @@ The basic options for **mapping reads** to the genome using STAR are as follows:
 * `--outFileNamePrefix`: prefix for all output files
 
 We will also be using some advanced options:
-* `--outSAMtype`: output filetype (SAM default)
-* `--outSAMUnmapped`: what to do with unmapped reads
-* `--outSAMattributes`: SAM attributes
+
+* `--outSAMtype BAM SortedByCoordinate`: output filetype (SAM default)
+* `--outSAMUnmapped Within`: what to do with unmapped reads
+* `--outSAMattributes NH HI NM MD AS`: alignment file attributes
 
 Note that default filtering is applied in which the maximum number of multiple alignments allowed for a read is set to 10. If a read exceeds this number there is no alignment output. To change the default you can use `--outFilterMultimapNmax`, but for this lesson we will leave it as default. The advanced parameters that we are going to use are described below:
 
