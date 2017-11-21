@@ -292,7 +292,7 @@ The **"Overrepresented sequences"** table displays the sequences (at least 20 bp
 
 ![FastQC_contam](../img/FastQC_contam.png)
 
-We will go over the remaining plots in class. Remember, our report only represents a subset of reads (chromosome 1) for `Mov10_oe_1.subset.fq`, which can skew the QC results. We encourage you to look at the [full set of reads](https://www.dropbox.com/s/1z47wrwb0tdpy5s/Mov10oe_1-fastqc_report.html?dl=0) and note how the QC results differ when using the entire dataset.
+We will go over the remaining plots in class. Remember, our report only represents a subset of reads (chromosome 1) for `Mov10_oe_1.subset.fq`, which can skew the QC results. We encourage you to look at the [full set of reads](../fastqc/Mov10oe_1-fastqc_report.html) and note how the QC results differ when using the entire dataset.
    
 > **_NOTE:_** 
 >The other output of FastQC is a .zip file. These .zip files need to be unpacked with the `unzip` program. If we try to `unzip` them all at once:
