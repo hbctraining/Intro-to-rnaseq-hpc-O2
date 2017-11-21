@@ -54,6 +54,14 @@ The variables $1, $2, $3,...$9 and so on are **positional parameters** in the co
 
 Let's use this new concept in the script we are writing. We want the first positional parameter ($1) to be the name of our fastq file. We could just use the variable `$1` throughout the script to refer to the fastq file, but this variable name is not intuitive, so we want to create a new variable called `fq` and copy the contents of `$1` into it.
 
+First, we need to start a new script called `rnaseq_analysis_on_input_file.sh` in the `~/unix_workshop/rnaseq/scripts/` directory:
+
+```bash
+$ cd ~/unix_workshop/rnaseq/scripts/
+
+$ vim rnaseq_analysis_on_input_file.sh
+```
+
 ```bash
 #!/bin/bash/
 
@@ -130,7 +138,7 @@ All of our variables are now staged. Next, let's make sure all the modules are l
 ```
 # set up the software environment
 
-module load fastqc/0.11.5
+module load fastqc/0.11.3
 module load gcc/6.2.0  
 module load star/2.5.2b
 module load samtools/1.3.1
@@ -172,7 +180,7 @@ It is best practice to have the script **usage** specified at the top any script
 
 ```
 # This script takes a fastq file of RNA-Seq data, runs FastQC and outputs a counts file for it.
-# USAGE: sh rnaseq_analysis_on_allfiles.sh <name of fastq file>
+# USAGE: sh rnaseq_analysis_on_input_file.sh <name of fastq file>
 ```
 
 It is okay to specify this everything else is set up, since you will have most clarity about the script only once it is fully done.
@@ -202,9 +210,9 @@ The above script will run in an interactive session **one file at a time**. But 
 To run the above script **"in serial"** for all of the files on a worker node via the job scheduler, we can create a separate submission script that will need 2 components:
 
 1. **SLURM directives** at the **beginning** of the script. This is so that the scheduler knows what resources we need in order to run our job on the compute node(s).
-2. a `for` loop that iterates through and runs the above script for all the fastq files.
+2. a **`for`** loop that iterates through and runs the above script for all the fastq files.
 
-Below is what this second script would look like **\[DO NOT RUN THIS\]**:
+Below is what this second script (`rnaseq_analysis_on_allfiles.slurm`) would look like **\[DO NOT RUN THIS\]**:
 
 ```
 #!/bin/bash
@@ -231,7 +239,7 @@ done
 ***
 **Exercise**
 
-How would you run the above script?
+How would you run `rnaseq_analysis_on_allfiles.slurm`, i.e. the above script?
 
 ***
 
