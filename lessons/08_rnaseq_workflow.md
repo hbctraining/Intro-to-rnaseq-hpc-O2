@@ -149,7 +149,6 @@ We will also be using some advanced options:
 
 * `--outSAMtype BAM SortedByCoordinate`: output filetype (SAM default)
 * `--outSAMUnmapped Within`: what to do with unmapped reads
-* `--outSAMattributes NH HI NM MD AS`: alignment file attributes
 
 Note that default filtering is applied in which the maximum number of multiple alignments allowed for a read is set to 10. If a read exceeds this number there is no alignment output. To change the default you can use `--outFilterMultimapNmax`, but for this lesson we will leave it as default. The advanced parameters that we are going to use are described below:
 
@@ -166,7 +165,6 @@ $ STAR --runThreadN 6 \
 --outFileNamePrefix results/STAR/Mov10_oe_1_ \
 --outSAMtype BAM SortedByCoordinate \
 --outSAMunmapped Within \
---outSAMattributes NH HI NM MD AS
 ```
 
 ***
