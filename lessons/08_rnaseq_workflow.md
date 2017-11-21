@@ -217,7 +217,7 @@ Let's start by creating a directory for the output:
 ```bash
 $ mkdir results/counts
 ```
-`featureCounts` is not available as a module on O2, but we have already added the path for it (`/opt/bcbio/local/bin`) to our `$PATH` variable last time. 
+`featureCounts` is not available as a module on O2, but we have already added the path for it to our `$PATH` variable last time. 
 
 ``` bash
 $ which featureCounts  # should return /n/app/bcbio/tools/bin/featureCounts 
