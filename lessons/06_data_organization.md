@@ -53,13 +53,13 @@ $ pwd
 
 This should return `/home/username`.
 
-Now make a directory for the RNA-seq analysis within the `unix_workshop/` folder using the `mkdir` command. You can use the parents flag (`-p` or `--parents`) to complete the file path by creating any parent directories that do not exist. However, this isn't the case here, since we already have the `unix_workshop/`, but it can be very useful when scripting workflows. 
+We will change into the `unix_workshop` directory:
 
 ```bash
-$ mkdir -p ~/unix_workshop/rnaseq
+cd unix_workshop
 ```
 
-Next, we will set up the following structure within your project directory to keep files organized. 
+Next, we will create a project directory and set up the following structure within it to keep files organized. 
 
 ```bash
 rnaseq
@@ -80,16 +80,21 @@ rnaseq
 - `results`: for output from the different tools you implement in your workflow. Create sub-folders specific to each tool/step of the workflow within this folder. 
 - `scripts`: for scripts that you write and use to run analyses/workflow.
 
-Create subdirectories for the project by changing into `rnaseq/` and then using `mkdir`.
+Here, you can use the parents flag (`-p` or `--parents`) with `mkdir` to complete the file path by creating any parent directories that do not exist. In our case, we have not yet created the `rnaseq` directory and so since it does not exist it will be created. This flag can be very useful when scripting workflows. 
+
 
 ```bash
-$ cd ~/unix_workshop/rnaseq
-$ mkdir -p logs meta raw_data results scripts
+
+$ mkdir -p rnaseq/logs rnaseq/meta rnaseq/raw_data rnaseq/results rnaseq/scripts
 ``` 
-Verify that the subdirectories now exist.
+
+Verify that the project directory and subdirectories now exist.
 
 ```bash
-ls -l
+
+$ cd rnaseq
+$ ls -l
+
 ```
 
 Let's populate the `rnaseq/` project with our example RNA-seq FASTQ data.
@@ -175,7 +180,7 @@ The dataset we are using is part of a larger study described in [Kenny PJ et al.
 
 ### Raw data
 
-From this study we are using the [RNA-seq](http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE50499) data which is publicly available in the [Sequence Read Archive (SRA)][https://www.ncbi.nlm.nih.gov/sra/?term=SRP029367]. 
+From this study we are using the [RNA-seq](http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE50499) data which is publicly available in the [Sequence Read Archive (SRA)](https://www.ncbi.nlm.nih.gov/sra/?term=SRP029367). 
 
 ### Metadata
 
