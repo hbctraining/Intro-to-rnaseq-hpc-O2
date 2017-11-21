@@ -324,7 +324,7 @@ To keep our data organized, let's move all of the bad read files out of the `raw
 $ mkdir scripts
 
 $ mv raw_fastq/*bad* other/
-$ mv generate_bad_reads_summary.sh scripts/
+$ mv *.sh scripts/
 ```
 
 ---
