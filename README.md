@@ -25,14 +25,14 @@ This repository has teaching materials for a 2-day Introduction to RNA-sequencin
 |[Introduction to the Vim text editor ](lessons/03_vim.md) | 30 min |
 |[Shell scripts and `for` loops](lessons/04_loops_and_scripts.md) | 75 min |
 |[Permissions and environment variables](lessons/05_permissions_and_environment_variables.md) | 50 min |
-|[Project and data organization](lessons/06_data_organization.md) | 40 min |
+|[Project and data organization](lessons/01_data_organization.md) | 40 min |
 |[RNA-seq experimental design best practices](lectures/rna-seq_design.pdf) | 50 min |
 |[Introduction to High-Performance Computing for HMS-RC's O2 cluster](lectures/HPC_intro_O2.pdf) | 45 min |
-|[RNA-seq data QC with FastQC](lessons/07_assessing_quality.md) | 75 min |
-|[RNA-seq workflow: Alignment and Counting](lessons/08_rnaseq_workflow.md) | 90 min |
-|[Automating the RNA-seq workflow](lessons/09_automating_workflow.md) | 60 min |
+|[RNA-seq data QC with FastQC](lessons/02_assessing_quality.md) | 75 min |
+|[RNA-seq workflow: Alignment and Counting](lessons/03_rnaseq_workflow.md) | 90 min |
+|[Automating the RNA-seq workflow](lessons/04_automating_workflow.md) | 60 min |
 |[Alternative workflows for analyzing RNA-seq data](lectures/RNAseq-analysis-methods.pdf) | 15 min |
-|[Quantifying expression using alignment-free methods (Salmon)](lessons/10_salmon.md) | 75 min |
+|[Quantifying expression using alignment-free methods (Salmon)](lessons/05_salmon.md) | 75 min |
 
 ### Dataset
 
