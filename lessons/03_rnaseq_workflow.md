@@ -133,7 +133,7 @@ STAR --runThreadN 6 --runMode genomeGenerate --genomeDir ./ --genomeFastaFiles c
 $ ls -l /n/groups/shared_databases/igenome
 ```
 
-For this workshop we are using reads that originate from a small subsection of chromosome 1 (~300,000 reads) and so we are using only chr1 as the reference genome. Therefore, we cannot use any of the ready-made indices available in the shared folder. The index we have created is located at `/n/groups/hbctraining/unix_lesson_other/reference_STAR` if you wanted to take a look at what files comprise a STAR index.
+For this workshop we are using reads that originate from a small subsection of chromosome 1 (~300,000 reads) and so we are using only chr1 as the reference genome. Therefore, we cannot use any of the ready-made indices available in the shared folder. The index we have created is located at `/n/groups/hbctraining/intro_rnaseq_hpc/reference_STAR` if you wanted to take a look at what files comprise a STAR index.
 
 
 #### Mapping reads
@@ -160,7 +160,7 @@ Now let's put it all together! The full STAR alignment command is provided below
 
 ```bash
 $ STAR --runThreadN 6 \
---genomeDir /n/groups/hbctraining/unix_lesson_other/reference_STAR \
+--genomeDir /n/groups/hbctraining/intro_rnaseq_hpc/reference_STAR \
 --readFilesIn raw_data/Mov10_oe_1.subset.fq \
 --outFileNamePrefix results/STAR/Mov10_oe_1_ \
 --outSAMtype BAM SortedByCoordinate \
@@ -240,7 +240,7 @@ So, it looks like the usage is `featureCounts [options] -a <annotation_file> -o 
 It can also take multiple bam files as input. Since we have only run STAR on 1 FASTQ file, let's copy over the other bam files that we would need so we can generate the full count matrix.
 
 ```bash
-cp /n/groups/hbctraining/unix_lesson_other/bam_STAR/*bam ~/unix_lesson/rnaseq/results/STAR/
+cp /n/groups/hbctraining/intro_rnaseq_hpc/bam_STAR/*bam ~/unix_lesson/rnaseq/results/STAR/
 ```
 
 We are going to use the following options:
