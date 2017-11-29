@@ -53,10 +53,10 @@ $ pwd
 
 This should return `/home/username`.
 
-We will change into the `unix_workshop` directory:
+We will change into the `unix_lesson` directory:
 
 ```bash
-cd unix_workshop
+cd unix_lesson
 ```
 
 Next, we will create a project directory and set up the following structure within it to keep files organized. 
@@ -99,16 +99,16 @@ $ ls -l
 
 Let's populate the `rnaseq/` project with our example RNA-seq FASTQ data.
 
-The FASTQ files are located inside `~/unix_workshop/raw_fastq/`, and we need to copy them to `raw_data/`. We can match them by file extension with `*.fq`.
+The FASTQ files are located inside `~/unix_lesson/raw_fastq/`, and we need to copy them to `raw_data/`. We can match them by file extension with `*.fq`.
 
 ```bash
-$ cp ~/unix_workshop/raw_fastq/*.fq raw_data/
+$ cp ~/unix_lesson/raw_fastq/*.fq raw_data/
 ```
 
-Later in the workflow when we perform alignment, we will require genome reference files (.fa, .gtf) for alignment and read counting. These files are also in the `unix_workshop/` directory inside `reference_data/`, we can copy over the whole folder in this case. You can use `.` as a shortcut for the current working directory as the destination.
+Later in the workflow when we perform alignment, we will require genome reference files (.fa, .gtf) for alignment and read counting. These files are also in the `unix_lesson/` directory inside `reference_data/`, we can copy over the whole folder in this case. You can use `.` as a shortcut for the current working directory as the destination.
 
 ```bash
-$ cp -r ~/unix_workshop/reference_data/ .
+$ cp -r ~/unix_lesson/reference_data/ .
 ```
 
 Perfect, now the structure of `rnaseq/` should look like this:

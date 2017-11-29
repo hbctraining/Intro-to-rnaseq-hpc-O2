@@ -54,10 +54,10 @@ The variables $1, $2, $3,...$9 and so on are **positional parameters** in the co
 
 Let's use this new concept in the script we are writing. We want the first positional parameter ($1) to be the name of our fastq file. We could just use the variable `$1` throughout the script to refer to the fastq file, but this variable name is not intuitive, so we want to create a new variable called `fq` and copy the contents of `$1` into it.
 
-First, we need to start a new script called `rnaseq_analysis_on_input_file.sh` in the `~/unix_workshop/rnaseq/scripts/` directory:
+First, we need to start a new script called `rnaseq_analysis_on_input_file.sh` in the `~/unix_lesson/rnaseq/scripts/` directory:
 
 ```bash
-$ cd ~/unix_workshop/rnaseq/scripts/
+$ cd ~/unix_lesson/rnaseq/scripts/
 
 $ vim rnaseq_analysis_on_input_file.sh
 ```
@@ -89,7 +89,7 @@ echo "Sample name is $base"
 
 > **Remember `basename`?**
 >
-> 1. the `basename` command: this command takes a path or a name and trims away all the information before the last `\` and if you specify the string to clear away at the end, it will do that as well. In this case, if the variable `$fq` contains the path *"~/unix_workshop/rnaseq/raw_data/Mov10_oe_1.subset.fq"*, `basename $fq .subset.fq` will output "Mov10_oe_1".
+> 1. the `basename` command: this command takes a path or a name and trims away all the information before the last `\` and if you specify the string to clear away at the end, it will do that as well. In this case, if the variable `$fq` contains the path *"~/unix_lesson/rnaseq/raw_data/Mov10_oe_1.subset.fq"*, `basename $fq .subset.fq` will output "Mov10_oe_1".
 > 2. to assign the value of the `basename` command to the `base` variable, we encapsulate the `basename...` command in backticks. This syntax is necessary for assigning the output of a command to a variable.
 
 Next we want to specify how many cores the script should use to run the analysis. This provides us with an easy way to modify the script to run with more or fewer cores without have to replace the number within all commands where cores are specified.
@@ -104,8 +104,8 @@ Next we'll initialize 2 more variables named `genome` and `gtf`, these will cont
 ```
 # directory with genome reference FASTA and index files + name of the gene annotation file
 
-genome=/n/groups/hbctraining/unix_workshop_other/reference_STAR/
-gtf=~/unix_workshop/rnaseq/reference_data/chr1-hg19_genes.gtf
+genome=/n/groups/hbctraining/unix_lesson_other/reference_STAR/
+gtf=~/unix_lesson/rnaseq/reference_data/chr1-hg19_genes.gtf
 ```
 
 We'll create output directories, but with the `-p` option. This will make sure that `mkdir` will create the directory only if it does not exist, and it won't throw an error if it does exist.
@@ -115,9 +115,9 @@ We'll create output directories, but with the `-p` option. This will make sure t
 # The -p option means mkdir will create the whole path if it 
 # does not exist and refrain from complaining if it does exist
 
-mkdir -p ~/unix_workshop/rnaseq/results/fastqc/
-mkdir -p ~/unix_workshop/rnaseq/results/STAR
-mkdir -p ~/unix_workshop/rnaseq/results/counts
+mkdir -p ~/unix_lesson/rnaseq/results/fastqc/
+mkdir -p ~/unix_lesson/rnaseq/results/STAR
+mkdir -p ~/unix_lesson/rnaseq/results/counts
 ```
 
 Now that we have already created our output directories, we can now specify variables with the path to those directories both for convenience but also to make it easier to see what is going on in a long command.
@@ -125,10 +125,10 @@ Now that we have already created our output directories, we can now specify vari
 ```
 # set up output filenames and locations
 
-fastqc_out=~/unix_workshop/rnaseq/results/fastqc/
-align_out=~/unix_workshop/rnaseq/results/STAR/${base}_
-counts_input_bam=~/unix_workshop/rnaseq/results/STAR/${base}_Aligned.sortedByCoord.out.bam
-counts=~/unix_workshop/rnaseq/results/counts/${base}_featurecounts.txt
+fastqc_out=~/unix_lesson/rnaseq/results/fastqc/
+align_out=~/unix_lesson/rnaseq/results/STAR/${base}_
+counts_input_bam=~/unix_lesson/rnaseq/results/STAR/${base}_Aligned.sortedByCoord.out.bam
+counts=~/unix_lesson/rnaseq/results/counts/${base}_featurecounts.txt
 ```
 
 ### Keeping track of tool versions
@@ -190,17 +190,17 @@ It is okay to specify this everything else is set up, since you will have most c
 To transfer the contents of the script to O2, you can copy and paste the contents into a new file using `vim`. 
 
 ```bash
-$ cd ~/unix_workshop/rnaseq/scripts/
+$ cd ~/unix_lesson/rnaseq/scripts/
 
 $ vim rnaseq_analysis_on_input_file.sh 
 ```
-> *Alternatively, you can save the script on your computer and transfer it to `~/unix_workshop/rnaseq/scripts/` using FileZilla.*
+> *Alternatively, you can save the script on your computer and transfer it to `~/unix_lesson/rnaseq/scripts/` using FileZilla.*
 
 
 We should all have an interactive session with 6 cores, so we can run the script as follows:
 
 ```bash
-$ sh rnaseq_analysis_on_input_file.sh ~/unix_workshop/rnaseq/raw_data/Mov10_oe_1.subset.fq
+$ sh rnaseq_analysis_on_input_file.sh ~/unix_lesson/rnaseq/raw_data/Mov10_oe_1.subset.fq
 ```
 
 ## Running the script to submit jobs in parallel to the SLURM scheduler
@@ -225,7 +225,7 @@ Below is what this second script (`rnaseq_analysis_on_allfiles.slurm`) would loo
 #SBATCH -e %j.err 		# File to which standard err will be written
 
 # this `for` loop, will take the fastq files as input and run the script for all of them one after the other. 
-for fq in ~/unix_workshop/rnaseq/raw_data/*.fq
+for fq in ~/unix_lesson/rnaseq/raw_data/*.fq
 do
   echo "running analysis on $fq"
   rnaseq_analysis_on_input_file.sh $fq
@@ -258,15 +258,15 @@ This script loops through the same files as in the previous (demo) script, but t
 ```bash
 #! /bin/bash
 
-for fq in ~/unix_workshop/rnaseq/raw_data/*.fq
+for fq in ~/unix_lesson/rnaseq/raw_data/*.fq
 do
 
-sbatch -p short -t 0-2:00 -n 6 --job-name rnaseq-workflow --wrap="sh ~/unix_workshop/rnaseq/scripts/rnaseq_analysis_on_input_file.sh $fq"
+sbatch -p short -t 0-2:00 -n 6 --job-name rnaseq-workflow --wrap="sh ~/unix_lesson/rnaseq/scripts/rnaseq_analysis_on_input_file.sh $fq"
 sleep 1	# wait 1 second between each job submission
   
 done
 ```
-> Please note that after the `sbatch` directives the command `sh ~/unix_workshop/rnaseq/scripts/rnaseq_analysis_on_input_file.sh $fq` is in quotes.
+> Please note that after the `sbatch` directives the command `sh ~/unix_lesson/rnaseq/scripts/rnaseq_analysis_on_input_file.sh $fq` is in quotes.
 
 What you should see on the output of your screen would be the jobIDs that are returned from the scheduler for each of the jobs that your script submitted.
 

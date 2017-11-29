@@ -36,7 +36,7 @@ In order to run R on Orchestra, let's first log on to the cluster and start an i
 
 Once you are in an interactive session, navigate to the `rnaseq` directory:
 
-	$ cd ~/unix_workshop/rnaseq
+	$ cd ~/unix_lesson/rnaseq
 
 We will be running an R script that uses the R package [DESeq2](http://bioconductor.org/packages/release/bioc/html/DESeq2.html) to identify differentially expressed genes. This package is available from [Bioconductor](https://www.bioconductor.org/), which is a repository of packages for the analysis of high-throughput genomic data. There are also a few other packages that are required to generate some additional figures.
 
@@ -57,28 +57,28 @@ q()
 You should find yourself back at the shell command prompt. The next few lines will set the environment variable `R_LIBS_USER` to let R know where the R libraries directory resides.
 
 ```bash
-$ echo 'R_LIBS_USER="/groups/hbctraining/unix_workshop_other/R-3.3.1"' >  $HOME/.Renviron
-$ export R_LIBS_USER="/groups/hbctraining/unix_workshop_other/R-3.3.1"
+$ echo 'R_LIBS_USER="/groups/hbctraining/unix_lesson_other/R-3.3.1"' >  $HOME/.Renviron
+$ export R_LIBS_USER="/groups/hbctraining/unix_lesson_other/R-3.3.1"
 ```
 
 To run differential expression analysis, we are going to run a script from the `results` directory, so let's navigate there and create a directory for the results of our analysis. We will call the directory `diffexpression`:
 
 ```bash
-$ cd ~/unix_workshop/rnaseq/results
+$ cd ~/unix_lesson/rnaseq/results
 $ mkdir diffexpression
 ```
 First, let's copy over the script file:
 ```bash
-$ cp /groups/hbctraining/unix_workshop_other/DESeq2_script.R diffexpression/
+$ cp /groups/hbctraining/unix_lesson_other/DESeq2_script.R diffexpression/
 ```
 The DE script will require as input **1) your count matrix file** and **2) a metadata file**. The count matrix we generated in the last lesson and is in the `counts` directory. The metadata file is a tab-delimited file which contains any information associated with our samples. Each row corresponds to a sample and each column contains some information about each sample.
 
 ```bash
-$ cp ~/unix_workshop/other/Mov10_rnaseq_metadata.txt diffexpression
+$ cp ~/unix_lesson/other/Mov10_rnaseq_metadata.txt diffexpression
 ```
 > **NOTE:** If you _didn't generate this file in class_ we have a pre-computed count matrix generated that you can use:
 >  
->  `$ cp /groups/hbctraining/unix_workshop_other/counts_STAR/Mov10_rnaseq_counts_complete.txt diffexpression`
+>  `$ cp /groups/hbctraining/unix_lesson_other/counts_STAR/Mov10_rnaseq_counts_complete.txt diffexpression`
 > 
 
 Once you have the files copied, take a quick look at the metadata using `less`.
