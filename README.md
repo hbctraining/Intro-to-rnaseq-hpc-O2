@@ -20,11 +20,11 @@ This repository has teaching materials for a 2-day Introduction to RNA-sequencin
 
 | Lessons            | Estimated Duration |
 |:------------------------|:----------|
-|[Introduction to the shell](lessons/01_the_filesystem.md) | 70 min |
-|[Searching and redirection in shell](lessons/02_searching_files.md) | 45 min |
-|[Introduction to the Vim text editor ](lessons/03_vim.md) | 30 min |
-|[Shell scripts and `for` loops](lessons/04_loops_and_scripts.md) | 75 min |
-|[Permissions and environment variables](lessons/05_permissions_and_environment_variables.md) | 50 min |
+|[Introduction to the shell](https://hbctraining.github.io/Intro-to-Shell/lessons/01_the_filesystem.html) | 70 min |
+|[Searching and redirection in shell](https://hbctraining.github.io/Intro-to-Shell/lessons/02_searching_files.html) | 45 min |
+|[Introduction to the Vim text editor ](https://hbctraining.github.io/Intro-to-Shell/lessons/03_vim.html) | 30 min |
+|[Shell scripts and `for` loops](https://hbctraining.github.io/Intro-to-Shell/lessons/04_loops_and_scripts.html) | 75 min |
+|[Permissions and environment variables](https://hbctraining.github.io/Intro-to-Shell/lessons/05_permissions_and_environment_variables.html) | 50 min |
 |[Project and data organization](lessons/01_data_organization.md) | 40 min |
 |[RNA-seq experimental design best practices](lectures/rna-seq_design.pdf) | 50 min |
 |[Introduction to High-Performance Computing for HMS-RC's O2 cluster](lectures/HPC_intro_O2.pdf) | 45 min |
