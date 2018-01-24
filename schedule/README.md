@@ -1,8 +1,8 @@
 ### Schedule
 **Day 1**
 
-|**Day 1 Schdule**|
-|:------------------------|:----------|:--------|
+| Time            | Topic | Instructor |
+|:------------------------:|:----------:|:--------:|
 |9:00 - 9:40 | [Workshop Introduction]() | Meeta |
 |9:40 - 10:30 | [Introduction to the shell](https://hbctraining.github.io/Intro-to-Shell/lessons/01_the_filesystem.html) | Mary |
 |10:30 - 10:45 | Break | |
@@ -18,7 +18,7 @@
 **Day 2**
 
 | Time            | Topic | Instructor |
-|:------------------------|:----------|:--------|
+|:------------------------:|:----------:|:--------:|
 |[RNA-seq experimental design best practices](https://github.com/hbctraining/Intro-to-rnaseq-hpc-O2/blob/master/lectures/rna-seq_design.pdf) | 50 min |
 |[Introduction to High-Performance Computing for HMS-RC's Orchestra](https://github.com/hbctraining/Intro-to-rnaseq-hpc-O2/blob/master/lectures/HPC_intro_slides_Radhika.pdf) | 45 min |
 |[RNA-seq data QC with FastQC](https://github.com/hbctraining/Intro-to-rnaseq-hpc-O2/blob/master/lessons/07_assessing_quality.md) | 75 min |
