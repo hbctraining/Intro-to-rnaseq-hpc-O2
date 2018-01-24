@@ -1,5 +1,6 @@
 ### Schedule
 **Day 1**
+
 | Time            | Topic | Instructor |
 |:------------------------|:----------|:--------|
 |9:00 - 9:40 | [Workshop Introduction]() | Meeta |
@@ -15,6 +16,7 @@
 |15:45 - 17:00 | [Project and data organization](https://github.com/hbctraining/Intro-to-rnaseq-hpc-O2/blob/master/lessons/06_data_organization.md) | Meeta |
 
 **Day 2**
+
 | Time            | Topic | Instructor |
 |:------------------------|:----------|:--------|
 |[RNA-seq experimental design best practices](https://github.com/hbctraining/Intro-to-rnaseq-hpc-O2/blob/master/lectures/rna-seq_design.pdf) | 50 min |
