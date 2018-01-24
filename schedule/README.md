@@ -27,10 +27,17 @@
 |12:55 - 13:50 | [Quality Assessment of Sequence Data](https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/lessons/07_assessing_quality.html) | Mary | 
 |13:50 - 14:30 | [Sequence Alignment Theory]() | Meeta |
 |14:30 - 14:45 | Break | |
-|14:45 - 16:00 | [RNA-seq Alignment with STAR](https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/lessons/B1_alignment.html) | 75 min |
-|[Assessing alignment quality](lessons/B2_alignment_quality.md) | 45 min |
-|[Generating a count matrix](lessons/B3_counting_reads.md) | 75 min |
-|[Documenting and MultiQC](lessons/B4_multiQC.md) | 30 min |
-|[Automating the RNA-seq workflow](https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/lessons/09_automating_workflow.html) | 60 min |
-|[Alternative workflows for analyzing RNA-seq data](https://github.com/hbctraining/Intro-to-rnaseq-hpc-O2/blob/master/lectures/RNAseq-analysis-methods.pdf) | 15 min |
+|14:45 - 16:00 | [RNA-seq Alignment with STAR](https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/lessons/B1_alignment.html) | Mary |
+|16:00 - 17:00 | [Assessing Alignment Quality](https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/lessons/B2_alignment_quality.html) | Meeta |
+
+**Day 3**
+
+| Time            | Topic | Instructor |
+|:------------------------:|:----------:|:--------:|
+|9:00 - 10:15 | [Generating a Count Matrix](https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/lessons/B3_counting_reads.html) | Meeta |
+|10:15 - 10:45 | [Documenting Steps in the Workflow with MultiQC](https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/lessons/B4_multiQC.html) | Meeta |
+|10:45 - 11:00 | Break | |
+|11:00 - 12:35 | [Automating the RNA-seq workflow](https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/lessons/09_automating_workflow.html) | Mary |
+|12:35 - 13:35 | Lunch | |
+|13:35 - 13:50 | [Alternative workflows for analyzing RNA-seq data](https://github.com/hbctraining/Intro-to-rnaseq-hpc-O2/blob/master/lectures/RNAseq-analysis-methods.pdf) | 15 min |
 |[Quantifying expression using alignment-free methods (Salmon)](https://github.com/hbctraining/Intro-to-rnaseq-hpc-O2/blob/master/lessons/10_salmon.md) | 75 min |
