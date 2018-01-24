@@ -12,7 +12,7 @@
 |13:15 - 13:45 | [Introduction to the Vim text editor](https://hbctraining.github.io/Intro-to-Shell/lessons/03_vim.html) | Mary |
 |13:45 - 15:00 | [Shell scripts and `for` loops](https://hbctraining.github.io/Intro-to-Shell/lessons/04_loops_and_scripts.html) | Meeta |
 |15:00 - 15:15 | Break | |
-|15:15 - 15:45 | [Permissions and environment variables](https://hbctraining.github.io/Intro-to-Shell/lessons/05_permissions_and_environment_variables.md) | Mary |
+|15:15 - 15:45 | [Permissions and environment variables](https://hbctraining.github.io/Intro-to-Shell/lessons/05_permissions_and_environment_variables.html) | Mary |
 |15:45 - 17:00 | [Project and data organization](https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/lessons/06_data_organization.html) | Meeta |
 
 **Day 2**
