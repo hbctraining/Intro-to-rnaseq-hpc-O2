@@ -30,7 +30,7 @@ This repository has teaching materials for a 2-day Introduction to RNA-sequencin
 |[Introduction to RNA-seq and Library Prep](lectures/rna-seq_design.pdf) | 50 min |
 |[NGS Workflows and Data Standards]() | 35 min |
 |[RNA-seq data QC with FastQC](https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/lessons/02_assessing_quality.html) | 75 min |
-|[RNA-seq workflow: Alignment and Counting](lessons/03_rnaseq_workflow.md) | 90 min |
+|[RNA-seq workflow: Alignment and Counting](https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/lessons/03) | 90 min |
 |[Automating the RNA-seq workflow](lessons/04_automating_workflow.md) | 60 min |
 |[Alternative workflows for analyzing RNA-seq data](lectures/RNAseq-analysis-methods.pdf) | 15 min |
 |[Quantifying expression using alignment-free methods (Salmon)](lessons/05_salmon.md) | 75 min |
