@@ -25,11 +25,11 @@ This repository has teaching materials for a 2-day Introduction to RNA-sequencin
 |[Introduction to the Vim text editor ](https://hbctraining.github.io/Intro-to-Shell/lessons/03_vim.html) | 30 min |
 |[Shell scripts and `for` loops](https://hbctraining.github.io/Intro-to-Shell/lessons/04_loops_and_scripts.html) | 75 min |
 |[Permissions and environment variables](https://hbctraining.github.io/Intro-to-Shell/lessons/05_permissions_and_environment_variables.html) | 50 min |
-|[Project and data organization](lessons/01_data_organization.md) | 40 min |
+|[Project and data organization](https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/lessons/01_data_organization.html) | 40 min |
 |[Introduction to High-Performance Computing for HMS-RC's O2 cluster](lectures/HPC_intro_O2.pdf) | 45 min |
 |[Introduction to RNA-seq and Library Prep](lectures/rna-seq_design.pdf) | 50 min |
 |[NGS Workflows and Data Standards]() | 35 min |
-|[RNA-seq data QC with FastQC](lessons/02_assessing_quality.md) | 75 min |
+|[RNA-seq data QC with FastQC](https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/Intro-to-rnaseq-hpc-O2/lessons/02_assessing_quality.md) | 75 min |
 |[RNA-seq workflow: Alignment and Counting](lessons/03_rnaseq_workflow.md) | 90 min |
 |[Automating the RNA-seq workflow](lessons/04_automating_workflow.md) | 60 min |
 |[Alternative workflows for analyzing RNA-seq data](lectures/RNAseq-analysis-methods.pdf) | 15 min |
