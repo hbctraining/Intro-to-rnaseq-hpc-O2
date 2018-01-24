@@ -30,7 +30,7 @@ This repository has teaching materials for a 2-day Introduction to RNA-sequencin
 |[Introduction to RNA-seq and Library Prep](lectures/rna-seq_design.pdf) | 50 min |
 |[NGS Workflows and Data Standards]() | 35 min |
 |[RNA-seq data QC with FastQC](https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/lessons/02_assessing_quality.html) | 55 min |
-https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/lessons/03_alignment.md
+https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/lessons/03_alignment.html
 |[RNA-seq Alignment with STAR](https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/lessons/03_alignment.html) | 75 min |
 |[Assessing Alignment Quality](https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/lessons/04_alignment_quality.html) | 60 min |
 |[Generating a Count Matrix](https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/lessons/05_counting_reads.html) | 75 min |
