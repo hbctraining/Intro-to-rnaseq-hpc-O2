@@ -22,10 +22,10 @@
 |9:00 - 9:45 | [Introduction to High-Performance Computing for HMS-RC's O2](https://github.com/hbctraining/Intro-to-rnaseq-hpc-O2/blob/master/lectures/HPC_intro_O2.pdf) | Meeta |
 |9:45 - 10:00 | Break | |
 |10:00 - 11:15 | [Introduction to RNA-seq and Library Prep](https://github.com/hbctraining/Intro-to-rnaseq-hpc-O2/blob/master/lectures/rna-seq_design.pdf) | Mary |
-|11:15 - 11:55 | [NGS workflows and data standards]() | Meeta |
+|11:15 - 11:55 | [NGS workflows and data standards](https://github.com/hbctraining/Intro-to-rnaseq-hpc-O2/blob/master/lectures/NGS_workflows.pdf) | Meeta |
 |11:55 - 12:55 | Lunch | |
 |12:55 - 13:50 | [Quality Assessment of Sequence Data](https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/lessons/02_assessing_quality.html) | Mary | 
-|13:50 - 14:30 | [Sequence Alignment Theory]() | Meeta |
+|13:50 - 14:30 | [Sequence Alignment Theory](https://github.com/hbctraining/Intro-to-rnaseq-hpc-O2/blob/master/lectures/Sequence_alignment.pdf) | Meeta |
 |14:30 - 14:45 | Break | |
 |14:45 - 16:00 | [RNA-seq Alignment with STAR](https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/lessons/03_alignment.html) | Mary |
 |16:00 - 17:00 | [Assessing Alignment Quality](https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/lessons/04_alignment_quality.html) | Meeta |
@@ -42,7 +42,7 @@
 |13:35 - 13:45 | [Alternative workflows for analyzing RNA-seq data](https://github.com/hbctraining/Intro-to-rnaseq-hpc-O2/blob/master/lectures/RNAseq-analysis-methods.pdf) | 15 min |
 |13:45 - 15:20 | [Quantifying expression using alignment-free methods (Salmon)](https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/lessons/08_salmon.html) | Meeta |
 |15:20 - 15:35 | Break | |
-|15:35 - 15:45 | [Other Applications of RNA-seq]() | Mary |
-|15:45 - 16:25 | [Troubleshooting RNA-seq Data Analysis]() | Mary |
+|15:35 - 15:45 | [Other Applications of RNA-seq](https://github.com/hbctraining/Intro-to-rnaseq-hpc-O2/blob/master/lectures/other%20rnaseq%20applications.pdf) | Mary |
+|15:45 - 16:25 | [Troubleshooting RNA-seq Data Analysis](https://github.com/hbctraining/Intro-to-rnaseq-hpc-O2/blob/master/lectures/RNA-seq_troubleshooting.pdf) | Mary |
 |16:25 - 17:00 | [Genome Builds and Accessing Data on GEO/SRA]() | Meeta |
 
