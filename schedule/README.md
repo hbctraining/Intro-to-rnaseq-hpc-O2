@@ -13,7 +13,7 @@
 |13:45 - 15:00 | [Loops and Shell Scripts](https://hbctraining.github.io/Intro-to-Shell/lessons/04_loops_and_scripts.html) | Meeta |
 |15:00 - 15:15 | Break | |
 |15:15 - 15:45 | [Permissions and Environment Variables](https://hbctraining.github.io/Intro-to-Shell/lessons/05_permissions_and_environment_variables.html) | Mary |
-|15:45 - 17:00 | [Project and Data Management](https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/lessons/01_data_organization.html) | Meeta |
+|15:45 - 17:00 | [Project Organization and Best Practices in Data Management](https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/lessons/01_data_organization.html) | Meeta |
 
 **Day 2**
 
