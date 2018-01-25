@@ -4,10 +4,6 @@
 :----------|:----------|:----------|:----------|
 | Biologists | Beginner/Intermediate | None | 2-day workshop (~13 hours of trainer-led time)|
 
-### Workshop Schedule
-
-The schedule for the January 2018 workshop can be [found here](https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/schedule/)
-
 ### Description
 
 This repository has teaching materials for a 2-day Introduction to RNA-sequencing data analysis workshop. This workshop focuses on teaching basic computational skills to enable the effective use of an high-performance computing environment to implement an RNA-seq data analysis workflow. It includes an introduction to shell (bash) and shell scripting. In addition to running the RNA-seq workflow from FASTQ files to count data, the workshop covers best practice guidlelines for RNA-seq experimental design and data organization/management.
@@ -19,6 +15,9 @@ This repository has teaching materials for a 2-day Introduction to RNA-sequencin
 1.	Understand the necessity for, and use of, the command line interface (bash) and HPC for analyzing high-throughput sequencing data.
 2.	Understand best practices for designing an RNA-seq experiment and analysis the resulting data.
 
+### Workshop Schedule
+
+The schedule for using the materials in a trainer-led workshop can be [found here](https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/schedule/)
 
 ### Contents
 
