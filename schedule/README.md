@@ -1,7 +1,7 @@
 ### Schedule
 **Day 1**
 
-| Time            | Topic | Instructor |
+| Time            | **********************************  Topic ********************************** | Instructor |
 |:------------------------:|:------------------------------------------------:|:--------:|
 |9:00 - 9:40 | [Workshop Introduction]() | Meeta |
 |9:40 - 10:30 | [Introduction to the Shell](https://hbctraining.github.io/Intro-to-Shell/lessons/01_the_filesystem.html) | Mary |
@@ -17,7 +17,7 @@
 
 **Day 2**
 
-| Time            | Topic | Instructor |
+| Time            | **********************************  Topic ********************************** | Instructor |
 |:------------------------:|:----------:|:--------:|
 |9:00 - 9:45 | [Introduction to High-Performance Computing for HMS-RC's O2](https://github.com/hbctraining/Intro-to-rnaseq-hpc-O2/blob/master/lectures/HPC_intro_slides_Radhika.pdf) | Meeta |
 |9:45 - 10:00 | Break | |
@@ -32,7 +32,7 @@
 
 **Day 3**
 
-| Time            | Topic | Instructor |
+| Time            | **********************************  Topic ********************************** | Instructor |
 |:------------------------:|:----------:|:--------:|
 |9:00 - 10:15 | [Generating a Count Matrix](https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/lessons/B3_counting_reads.html) | Meeta |
 |10:15 - 10:45 | [Documenting Steps in the Workflow with MultiQC](https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/lessons/B4_multiQC.html) | Meeta |
