@@ -1,7 +1,6 @@
 ---
 title: MultiQC
 author: Radhika Khetani
-date: 09/20/2017
 ---
 
 Approximate time: 30 minutes
