@@ -41,7 +41,7 @@
 |10:45 - 11:00 | Break | |
 |11:00 - 12:35 | [Automating the RNA-seq workflow](https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/lessons/07_automating_workflow.html) | Mary |
 |12:35 - 13:35 | Lunch | |
-|13:35 - 13:45 | [Alternative workflows for analyzing RNA-seq data](https://github.com/hbctraining/Intro-to-rnaseq-hpc-O2/blob/master/lectures/RNAseq-analysis-methods.pdf) | 15 min |
+|13:35 - 13:45 | [Alternative workflows for analyzing RNA-seq data](https://github.com/hbctraining/Intro-to-rnaseq-hpc-O2/blob/master/lectures/RNAseq-analysis-methods.pdf) | Mary |
 |13:45 - 15:20 | [Quantifying expression using alignment-free methods (Salmon)](https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/lessons/08_salmon.html) | Meeta |
 |15:20 - 15:35 | Break | |
 |15:35 - 15:45 | [Other Applications of RNA-seq](https://github.com/hbctraining/Intro-to-rnaseq-hpc-O2/blob/master/lectures/other%20rnaseq%20applications.pdf) | Mary |
