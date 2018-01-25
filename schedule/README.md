@@ -1,7 +1,7 @@
 # Workshop Schedule
 ## January 29-31, 2018
 
-**Day 1**
+## Day 1
 
 | Time            |  Topic  | Instructor |
 |:------------------------:|:------------------------------------------------:|:--------:|
@@ -17,7 +17,7 @@
 |15:15 - 15:45 | [Permissions and Environment Variables](https://hbctraining.github.io/Intro-to-Shell/lessons/05_permissions_and_environment_variables.html) | Mary |
 |15:45 - 17:00 | [Project Organization and Best Practices in Data Management](https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/lessons/01_data_organization.html) | Meeta |
 
-**Day 2**
+## Day 2
 
 | Time            |   Topic  | Instructor |
 |:------------------------:|:----------:|:--------:|
@@ -32,7 +32,7 @@
 |14:45 - 16:00 | [RNA-seq Alignment with STAR](https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/lessons/03_alignment.html) | Mary |
 |16:00 - 17:00 | [Assessing Alignment Quality](https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/lessons/04_alignment_quality.html) | Meeta |
 
-**Day 3**
+## Day 3
 
 | Time            |  Topic  | Instructor |
 |:------------------------:|:----------:|:--------:|
