@@ -36,7 +36,7 @@ This repository has teaching materials for a 2-day Introduction to RNA-sequencin
 |[Documenting Steps in the Workflow with MultiQC](https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/lessons/06_multiQC.html) | 30 min |
 |[Automating the RNA-seq workflow](https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/lessons/07_automating_workflow.html) | 60 min |
 |[Alternative workflows for analyzing RNA-seq data](lectures/RNAseq-analysis-methods.pdf) | 15 min |
-|[Quantifying expression using alignment-free methods (Salmon)](https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/lessons/05_salmon.html) | 75 min |
+|[Quantifying expression using alignment-free methods (Salmon)](https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/lessons/08_salmon.html) | 75 min |
 
 ### Dataset
 
