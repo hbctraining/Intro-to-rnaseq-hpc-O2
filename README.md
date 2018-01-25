@@ -15,6 +15,7 @@ This repository has teaching materials for a 2-day Introduction to RNA-sequencin
 1.	Understand the necessity for, and use of, the command line interface (bash) and HPC for analyzing high-throughput sequencing data.
 2.	Understand best practices for designing an RNA-seq experiment and analysis the resulting data.
 
+### Workshop Schedule: [January 2018](https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/schedule/)
 
 ### Contents
 
