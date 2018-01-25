@@ -44,5 +44,5 @@
 |15:20 - 15:35 | Break | |
 |15:35 - 15:45 | [Other Applications of RNA-seq](https://github.com/hbctraining/Intro-to-rnaseq-hpc-O2/blob/master/lectures/other%20rnaseq%20applications.pdf) | Mary |
 |15:45 - 16:25 | [Troubleshooting RNA-seq Data Analysis](https://github.com/hbctraining/Intro-to-rnaseq-hpc-O2/blob/master/lectures/RNA-seq_troubleshooting.pdf) | Mary |
-|16:25 - 17:00 | [Genome Builds and Accessing Data on GEO/SRA]() | Meeta |
+|16:25 - 17:00 | [Genome Builds and Accessing Data on GEO/SRA](https://github.com/hbctraining/Intro-to-rnaseq-hpc-O2/blob/master/lectures/Accessing_genomics_dataonline.pdf) | Meeta |
 
