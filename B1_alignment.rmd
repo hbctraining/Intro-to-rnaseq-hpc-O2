@@ -1,7 +1,7 @@
 ---
 title: "Alignment with STAR"
 author: "Meeta Mistry, Bob Freeman, Mary Piper"
-date: "Wednesday, June 7, 2017"
+date: Wednesday, June 7, 2017
 ---
 
 Approximate time: 90 minutes
