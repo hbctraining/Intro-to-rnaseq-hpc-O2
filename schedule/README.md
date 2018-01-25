@@ -1,5 +1,4 @@
 # Workshop Schedule
-## January 29-31, 2018
 
 ## Day 1
 
