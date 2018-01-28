@@ -20,7 +20,7 @@
 
 | Time            |   Topic  | Instructor |
 |:------------------------:|:----------:|:--------:|
-|9:00 - 9:45 | [Introduction to High-Performance Computing for HMS-RC's O2](https://github.com/hbctraining/Intro-to-rnaseq-hpc-O2/blob/master/lectures/HPC_intro_O2.pdf) | Meeta |
+|9:00 - 9:45 | [Introduction to High-Performance Computing for HMS-RC's O2](https://github.com/hbctraining/Intro-to-rnaseq-hpc-O2/raw/master/lectures/HPC_intro_O2.pdf) | Meeta |
 |9:45 - 10:00 | Break | |
 |10:00 - 11:15 | [Introduction to RNA-seq and Library Prep](https://github.com/hbctraining/Intro-to-rnaseq-hpc-O2/blob/master/lectures/rna-seq_design.pdf) | Mary |
 |11:15 - 11:55 | [NGS workflows and data standards](https://github.com/hbctraining/Intro-to-rnaseq-hpc-O2/blob/master/lectures/NGS_workflows.pdf) | Meeta |
