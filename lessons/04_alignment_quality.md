@@ -159,7 +159,11 @@ Finally, you have the data from the original FASTQ file stored for each read. Th
 
 ## `samtools`
 
-[SAMtools](http://samtools.sourceforge.net/) is a tool that provides alot of functionality in dealing with SAM files. SAMtools utilities include, but are not limited to, viewing, sorting, filtering, merging, and indexing alignments in the SAM format. In this lesson we will explore a few of these utilities on our alignment files. We have already loaded this module when setting up for the STAR alignment.
+[SAMtools](http://samtools.sourceforge.net/) is a tool that provides alot of functionality in dealing with SAM files. SAMtools utilities include, but are not limited to, viewing, sorting, filtering, merging, and indexing alignments in the SAM format. In this lesson we will explore a few of these utilities on our alignment files. To use this we need to load the module.
+
+```
+$ module load samtools/1.3.1
+```
 
 ### Viewing the SAM file
 
