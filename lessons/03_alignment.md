@@ -100,7 +100,7 @@ $ cd ~/unix_workshop/rnaseq/reference_data
 To use the STAR aligner, load the module: 
 
 ```bash
-$ module load gcc/6.2.0 star/2.5.2b samtools/1.3.1
+$ module load gcc/6.2.0 star/2.5.2b
 ```
 
 Aligning reads using STAR is a two step process:   
@@ -156,7 +156,7 @@ Within `vim` we now add our shebang line, the SLURM directives, and our STAR com
 
 cd ~/unix_workshop/rnaseq/reference_data
 
-module load gcc/6.2.0 star/2.5.2b samtools/1.3.1
+module load gcc/6.2.0 star/2.5.2b
 
 STAR --runThreadN 6 \
 --runMode genomeGenerate \
@@ -203,7 +203,6 @@ Listed below are additional parameters that we will use in our command:
 
 * `--outSAMtype`: output filetype (SAM default)
 * `--outSAMunmapped`: what to do with unmapped reads
-* `--outSAMattributes`: specify SAM attributes in output file
 
 > **NOTE:** Default filtering is applied in which the maximum number of multiple alignments allowed for a read is set to 10. If a read exceeds this number there is no alignment output. To change the default you can use `--outFilterMultimapNmax`, but for this lesson we will leave it as default. Also, note that "**STAR’s default parameters are optimized for mammalian genomes.** Other species may require significant modifications of some alignment parameters; in particular, the maximum and minimum intron sizes have to be reduced for organisms with smaller introns" [[1](http://bioinformatics.oxfordjournals.org/content/early/2012/10/25/bioinformatics.bts635.full.pdf+html)].
 
