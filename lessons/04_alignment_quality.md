@@ -238,7 +238,7 @@ The following 2 files need to be moved from O2 to your local machine,
 `Mov10_oe_1_Aligned.sortedByCoord.out.bam.bai` 
 
 ```
-$ scp user_name@o2.hms.harvard.edu:/home/user_name/unix_workshop/rnaseq/results/Mov10_oe_1_Aligned.sortedByCoord.out.bam* /path/to/directory_on_laptop
+$ scp user_name@o2.hms.harvard.edu:/home/user_name/unix_lesson/rnaseq/results/Mov10_oe_1_Aligned.sortedByCoord.out.bam* /path/to/directory_on_laptop
 ```
 
 
