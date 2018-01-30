@@ -18,7 +18,7 @@ Approximate time: 120 minutes
 
 After running our single FASTQ file through the STAR aligner, you should have noticed a number of output files in the `~/unix_workshop/rnaseq/results/STAR` directory. Let's take a quick look at some of the files that were generated and explore the content of some of them. 
 
-	$ cd ~/unix_workshop/rnaseq/results/STAR
+	$ cd ~/unix_lesson/rnaseq/results/STAR
 	
 	$ ls -lh
 
