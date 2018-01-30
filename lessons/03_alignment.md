@@ -146,7 +146,7 @@ Within `vim` we now add our shebang line, the SLURM directives, and our STAR com
 ```bash
 #!/bin/bash
 
-#SBATCH -p medium 		# partition name
+#SBATCH -p short 		# partition name
 #SBATCH -t 0-2:00 		# hours:minutes runlimit after which job will be killed
 #SBATCH -n 6 		# number of cores requested -- this needs to be greater than or equal to the number of cores you plan to use to run your job
 #SBATCH --mem 16G
