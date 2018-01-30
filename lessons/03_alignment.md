@@ -111,7 +111,7 @@ Aligning reads using STAR is a two step process:
 > A quick note on shared databases for human and other commonly used model organisms. The O2 cluster has a designated directory at `/n/groups/shared_databases/` in which there are files that can be accessed by any user. These files contain, but are not limited to, genome indices for various tools, reference sequences, tool specific data, and data from public databases, such as NCBI and PDB. So when using a tool that requires a reference of sorts, it is worth taking a quick look here because chances are it's already been taken care of for you. 
 >
 >```bash
->$ ls -l /n/groups/shared_databases/igenome/
+> $ ls -l /n/groups/shared_databases/igenome/
 >```
 
 ### Creating a genome index
@@ -139,7 +139,7 @@ The basic options to **generate genome indices** using STAR are as follows:
 Now let's create a job submission script to generate the genome index:
 
 ```bash
-$ vim ~/unix_workshop/rnaseq/scripts/genome_index.run
+$ vim ~/unix_lesson/rnaseq/scripts/genome_index.run
 ```
 Within `vim` we now add our shebang line, the SLURM directives, and our STAR command. 
 
@@ -154,7 +154,7 @@ Within `vim` we now add our shebang line, the SLURM directives, and our STAR com
 #SBATCH -o %j.out			# File to which standard out will be written
 #SBATCH -e %j.err 		# File to which standard err will be written
 
-cd ~/unix_workshop/rnaseq/reference_data
+cd ~/unix_lesson/rnaseq/reference_data
 
 module load gcc/6.2.0 star/2.5.2b
 
@@ -167,7 +167,7 @@ STAR --runThreadN 6 \
 ```
 
 ```bash
-$ sbatch ~/unix_workshop/rnaseq/scripts/genome_index.run
+$ sbatch ~/unix_lesson/rnaseq/scripts/genome_index.run
 ```
 
 ### Aligning reads
@@ -177,7 +177,7 @@ After you have the genome indices generated, you can perform the read alignment.
 Create an output directory for our alignment files:
 
 ```bash
-$ cd ~/unix_workshop/rnaseq/raw_data
+$ cd ~/unix_lesson/rnaseq/raw_data
 
 $ mkdir ../results/STAR
 ```
