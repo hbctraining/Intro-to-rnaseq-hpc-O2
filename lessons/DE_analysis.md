@@ -126,7 +126,8 @@ $ cut -f1,7 DEresults_sig_table.txt > Mov10_sig_genelist.txt
 Since the list we have is generated from analaysis on a small subset of chromosome 1, using these genes as input to downstream tools will not provide any meaningful results. As such, **we have generated a list using the full dataset for these samples and can be downloaded to your laptop via [this link](../genelist_edgeR_Mov10oe_1.0FC.txt).** From the full dataset analysis, 453 genes were identified as significant if they had an FDR < 0.05 _and_ a log fold change > 1.  
 
 
-### Differential expression analysis using pseudocounts 
+## Differential expression analysis using pseudocounts 
+----------------------
 
 In the script we used above, we used count data generated from the standard RNA-seq workflow as input. The instructions are below to perform a similar analysis with the output from Salmon. To perform this analysis, you will need to use R and Rstudio directly. We do not have a script available that works on Orchestra. 
 
