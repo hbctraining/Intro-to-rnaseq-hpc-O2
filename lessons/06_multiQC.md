@@ -24,7 +24,7 @@ Today we will be using MultiQC, which aggregates results from several tools and 
 
 MultiQC can generate this report from 36 different bioinformatics tools, and these tools span various NGS analyses, e.g., basic QC, RNA-seq, variant calling, genome annotation, etc. Today we are going to use it to aggregate information from the results of [FastQC](http://multiqc.info/docs/#fastqc), [STAR](http://multiqc.info/docs/#star), and [featureCounts](http://multiqc.info/docs/#featurecounts). MultiQC can parse the information from specific output files from each of these tools and the manual page specifies the required output from each of the tools that should be used as input to MultiQC.
 
-We are going to start by creating a directory in the `~/unix_workshop/rnaseq/results/` directory called `multiqc_report`, and navigating to it. You should already be in the `~/unix_workshop/rnaseq/` directory.
+We are going to start by creating a directory in the `~/unix_lesson/rnaseq/results/` directory called `multiqc_report`, and navigating to it. You should already be in the `~/unix_lesson/rnaseq/` directory.
 
 ```bash
 mkdir results/multiqc_report
@@ -40,18 +40,18 @@ Next, we are going to run multiQC on the following 3 outputs from our workflow:
 
 > Note that `multiqc` is not a module on O2 and we will be using the version in `/n/app/bcbio/tools/bin/`, which is in our `$PATH`.
 
-Before we run it, we need to populate the `~/unix_workshop/rnaseq/logs` directory with the `*.Log.final.out` files for all 6 STAR runs:
+Before we run it, we need to populate the `~/unix_lesson/rnaseq/logs` directory with the `*.Log.final.out` files for all 6 STAR runs:
 ```bash
-cp /n/groups/hbctraining/unix_workshop_other/bam_STAR/*Log.final.out ~/unix_workshop/rnaseq/logs/
+cp /n/groups/hbctraining/intro_rnaseq_hpc/bam_STAR/*Log.final.out ~/unix_lesson/rnaseq/logs/
 ```
 
 Now, let's run multiQC!
 
 ```bash
 multiqc -n multiqc_report_rnaseq \
-~/unix_workshop/rnaseq/results/fastqc/*zip \
-~/unix_workshop/rnaseq/logs/*Log.final.out \
-~/unix_workshop/rnaseq/results/counts/Mov10_featurecounts.txt.summary
+~/unix_lesson/rnaseq/results/fastqc/*zip \
+~/unix_lesson/rnaseq/logs/*Log.final.out \
+~/unix_lesson/rnaseq/results/counts/Mov10_featurecounts.txt.summary
 ```
 
 > If you want to save the output on the terminal into a log file, you can use `2>` operator to redirect it to a file.
