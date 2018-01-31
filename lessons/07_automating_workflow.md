@@ -142,7 +142,7 @@ module load fastqc/0.11.3
 module load gcc/6.2.0  
 module load star/2.5.2b
 module load samtools/1.3.1
-PATH=/n/app/bcbio/tools/bin:$PATH 	# for using featureCounts if not already in $PATH
+export PATH=/n/app/bcbio/tools/bin:$PATH 	# for using featureCounts if not already in $PATH
 ```
 
 ### Preparing for future debugging
