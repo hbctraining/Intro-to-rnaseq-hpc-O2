@@ -60,7 +60,7 @@ Rather than using the BAM file we generated in the last lesson, let's copy over 
 	
 ``` bash
 
-$ cp /n/groups/hbctraining/unix_workshop_other/bam_STAR/*bam ~/unix_lesson/rnaseq/results/STAR/bams
+$ cp /n/groups/hbctraining/intro_rnaseq_hpc/STAR/*bam ~/unix_lesson/rnaseq/results/STAR/bams
 ```
 featureCounts is not available as a module on O2, but we have already added the path for it to our `$PATH` variable last time. 
 
