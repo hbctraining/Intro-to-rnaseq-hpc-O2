@@ -183,7 +183,7 @@ It is best practice to have the script **usage** specified at the top any script
 # USAGE: sh rnaseq_analysis_on_input_file.sh <name of fastq file>
 ```
 
-It is okay to specify this everything else is set up, since you will have most clarity about the script only once it is fully done.
+It is okay to specify this after everything else is set up, since you will have most clarity about the script only once it is fully done.
 
 ### Saving and running script
 
