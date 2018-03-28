@@ -59,7 +59,7 @@ $ module load gcc/6.2.0 R/3.4.1
 You can open R by simply typing `R` at the command prompt and pressing `Enter`. You are now in the R console (note that the command prompt has changed to a `>` instead of a `$`):
 
 <p align="center">
-![Rconsole](../img/R_screenshot2.png)
+<img src="../img/R_screenshot2.png")
 </p>
 
 Installing packages can be timely and particularly cumbersome when doing this on a cluster environment. So rather than installing packages we have instructions for you to use the libraries from our installation. 
