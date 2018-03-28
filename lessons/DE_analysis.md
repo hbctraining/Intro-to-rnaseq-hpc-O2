@@ -27,7 +27,9 @@ The problem is, the **gene expression changes** we observe are not just a result
 
 [R](https://www.r-project.org/) is a software environment for statistical computing and graphics. R is widely used in the field of bioinformatics, amongst various other disciplines. 
 
+<p align="center">
 <img src="../img/why_R.png" width="600">
+</p>
 
 It can be locally installed on almost all operating systems (and it's free!), with numerous packages available that help in increasing efficency of data handling, data manipulation and data analysis. Discussing the specifics about R is outside the scope of this course. However, we encourage you to take a look at some of the R resources listed below if you are interested in learning more. 
 
@@ -56,7 +58,9 @@ $ module load gcc/6.2.0 R/3.4.1
 ```
 You can open R by simply typing `R` at the command prompt and pressing `Enter`. You are now in the R console (note that the command prompt has changed to a `>` instead of a `$`):
 
-![Rconsole](../img/R_screenshot.png)
+<p align="center">
+![Rconsole](../img/R_screenshot2.png)
+</p>
 
 Installing packages can be timely and particularly cumbersome when doing this on a cluster environment. So rather than installing packages we have instructions for you to use the libraries from our installation. 
 
