@@ -1,10 +1,10 @@
 ## Learning Objectives:
 -------------------
 
-* Run R scripts from the Unix command line
+* Learning how to run R scripts from the command line
 * Use the count matrix as input to an R script for differential expression analysis
 * Apply Unix commands to look at the results that are generated and extract relevant information
-* Familiarize yourselft with various functional analysis tools for gene lists
+* Familiarize yourself with various functional analysis tools for gene lists
 
 
 ## Differential expression analysis
@@ -12,27 +12,36 @@
 
 At the end of the workflow from the last lesson, our final end product was a count matrix. This is a matrix in which each row represents a gene (or feature) and each column corresponds to a sample. In our dataset, we have two sample classes (control and Mov10oe) and we want to assess the difference in expression between these groups on a gene-by-gene basis.
 
-<img src="../img/de_variation.png" width="400">
+<p align="center">
+<img src="../img/de_variation.png" width="600">
+</p>
 
-<cite>Illustration adapted from [paper]()</cite>
+_Illustration taken from slides courtesy of Dr. Paul Pavlidis, UBC_ 
 
-Intuitively, it would seem that since we know which samples belong to which group we could just compute a fold-change for each gene and then rank genes by that value. Easy, right? Not exactly. The problem is, the gene expression that we are observing is not just a result of the differences between the groups that we are investigating, rather it is a measurement of the sum of many effects. In a given biological sample the transcriptional patterns will also be changing with respect to various extraneous factors; some that we are aware of (i.e demographic factors, batch information) and other noise that we cannot attribute to any particular source. The goal of differential expression analysis to determine the relative role of these effects, and to separate the “interesting” from the “uninteresting”.
+Since we know which samples belong to which group, we could just compute a fold-change for each gene and then rank genes by that value. Easy, right? Not exactly. 
+
+The problem is, the **gene expression changes** we observe are not just a result of the differences between the groups that we are investigating, rather it **is a measurement of the sum of many effects**. In a set of biological samples the transcriptional patterns can be associated not only with our experimetal variable(s) but also many extraneous factors; some that we are aware of (i.e demographic factors, batch information) and sources that are unknown. The goal of differential expression analysis to determine the relative role of these effects, and to **separate the “interesting” from the “uninteresting”.**
 
 
 ### Statistical models in R
 
-[R](https://www.r-project.org/) is a software environment for statistical computing and graphics. R is widely used in the field of bioinformatics, amongst various other disciplines. It can be locally installed on almost all operating systems (and it's free!), with numerous packages available that help in increasing efficency of data handling, data manipulation and data analysis. Discussing the specifics about R is outside the scope of this course. However, we encourage you to take a look at some of the R resources listed below if you are interested in learning more. 
+[R](https://www.r-project.org/) is a software environment for statistical computing and graphics. R is widely used in the field of bioinformatics, amongst various other disciplines. 
+
+<img src="../img/why_R.png" width="600">
+
+It can be locally installed on almost all operating systems (and it's free!), with numerous packages available that help in increasing efficency of data handling, data manipulation and data analysis. Discussing the specifics about R is outside the scope of this course. However, we encourage you to take a look at some of the R resources listed below if you are interested in learning more. 
 
 R is a powerful language that can be very useful for NGS data analysis, and there are many popular packages for working with RNA-Seq count data. Some of these packages include [edgeR](https://www.bioconductor.org/packages/release/bioc/vignettes/edgeR/inst/doc/edgeRUsersGuide.pdf), [DESeq2](http://bioconductor.org/packages/release/bioc/vignettes/DESeq2/inst/doc/DESeq2.pdf), and [limma-voom](http://www.genomebiology.com/2014/15/2/R29). All of these tools use statistical modeling of the count data to test each gene against the null hypothesis and evaluate whether or not it is significantly differentially expressed. 
 
+<p align="center">
 <img src="../img/de_norm_counts_var.png" width="400">
+</p>
 
 These methods determine, for each gene, whether the differences in expression (counts) **between groups** is significant given the amount of variation observed **within groups** (replicates). To test for significance, we need an appropriate statistical model that accurately performs normalization (to account for differences in sequencing depth, etc.) and variance modeling (to account for few numbers of replicates and large dynamic expression range). The details on how each package works is described thoroughly within each of the respective vignettes.
 
-
 ### Running R scripts
 
-In order to run R on Orchestra, let's first log on to the cluster and start an interactive session with 1 core.
+In order to run R on O2, let's first **log on to the cluster and start an interactive session with a single core**.
 
 Once you are in an interactive session, navigate to the `rnaseq` directory:
 
@@ -40,16 +49,20 @@ Once you are in an interactive session, navigate to the `rnaseq` directory:
 
 We will be running an R script that uses the R package [DESeq2](http://bioconductor.org/packages/release/bioc/html/DESeq2.html) to identify differentially expressed genes. This package is available from [Bioconductor](https://www.bioconductor.org/), which is a repository of packages for the analysis of high-throughput genomic data. There are also a few other packages that are required to generate some additional figures.
 
-We first need to load the R module:
+We first need to load the R module and the GCC compiler:
 
 ```bash
-$ module load stats/R/3.3.1
+$ module load gcc/6.2.0 R/3.4.1
 ```
 You can open R by simply typing `R` at the command prompt and pressing `Enter`. You are now in the R console (note that the command prompt has changed to a `>` instead of a `$`):
 
 ![Rconsole](../img/R_screenshot.png)
 
-Rather than installing the packages required for the analysis, we have already done this for you. Packages are bundles of code that perform functions and include detailed documentation on how to use those functions. Once installed, they are referred to as _libraries_.  **To use the libraries we have created for you first exit R with:**
+Installing packages can be timely and particularly cumbersome when doing this on a cluster environment. So rather than installing packages we have instructions for you to use the libraries from our installation. 
+
+> **NOTE:**  Packages are bundles of code that perform functions and include detailed documentation on how to use those functions. Once installed, they are referred to as _libraries_. 
+
+**To use the libraries we have created for you first exit R with:**
 
 ```R
 q()
@@ -57,8 +70,11 @@ q()
 You should find yourself back at the shell command prompt. The next few lines will set the environment variable `R_LIBS_USER` to let R know where the R libraries directory resides.
 
 ```bash
-$ echo 'R_LIBS_USER="/groups/hbctraining/intro_rnaseq_hpc/R-3.3.1"' >  $HOME/.Renviron
-$ export R_LIBS_USER="/groups/hbctraining/intro_rnaseq_hpc/R-3.3.1"
+# check if the variable is already set 
+$ echo $R_LIBS_USER 
+
+# If the above command returns nothing, then run the command below
+$ export R_LIBS_USER="/n/groups/hbctraining/R/library/"
 ```
 
 To run differential expression analysis, we are going to run a script from the `results` directory, so let's navigate there and create a directory for the results of our analysis. We will call the directory `diffexpression`:
@@ -68,9 +84,11 @@ $ cd ~/unix_lesson/rnaseq/results
 $ mkdir diffexpression
 ```
 First, let's copy over the script file:
+
 ```bash
-$ cp /groups/hbctraining/intro_rnaseq_hpc/DESeq2_script.R diffexpression/
+$ cp /n/groups/hbctraining/intro_rnaseq_hpc/DESeq2_script.R diffexpression/
 ```
+
 The DE script will require as input **1) your count matrix file** and **2) a metadata file**. The count matrix we generated in the last lesson and is in the `counts` directory. The metadata file is a tab-delimited file which contains any information associated with our samples. Each row corresponds to a sample and each column contains some information about each sample.
 
 ```bash
@@ -89,8 +107,7 @@ $ cd diffexpression
 $ Rscript DESeq2_script.R Mov10_rnaseq_counts_complete.txt Mov10_rnaseq_metadata.txt 
 ```
 
-> How many files do you get as output from the script? There should be a few PNG files and text files. Use Filezilla or `scp` to copy the images over to your laptop and take a look what was generated. How well do the replicates cluster based on the plots that were generated?
-
+> **NOTE:** You will notice chunks of code in the text that correspond to plotting figures, and these chunks have been commented out. The reason for this is in order to generate figures on **O2 you require the X11 system**, which we are currently not setup to do with the training accounts. If you are interested in learning more about using X11 applications you can [find out more on the O2 wiki page](https://wiki.rc.hms.harvard.edu/display/O2/Using+X11+Applications+Remotely). 
 
 ### Gene list exploration
 
@@ -101,17 +118,17 @@ $ head DEresults_sig_table.txt
 ```
 You should have a table with 7 columns in it:
 
-1. Gene symbols (this will not have a column name, due to the nature of the `write` function)
-2. baseMean: the average normalized counts across all samples
-3. log2FoldChange
-4. lfcse: the standard error of the log2 FC
-5. stat: the Wald test statistic
-6. pvalue
-7. padj: p-value adjusted for multiple test correction using the BH method
+1. `Gene symbols` (this will not have a column name, due to the nature of the `write` function)
+2. `baseMean`: the average normalized counts across all samples
+3. `log2FoldChange`
+4. `lfcse`: the standard error of the log2 FC
+5. `stat`: the Wald test statistic
+6. `pvalue`
+7. `padj`: p-value adjusted for multiple test correction using the BH method
 
-Since we have the full table of values we could theoretically use that and filter the genes to our discretion. We could also increase stringency by adding in a fold change criteria. The full table is also useful for investigating genes of interest that did not appear in our significant list, and give us some insight into whether the gene missed the threshold marginally or by a landslide. 
+Since we have the full table of results for all genes, we could apply a filter based on the `padj` column to keep only genes we consider significant. We could also increase the stringency by adding in a fold change criteria. Alternatively, the full table can be useful for investigating groups of interesting genes of that are co-regulated but did not appear in our significant list.
 
-Using `wc -l` find out how many genes are identified in the significant table? Keep in mind this is generated using the truncated dataset.
+Using `wc -l` find out how many genes are identified in the significant table. Keep in mind this is generated using the truncated dataset.
 
 ```bash
 $ wc -l DEresults_sig_table.txt
@@ -123,17 +140,17 @@ For downstream analysis, the relevant information that we will require from this
 $ cut -f1,7 DEresults_sig_table.txt > Mov10_sig_genelist.txt
 ```
 
-Since the list we have is generated from analaysis on a small subset of chromosome 1, using these genes as input to downstream tools will not provide any meaningful results. As such, **we have generated a list using the full dataset for these samples and can be downloaded to your laptop via [this link](../genelist_edgeR_Mov10oe_1.0FC.txt).** From the full dataset analysis, 453 genes were identified as significant if they had an FDR < 0.05 _and_ a log fold change > 1.  
+Since the list we have is generated from analaysis on a small subset of chromosome 1, using these genes as input to downstream tools will not provide any meaningful results. As such, **we have generated a list using the full dataset for these samples and can be downloaded to your laptop via [this link]().** 
 
 
 ## Differential expression analysis using pseudocounts 
 ----------------------
 
-In the script we used above, we used count data generated from the standard RNA-seq workflow as input. The instructions are below to perform a similar analysis with the output from Salmon. To perform this analysis, you will need to use R and Rstudio directly. We do not have a script available that works on Orchestra. 
+In the script described above, we used count data generated from the standard RNA-seq workflow as input. The instructions are below to **perform a similar analysis with the output from Salmon, but on your local laptop**. To perform this analysis, you will need to use R and Rstudio directly. We do not have a script available that works on O2. 
 
 **The rest of this section assumes that you are comfortable with R and RStudio.**
 
-The output from Salmon is transcript counts, but DESeq2 works well only with gene counts. To bridge this gap, the developers of DESeq2 have developed a package makes the output of Salmon compatible with DESeq2. This package is called [`tximport`](https://bioconductor.org/packages/release/bioc/html/tximport.html) and is also vailable through Bioconductor. `tximport` imports transcript-level abundance, estimated counts and transcript lengths, and summarizes this into matrices for use with downstream gene-level analysis packages. 
+The output from Salmon is transcript counts, but DESeq2 works well only with gene counts. To bridge this gap, the developers of DESeq2 have developed a package makes the output of Salmon compatible with DESeq2. This package is called [`tximport`](https://bioconductor.org/packages/release/bioc/html/tximport.html) and is also available through Bioconductor. `tximport` imports transcript-level abundance, estimated counts and transcript lengths, and summarizes this into matrices for use with downstream gene-level analysis packages. 
 
 First, you have to download the directory with the quant.sf files for the 8 full datasets using the link below. Once you have them downloaded continue to follow the rest of instructions:
 
