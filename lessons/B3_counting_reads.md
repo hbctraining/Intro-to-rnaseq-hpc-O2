@@ -104,7 +104,7 @@ $ featureCounts -T 4 -s 2 \
 # note the last line of the command below
 	
 $ featureCounts -T 4 -s 2 \
-  -a ~/unix_workshoprnaseq/reference_data/chr1-hg19_genes.gtf \
+  -a ~/unix_workshop/rnaseq/reference_data/chr1-hg19_genes.gtf \
   -o ~/unix_workshop/rnaseq/results/counts/Mov10_featurecounts.txt \
   ~/unix_workshop/rnaseq/results/STAR/bams/*.out.bam \
   2> /unix_workshop/rnaseq/results/counts/Mov10_featurecounts.screen-output
