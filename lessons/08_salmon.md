@@ -1,5 +1,5 @@
 ---
-title: "Quantitation of transcript abundance using Salmon"
+title: "Quantification of transcript abundance using Salmon"
 author: "Mary Piper and Meeta Mistry"
 date: "Wednesday, September 20, 2017"
 ---
