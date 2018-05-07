@@ -22,14 +22,14 @@
 | Time            |   Topic  | Instructor |
 |:------------------------:|:----------:|:--------:|
 |9:00 - 9:50 | [Introduction to High-Performance Computing for HMS-RC's O2](https://github.com/hbctraining/Intro-to-rnaseq-hpc-O2/raw/master/lectures/HPC_intro_O2.pdf) | Radhika |
-|9:50 - 10:30 | [RNA-seq analysis workshop - Quality Assessment]() |  |
+|9:50 - 10:30 | [RNA-seq analysis workshop - Quality Assessment]() | Mary |
 |10:30 - 10:40 | Break | |
-|10:40 - 11:15 | [RNA-seq analysis workshop - Quality Assessment]() |  |
-|11:15 - 12:00 | [RNA-seq analysis workshop - Alignment and Counting]() |  |
+|10:40 - 11:15 | [RNA-seq analysis workshop - Quality Assessment]() | Mary |
+|11:15 - 12:00 | [RNA-seq analysis workshop - Alignment and Counting]() | Meeta |
 |12:00 - 13:00 | Break | |
-|13:00 - 13:45 | [RNA-seq analysis workshop - Alignment and Counting]() |  |
-|13:45 - 14:45 | [Automating the RNA-seq workflow]() |  |
+|13:00 - 13:45 | [RNA-seq analysis workshop - Alignment and Counting]() | Meeta |
+|13:45 - 14:45 | [Automating the RNA-seq workflow]() | Radhika |
 |14:45 - 15:00 | Break | |
-|15:00 - 16:00 | [Advanced concepts in bash]() |  |
+|15:00 - 16:00 | [Advanced concepts in bash]() | Meeta/Radhika |
 |16:00 - 16:30 | Q & A |  |
-|16:30 - 17:00 | [Wrap up]() |  |
+|16:30 - 17:00 | [Wrap up]() | Radhika |
