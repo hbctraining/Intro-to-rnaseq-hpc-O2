@@ -21,7 +21,7 @@
 
 | Time            |   Topic  | Instructor |
 |:------------------------:|:----------:|:--------:|
-|9:00 - 9:50 | [Introduction to High-Performance Computing for HMS-RC's O2](../lectures/HPC_intro_O2.pdf) | Radhika |
+|9:00 - 9:50 | [Introduction to High-Performance Computing](../lectures/HPC_intro_O2.pdf) | Radhika |
 |9:50 - 10:30 | [RNA-seq analysis workshop - Quality Assessment](../lessons/02_assessing_quality.md) | Mary |
 |10:30 - 10:40 | Break | |
 |10:40 - 11:15 | [RNA-seq analysis workshop - Quality Assessment](../lessons/02_assessing_quality.md) | Mary |
