@@ -304,7 +304,7 @@ Vim has nice shortcuts for cleaning up the header of our file using the followin
 	
 	> Note that we have a `\` preceding each `/`, which tells vim that we are not using the `/` as part of our search and replace command, but instead the `/` is part of the pattern that we are replacing. This is called *escaping* the `/`.
 
-> **NOTE:** The home directory will need to be changed to either or eCommons ID or the training account your are using.
+> **NOTE:** The home directory will need to be changed to either your eCommons ID or the training account you are using.
 
 
 ***
