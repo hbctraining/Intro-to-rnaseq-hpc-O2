@@ -30,6 +30,5 @@
 |13:00 - 13:45 | [RNA-seq analysis workshop - Alignment and Counting](../lessons/2day_rnaseq_workflow.md) | Meeta |
 |13:45 - 14:45 | [Automating the RNA-seq workflow](../lessons/07_automating_workflow.md) | Radhika |
 |14:45 - 15:00 | Break | |
-|15:00 - 16:00 | [Advanced concepts in bash](../lessons/advanced_bash.md) | Meeta/Radhika |
-|16:00 - 16:30 | Q & A |  |
-|16:30 - 17:00 | [Wrap up]() | Radhika |
+|15:00 - 16:30 | [Advanced concepts in bash](../lessons/advanced_bash.md) | Meeta/Radhika |
+|16:30 - 17:00 | [Wrap up + Q & A]() | Radhika |
