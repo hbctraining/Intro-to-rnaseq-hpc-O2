@@ -94,7 +94,7 @@ rnaseq
 Change directories into the `reference_data` folder. 
 
 ```bash
-$ cd ~/unix_workshop/rnaseq/reference_data
+$ cd ~/unix_lesson/rnaseq/reference_data
 ```
 
 To use the STAR aligner, load the module: 
