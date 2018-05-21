@@ -84,17 +84,8 @@ rnaseq
 	│   ├── Mov10_oe_1.subset.fq
 	│   ├── Mov10_oe_2.subset.fq
 	│   └── Mov10_oe_3.subset.fq
-	├── reference_data
-	│   ├── chr1.fa
-	│   └── chr1-hg19_genes.gtf
 	├── results
 	└── scripts
-```
-
-Change directories into the `reference_data` folder. 
-
-```bash
-$ cd ~/unix_lesson/rnaseq/reference_data
 ```
 
 To use the STAR aligner, load the module: 
@@ -121,11 +112,10 @@ For this workshop we are using reads that originate from a small subsection of c
 To store our genome indices, we need to create a directory:
 
 ```bash
-$ mkdir my_genome_index
+$ mkdir -p /n/scratch2/username/chr1_hg38_index
 ```
 
 The basic options to **generate genome indices** using STAR are as follows:
-
 
 * `--runThreadN`: number of threads
 * `--runMode`: genomeGenerate mode
@@ -154,15 +144,15 @@ Within `vim` we now add our shebang line, the SLURM directives, and our STAR com
 #SBATCH -o %j.out			# File to which standard out will be written
 #SBATCH -e %j.err 		# File to which standard err will be written
 
-cd ~/unix_lesson/rnaseq/reference_data
+cd /n/scratch2/username/
 
 module load gcc/6.2.0 star/2.5.2b
 
 STAR --runThreadN 6 \
 --runMode genomeGenerate \
---genomeDir my_genome_index \
---genomeFastaFiles chr1.fa \
---sjdbGTFfile chr1-hg19_genes.gtf \
+--genomeDir chr1_hg38_index \
+--genomeFastaFiles /n/groups/hbctraining/intro_rnaseq_hpc/reference_data_ensembl38/Homo_sapiens.GRCh38.dna.chromosome.1.fa \
+--sjdbGTFfile /n/groups/hbctraining/intro_rnaseq_hpc/reference_data_ensembl38/Homo_sapiens.GRCh38.92.gtf \
 --sjdbOverhang 99
 ```
 
@@ -172,7 +162,7 @@ $ sbatch ~/unix_lesson/rnaseq/scripts/genome_index.run
 
 ### Aligning reads
 
-After you have the genome indices generated, you can perform the read alignment. We previously generated the genome indices for you in `/n/groups/hbctraining/ngs-data-analysis-longcourse/rnaseq/reference_data/reference_STAR/` directory so that we don't get held up waiting on the generation of the indices.
+After you have the genome indices generated, you can perform the read alignment. We previously generated the genome indices for you in `/n/groups/hbctraining/intro_rnaseq_hpc/reference_data_ensembl38/ensembl38_STAR_index/` directory so that we don't get held up waiting on the generation of the indices.
 
 Create an output directory for our alignment files:
 
@@ -210,8 +200,8 @@ We can access the software by simply using the STAR command followed by the basi
 
 ```bash
 
-STAR --genomeDir /n/groups/hbctraining/ngs-data-analysis-longcourse/rnaseq/reference_data/reference_STAR \
---runThreadN 3 \
+STAR --genomeDir /n/groups/hbctraining/intro_rnaseq_hpc/reference_data_ensembl38/ensembl38_STAR_index/ \
+--runThreadN 6 \
 --readFilesIn Mov10_oe_1.subset.fq \
 --outFileNamePrefix ../results/STAR/Mov10_oe_1_ \
 --outSAMtype BAM SortedByCoordinate \
