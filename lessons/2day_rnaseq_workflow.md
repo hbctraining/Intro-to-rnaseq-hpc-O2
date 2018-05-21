@@ -237,14 +237,14 @@ cp /n/groups/hbctraining/intro_rnaseq_hpc/bam_STAR38/*bam ~/unix_lesson/rnaseq/r
 
 We are going to use the following options:
 
-* `-T 6 # specify 6 cores`
-* `-s 2 # these data are "reverse"ly stranded`
+* **`-T`:** number of cores
+* **`-s`:** data are "reverse"ly stranded
 
 and the following are the values for the required parameters:
 
-* `-a /n/groups/hbctraining/intro_rnaseq_hpc/reference_data_ensembl38/Homo_sapiens.GRCh38.92.gtf # required option for specifying path to GTF`
-* `-o ~/unix_lesson/rnaseq/results/counts/Mov10_featurecounts.txt # required option for specifying path to, and name of the text output (count matrix)`
-* `~/unix_lesson/rnaseq/results/STAR/*bam # the list of all the bam files we want to collect count information for`
+* **`-a`:** required option for specifying path to GTF
+* **`-o`:** path to and name of the text output (count matrix)
+* the list of all the bam files for which we want to collect count information
 
 #### Running featureCounts
 
