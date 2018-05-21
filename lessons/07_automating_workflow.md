@@ -104,8 +104,8 @@ Next we'll initialize 2 more variables named `genome` and `gtf`, these will cont
 ```
 # directory with genome reference FASTA and index files + name of the gene annotation file
 
-genome=/n/groups/hbctraining/intro_rnaseq_hpc/reference_STAR/
-gtf=~/unix_lesson/rnaseq/reference_data/chr1-hg19_genes.gtf
+genome=/n/groups/hbctraining/intro_rnaseq_hpc/reference_data_ensembl38/ensembl38_STAR_index/
+gtf=/n/groups/hbctraining/intro_rnaseq_hpc/reference_data_ensembl38/Homo_sapiens.GRCh38.92.gtf
 ```
 
 We'll create output directories, but with the `-p` option. This will make sure that `mkdir` will create the directory only if it does not exist, and it won't throw an error if it does exist.
