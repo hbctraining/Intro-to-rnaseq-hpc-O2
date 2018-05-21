@@ -31,9 +31,6 @@ You should have a directory tree setup similar to that shown below. It is best p
 ```
 rnaseq/
 	├── raw_data/
-	├── reference_data/
-	   └── chr1.fa
-	   └── chr1-hg19_genes.gtf
 	├── meta/
 	├── results/
 	├── scripts/
@@ -130,7 +127,14 @@ The basic options to **generate genome indices** using STAR are as follows:
 
 ```bash
 ** DO NOT RUN**
-STAR --runThreadN 6 --runMode genomeGenerate --genomeDir ./ --genomeFastaFiles chr1.fa --sjdbGTFfile chr1-hg19_genes.gtf --sjdbOverhang 99
+mkdir /n/scratch2/username/chr1_hg38_STAR_index/
+
+STAR --runThreadN 6 \
+--runMode genomeGenerate \
+--genomeDir /n/scratch2/username/chr1_hg38_STAR_index/ \
+--genomeFastaFiles /n/groups/hbctraining/intro_rnaseq_hpc/reference_data_ensembl38/Homo_sapiens.GRCh38.dna.chromosome.1.fa \
+--sjdbGTFfile /n/groups/hbctraining/intro_rnaseq_hpc/reference_data_ensembl38/Homo_sapiens.GRCh38.92.gtf \
+--sjdbOverhang 99
 ```
 
 The basic options for **mapping reads** to the genome using STAR are as follows:
@@ -228,25 +232,25 @@ So, it looks like the usage is `featureCounts [options] -a <annotation_file> -o 
 It can also take multiple bam files as input. Since we have only run STAR on 1 FASTQ file, let's copy over the other bam files that we would need so we can generate the full count matrix.
 
 ```bash
-cp /n/groups/hbctraining/unix_lesson_other/bam_STAR/*bam ~/unix_lesson/rnaseq/results/STAR/
+cp /n/groups/hbctraining/intro_rnaseq_hpc/bam_STAR38/*bam ~/unix_lesson/rnaseq/results/STAR/
 ```
 
 We are going to use the following options:
 
-* `-T 4 # specify 4 cores`
+* `-T 6 # specify 6 cores`
 * `-s 2 # these data are "reverse"ly stranded`
 
 and the following are the values for the required parameters:
 
-* `-a ~/unix_lesson/rnaseq/reference_data/chr1-hg19_genes.gtf # required option for specifying path to GTF`
+* `-a /n/groups/hbctraining/intro_rnaseq_hpc/reference_data_ensembl38/Homo_sapiens.GRCh38.92.gtf # required option for specifying path to GTF`
 * `-o ~/unix_lesson/rnaseq/results/counts/Mov10_featurecounts.txt # required option for specifying path to, and name of the text output (count matrix)`
 * `~/unix_lesson/rnaseq/results/STAR/*bam # the list of all the bam files we want to collect count information for`
 
 #### Running featureCounts
 
 ``` bash
-$ featureCounts -T 4 -s 2 \
-  -a ~/unix_lesson/rnaseq/reference_data/chr1-hg19_genes.gtf \
+$ featureCounts -T 6 -s 2 \
+  -a /n/groups/hbctraining/intro_rnaseq_hpc/reference_data_ensembl38/Homo_sapiens.GRCh38.92.gtf \
   -o ~/unix_lesson/rnaseq/results/counts/Mov10_featurecounts.txt \
   ~/unix_lesson/rnaseq/results/STAR/*bam
 ```
