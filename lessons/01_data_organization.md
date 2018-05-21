@@ -66,7 +66,6 @@ rnaseq
   ├── logs
   ├── meta
   ├── raw_data  
-  ├── reference_data
   ├── results
   └── scripts
 ```
@@ -76,7 +75,6 @@ rnaseq
 - `logs`: to keep track of the commands run and the specific parameters used, but also to have a record of any standard output that is generated while running the command. 
 - `meta`: for any information that describes the samples you are using, which we refer to as [metadata](https://datamanagement.hms.harvard.edu/metadata-overview). We will discuss this in more detail as it pertains to our example dataset, later in this lesson.
 - `raw_data`: for any **unmodified** (raw) data obtained prior to computational analysis here, e.g. FASTQ files from the sequencing center. We strongly recommend leaving this directory unmodified through the analysis.
-- `reference_data`: for known information related to the reference genome that will be used in the analysis, e.g. genome sequence (FASTA), gene annotation file (GTF) associated with the genome.
 - `results`: for output from the different tools you implement in your workflow. Create sub-folders specific to each tool/step of the workflow within this folder. 
 - `scripts`: for scripts that you write and use to run analyses/workflow.
 
@@ -105,12 +103,6 @@ The FASTQ files are located inside `~/unix_lesson/raw_fastq/`, and we need to co
 $ cp ~/unix_lesson/raw_fastq/*.fq raw_data/
 ```
 
-Later in the workflow when we perform alignment, we will require genome reference files (.fa, .gtf) for alignment and read counting. These files are also in the `unix_lesson/` directory inside `reference_data/`, we can copy over the whole folder in this case. You can use `.` as a shortcut for the current working directory as the destination.
-
-```bash
-$ cp -r ~/unix_lesson/reference_data/ .
-```
-
 Perfect, now the structure of `rnaseq/` should look like this:
 
 ```bash
@@ -124,9 +116,6 @@ rnaseq
   │   ├── Mov10_oe_1.subset.fq
   │   ├── Mov10_oe_2.subset.fq
   │   └── Mov10_oe_3.subset.fq
-  ├── reference_data
-  │   ├── chr1.fa
-  │   └── chr1-hg19_genes.gtf
   ├── results
   └── scripts
 ```
@@ -153,14 +142,13 @@ Keeping notes on what happened in what order, and what was done, is essential fo
 ```
 ## README ##
 ## This directory contains data generated during the Intro to RNA-seq course
-## Date: September 25th, 2017
+## Date: 
 
 There are six subdirectories in this directory:
 
 raw_data : contains raw data
 meta:  contains...
 logs:
-reference_data:
 results:
 scripts:
 ```
