@@ -109,7 +109,7 @@ Aligning reads using STAR is a two step process:
 
 For this workshop we are using reads that originate from a small subsection of chromosome 1 (~300,000 reads) and so we are using only chr1 as the reference genome. 
 
-To store our genome indices, we need to create a directory:
+To store our genome indices, we will use the `/n/scratch2/` space with large temporary storage capacity. We need to create a directory for the indices within this space:
 
 ```bash
 $ mkdir -p /n/scratch2/username/chr1_hg38_index
