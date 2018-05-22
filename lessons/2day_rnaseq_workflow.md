@@ -20,7 +20,7 @@ To get started with this lesson, we will start an interactive session and ask fo
 $ srun --pty -p short -t 0-12:00 -n 6 --mem 8G --reservation=hbc bash	
 ```
 
-Change directories into the `unix_lesson` directory and copy the `reference_data` folder into your project directory:
+Change directories into the `rnaseq` directory:
 
 ```bash
 $ cd ~/unix_lesson/rnaseq
