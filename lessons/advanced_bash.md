@@ -15,11 +15,30 @@ As you begin working more with the Shell, you will discover that there are mount
 
 ## O2-specific utilities
 
-* `.bashrc` versus `.bash_profile`
+* [Configuring your shell: `.bashrc` versus `.bash_profile`](#
 * Aliases 
 * Working on `/n/scratch2/`
 * Symbolic links
 * Transferring files with `rsync`
+
+***
+
+## Configuring your shell
+
+In your home directory there are two hidden files `.bashrc` and `.bash_profile`. These files are loaded before your Terminal loads the shell environment for your interactive and login sessions, respectively. Each file contains all the startup configuration and preferences for your command line interface. Modifying these files allow you to change your preferences for features like your command prompt, the colors of text, and adding aliases for commands you use all the time. 
+
+> **NOTE:** These files begin with a dot (`.`) which makes it a hidden file. To view all hidden files in your home directory you can use `ls -al ~`.
+
+
+
+
+
+## Aliases
+
+Aliases are shortcut names for longer commands.
+Use alias by itself to see all set aliases
+Use alias followed by alias name to see alias value
+Aliases can be used for security purposes to force you to use certain flagsz 
 
 
 ## General Bash commands
