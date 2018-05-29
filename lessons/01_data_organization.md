@@ -17,16 +17,18 @@ duration: 35
 
 ## Data Management
 
-> *"Data Management is the process of providing the appropriate labeling, storage, and access for data at all stages of a research project. We recognize that best practices for each of these aspects of data management can and often do change over time, and are different for different stages in the data lifecycle."*
-> 
-> *[- HMS Data Management Working Group](https://datamanagement.hms.harvard.edu/hms-data-management-working-group)*
+One of the most important parts of research that involves large amounts of data, is how best to manage it. We tend to prioritize the analysis, but there are many other important aspects that are  often overlooked in the excitement to get a first look at new data. 
+
+The data management lifecycle displayed below, courtesy of the [HMS Data Management Working Group](https://datamanagement.hms.harvard.edu/hms-data-management-working-group), illustrates some things to consider beyond the data creation and analysis components:
 
 <img src="../img/data_life_cycle_gouldv2.png" width="350">
 
-The data lifecycle is not linear and you may find yourself jumping around this lifecycle throughout the course of your
-project. Today we will cover some parts of this lifecycle by talking about **best practices** for the **Research** half of the above lifecycle. Later in this workshop we will talk a little more about the data storage. For more information about the full lifecycle and more guidelines, please look at the resources linked below.
+_Image aquired from the [Harvard Biomedical Data Management Website](https://datamanagement.hms.harvard.edu/hms-data-lifecycle)_
+
+We will cover some parts of this lifecycle by talking about best practices for the **Research** half of the above lifecycle. Later in this workshop we will talk a little more about the data storage. For more information about the full lifecycle and more guidelines for data management, please look at the resources linked below.
 
 **Resources**
+
 * The [HMS Data Management Working Group's website](https://datamanagement.hms.harvard.edu/)
 * A guide from the [Harvard library](http://guides.library.harvard.edu/dmp).
 
@@ -37,8 +39,6 @@ You should approach your sequencing project in a very similar way to how you do 
 During this stage it is important to keep track of how the experiment was performed and clearly tracking the source of starting materials and kits used. It is also best practice to include information about any small variations within the experiment or variation relative to standard experiments. 
 
 ### Organization
-
-Project organization is one of the most important parts of a sequencing project, but is often overlooked in the excitement to get a first look at new data. While it's best to get yourself organized before you begin analysis, it's never too late to start.
 
 Every computational analysis you do is going to spawn many files, and inevitability you'll want to run some of those analyses again. For each experiment you work on and analyze data for, it is considered best practice to get organized by creating a planned storage space (directory structure).
 
@@ -120,24 +120,28 @@ rnaseq
   └── scripts
 ```
 
+> #### File naming conventions
+> 
+> Another aspect of staying organized is making sure that all the filenames in an analysis are as consistent as possible, and are not things like `alignment1.bam`, but more like `20170823_kd_rep1_gmap-1.4.bam`. [This link](https://datamanagement.hms.harvard.edu/file-naming-conventions) and [this slideshow](http://www2.stat.duke.edu/~rcs46/lectures_2015/01-markdown-git/slides/naming-slides/naming-slides.pdf) have some good guidelines for file naming dos and don'ts.
+
+
 ### Documentation
 
-**Documentation doesn't stop at the sequencer!** Continue to maintain a lab notebook equivalent during the analysis to make your analysis reproducible and efficient.
+**Documentation doesn't stop at the sequencer!** Keeping notes on what happened in what order, and what was done, is essential for reproducible research.
 
 #### Log files
 
 In your lab notebook, you likely keep track of the different reagents and kits used for a specific protocol. Similarly, recording information about the tools and parameters is important for documenting your computational experiments. 
 
-- Keep track of software versions
-- Record information on parameters used and summary statistics at every step (e.g., how many adapters were removed, how many reads did not align)
-- Save log files and console output
+- **Make note of the software you use.** Do your research and find out what tools are best for the data you are working with. Don't just work with tools that you are able to easily install.
+- **Keep track of software versions.** Keep up with the literature and make sure you are using the most up-to-date versions.
+- **Record information on parameters used and summary statistics** at every step (e.g., how many adapters were removed, how many reads did not align)
+    - A general rule of thumb is to test on a single sample or a subset of the data before running your entire dataset through. This will allow you to debug quicker and give you a chance to also get a feel for the tool and the different parameters.
     - Different tools have different ways of reporting log messages and you might have to experiment a bit to figure out what output to capture. You can redirect standard output with the `>` symbol which is equivalent to `1> (standard out)`; other tools might require you to use `2>` to re-direct the `standard error` instead.
  
 #### README files
 
 After setting up the directory structure and when the analysis is running it is useful to have a **[README file](https://datamanagement.hms.harvard.edu/readme-files) within your project directory**. This file will usually contain a quick one line summary about the project and any other lines that follow will describe the files/directories found within it. An example README is shown below. Within each sub-directory you can also include README files to describe the analysis and the files that were generated.
-
-Keeping notes on what happened in what order, and what was done, is essential for reproducible research. If you don’t keep good notes, then you will forget what you did pretty quickly, and if you don’t know what you did, no one else has a chance. 
 
 ```
 ## README ##
@@ -152,14 +156,13 @@ logs:
 results:
 scripts:
 ```
-### File naming conventions
-
-Another aspect of staying organized is making sure that all the filenames in an analysis are as consistent as possible, and are not things like `alignment1.bam`, but more like `20170823_kd_rep1_STAR-1.4.bam`. [This link](https://datamanagement.hms.harvard.edu/file-naming-conventions) and [this slideshow](http://www2.stat.duke.edu/~rcs46/lectures_2015/01-markdown-git/slides/naming-slides/naming-slides.pdf) have some good guidelines for file naming dos and don'ts.
 
 *** 
+
 ### Homework exercise
 
 - Take a moment to create a README for the `rnaseq/` folder (hint: use `vim` to create the file). Give a short description of the project and brief descriptions of the types of files you will be storing within each of the sub-directories. 
+
 ***
 
 ## Exploring the example dataset
@@ -183,33 +186,6 @@ In addition to the raw sequence data we also need to collect **information about
 ![Automation](../img/exp_design.png)
 
 
-## Best practices for NGS Analysis 
-
-Ok so now you are all set up and have begun your analysis. You have followed best practices to set up your analysis directory structure in a way such that someone unfamiliar with your project should be able to look at it and understand what you did and why. But there is more...:
-
-1. **Make sure to use the appropriate software.** Do your research and find out what is best for the data you are working with. Don't just work with tools that you are able to easily install. Also, make sure you are using the most up-to-date versions! If you run out-of-date software, you are probably introducing errors into your workflow; and you may be missing out on more accurate methods.
-
-2. **Keep up with the literature.** Bioinformatics is a fast-moving field and it's always good to stay in the know about recent developments. This will help you determine what is appropriate and what is not.  
-
-3. **Do not re-invent the wheel.** If you run into problems, more often than not someone has already encountered that same problem. A solution is either already available or someone is working on it -- so find it! Ask colleagues or search/ask online forums such as [BioStars](https://www.biostars.org/).
-
-4. **Testing is essential.** If you are using a tool for the first time, test it out on a single sample or a subset of the data before running your entire dataset through. This will allow you to debug quicker and give you a chance to also get a feel for the tool and the different parameters.
-
-
-## The RNA-seq workflow
-
-A simplified version of the workflow we will be using in this course is provided below. We have some of the steps briefly outlined here, but we will be covering some of these (\#2, \#4 and \#5) in more detail during this workshop.
-
-<img src="../img/RNAseqWorkflow.png" width="450">
-
-1. Library preparation of biological samples (pre-sequencing)
-2. Quality control - Assessing quality of sequence reads using FastQC
-3. Quality control *(Optional)* - Adapter Trimming
-4. Align reads to reference genome using STAR (splice-aware aligner)
-5. Quantifying expression/Counting the number of reads mapping to each gene
-6. Statistical analysis to identify differentially expressed genes (count normalization, linear modeling using R-based tools)
-
-These workflows in bioinformatics adopt a plug-and-play approach in that the output of one tool can be easily used as input to another tool without any extensive configuration. The tools that are used to analyze data at different stages of the workflow are built under the assumption that the data will be provided in a specific format to facilitate a more streamlined analysis.  
 
 ---
 
