@@ -15,22 +15,44 @@ As you begin working more with the Shell, you will discover that there are mount
 
 ## O2-specific utilities
 
-* [Configuring your shell: `.bashrc` versus `.bash_profile`](#
-* Aliases 
+* [Configuring your shell](#config)
+    * `.bashrc` versus `.bash_profile`
+    * Aliases 
 * Working on `/n/scratch2/`
 * Symbolic links
 * Transferring files with `rsync`
 
 ***
 
-## Configuring your shell
+## Configuring your shell <a name="config"></a>
 
-In your home directory there are two hidden files `.bashrc` and `.bash_profile`. These files are loaded before your Terminal loads the shell environment for your interactive and login sessions, respectively. Each file contains all the startup configuration and preferences for your command line interface. Modifying these files allow you to change your preferences for features like your command prompt, the colors of text, and adding aliases for commands you use all the time. 
+In your home directory there are two hidden files `.bashrc` and `.bash_profile`. These files contain all the startup configuration and preferences for your command line interface and are loaded before your Terminal loads the shell environment. Modifying these files allow you to change your preferences for features like your command prompt, the colors of text, and adding aliases for commands you use all the time. 
 
-> **NOTE:** These files begin with a dot (`.`) which makes it a hidden file. To view all hidden files in your home directory you can use `ls -al ~`.
+> **NOTE:** These files begin with a dot (`.`) which makes it a hidden file. To view all hidden files in your home directory you can use:
+> `ls -al ~/`
 
+### `.bashrc` versus `.bash_profile`
 
+You can put configurations in either file, and you can create either if it doesn’t exist. **But why two different files? What is the difference?**
 
+The difference is that **`.bash_profile` is executed for login shells, while `.bashrc` is executed for interactive non-login shells**. It is helpful to have these separate files when there are preferences you only want to see on the login and not every time you open a new terminal window. For example, suppose you would like to print some lengthy diagnostic information about your machine (load average, memory usage, current users, etc) - the `.bash_profile` would be a good place since you would only want in displayed once when starting out   
+
+Most of the time you don’t want to maintain two separate configuration files for login and non-login shells. For example, when you set a `$PATH`, you want it to apply to both. You can fix this by sourcing `.bashrc` from within your   `.bash_profile` file. Take a look at your `.bash_profile` file, this has already been done for you:
+
+```bash
+less ~/.bash_profile
+```
+
+You should see the following lines:
+
+```bash
+if [ -f ~/.bashrc ]; then
+   source ~/.bashrc
+fi
+
+```
+
+If a `.bashrc` files exist, all configuration settings will be sourced upon logging in addition to any interactive sessions. Any settings you would like applied to all shell windows can now be added directly to the `.bashrc` file.
 
 
 ## Aliases
