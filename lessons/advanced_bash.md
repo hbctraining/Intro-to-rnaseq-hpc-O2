@@ -18,9 +18,9 @@ As you begin working more with the Shell, you will discover that there are mount
 * [Configuring your shell](#config)
     * `.bashrc` versus `.bash_profile`
     * Aliases 
-* Working on `/n/scratch2/`
-* Symbolic links
+* [Symbolic links](#symlinks)
 * Transferring files with `rsync`
+* Working on `/n/scratch2/`
 
 ***
 
@@ -56,7 +56,7 @@ fi
 What this means is that if a `.bashrc` files exist, all configuration settings will be sourced upon logging in. Any settings you would like applied to all shell windows (login and interactive) can simply be added directly to the `.bashrc` file rather than in two separate files.
 
 
-## Aliases
+### Aliases
 
 An alias is a short name that the shell translates into another (usually longer) name or command. They are typically placed in the `.bash_profile` or `.bashrc` startup files so that they are available to all subshells. You can use the `alias` built-in command without any arguments, and the **shell will display a list of all defined aliases**:
 
@@ -101,6 +101,37 @@ Save and quit. Now we can source the `.bash_profile` file and test it out. By ty
 $ source ~/.bash_profile
 
 $ o2i
+```
+
+## Symbolic links <a name="symlinks"></a>
+
+The O2 cluster supports symbolic links also known as symlinks. This is a kind of “file” that is **essentially a pointer to another file name**. Symbolic links can be made to directories or across file systems with no restrictions. You can also make a symbolic link to a name which is not the name of any file. (Opening this link will fail until a file by that name is created.) Likewise, if the symbolic link points to an existing file which is later deleted, the symbolic link continues to point to the same file name even though the name no longer names any file.
+
+Symlinks can be used in lieu of copying over large files. For example, when we began the RNA-seq part of this workshop we had copied over FASTQ files from `~/unix_lesson/raw_fastq` to `~/unix_lesson/rnaseq/raw_data`. But what we could have done instead is created symlinks to those files.
+
+The basic syntax for creating a symlink is:
+
+```bash
+ln -s /path/to/file /path/to/symlink
+```
+
+So if we wanted to have symlinks to our FASTQ files instead of having duplicate copies, we can first remove the files that are currrently there:
+
+```bash
+$ rm ~/unix_lesson/rnaseq/raw_data/*
+```
+
+And then we can symlink the files:
+
+```bash
+$ ln -s ~/unix_lesson/raw_fastq/*.fq ~/unix_lesson/rnaseq/raw_data/
+```
+
+Now, if you check the directory where we created the symlinks you should see the filenames listed in cyan text followed by an arrow pointing the actual file location. (_NOTE: If your files are flashing red text, this is an indication your links are broken so you might want to double check the paths._)
+
+```bash
+ll ~/unix_lesson/rnaseq/raw_data
+
 ```
 
 ## General Bash commands
