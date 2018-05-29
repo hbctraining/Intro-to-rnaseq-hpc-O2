@@ -29,7 +29,8 @@ As you begin working more with the Shell, you will discover that there are mount
 In your home directory there are two hidden files `.bashrc` and `.bash_profile`. These files contain all the startup configuration and preferences for your command line interface and are loaded before your Terminal loads the shell environment. Modifying these files allow you to change your preferences for features like your command prompt, the colors of text, and adding aliases for commands you use all the time. 
 
 > **NOTE:** These files begin with a dot (`.`) which makes it a hidden file. To view all hidden files in your home directory you can use:
-> `ls -al ~/`
+> 
+> `$ ls -al ~/`
 
 ### `.bashrc` versus `.bash_profile`
 
@@ -37,10 +38,10 @@ You can put configurations in either file, and you can create either if it doesn
 
 The difference is that **`.bash_profile` is executed for login shells, while `.bashrc` is executed for interactive non-login shells**. It is helpful to have these separate files when there are preferences you only want to see on the login and not every time you open a new terminal window. For example, suppose you would like to print some lengthy diagnostic information about your machine (load average, memory usage, current users, etc) - the `.bash_profile` would be a good place since you would only want in displayed once when starting out   
 
-Most of the time you don’t want to maintain two separate configuration files for login and non-login shells. For example, when you set a `$PATH`, you want it to apply to both. You can fix this by sourcing `.bashrc` from within your   `.bash_profile` file. Take a look at your `.bash_profile` file, this has already been done for you:
+Most of the time you don’t want to maintain two separate configuration files for login and non-login shells. For example, when you set a `$PATH`, you want it to apply to both. You can do this by sourcing `.bashrc` from within your   `.bash_profile` file. Take a look at your `.bash_profile` file, it has already been done for you:
 
 ```bash
-less ~/.bash_profile
+$ less ~/.bash_profile
 ```
 
 You should see the following lines:
@@ -52,12 +53,14 @@ fi
 
 ```
 
-If a `.bashrc` files exist, all configuration settings will be sourced upon logging in addition to any interactive sessions. Any settings you would like applied to all shell windows can now be added directly to the `.bashrc` file.
+What this means is that if a `.bashrc` files exist, all configuration settings will be sourced upon logging in. Any settings you would like applied to all shell windows can simply be added directly to the `.bashrc` file rather than in two separate files.
 
 
 ## Aliases
 
-Aliases are shortcut names for longer commands.
+An alias is as hort name that the shell translates into another (usually longer) name or command. Aliases allow you to define new commands by substituting a string for the first token of a simple command. They are typically placed in the `.bash_profile` or `.bashrc` startup files so that they are available to all subshells.
+
+
 Use alias by itself to see all set aliases
 Use alias followed by alias name to see alias value
 Aliases can be used for security purposes to force you to use certain flagsz 
