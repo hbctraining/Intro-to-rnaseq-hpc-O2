@@ -53,24 +53,24 @@ fi
 
 ```
 
-What this means is that if a `.bashrc` files exist, all configuration settings will be sourced upon logging in. Any settings you would like applied to all shell windows can simply be added directly to the `.bashrc` file rather than in two separate files.
+What this means is that if a `.bashrc` files exist, all configuration settings will be sourced upon logging in. Any settings you would like applied to all shell windows (login and interactive) can simply be added directly to the `.bashrc` file rather than in two separate files.
 
 
 ## Aliases
 
-An alias is a short name that the shell translates into another (usually longer) name or command. They are typically placed in the `.bash_profile` or `.bashrc` startup files so that they are available to all subshells. You can use the `alias` built-in command without any arguments, and the shell will display a list of all defined aliases:
+An alias is a short name that the shell translates into another (usually longer) name or command. They are typically placed in the `.bash_profile` or `.bashrc` startup files so that they are available to all subshells. You can use the `alias` built-in command without any arguments, and the **shell will display a list of all defined aliases**:
 
 ```bash
 $ alias
 ```
 
-This should return to you the list of aliases that have been set for you, and you can see the syntax used for setting an alias is:
+This should return to you the list of aliases that have been set for you, and you can see **the syntax used for setting an alias is**:
 
 ```bash
 alias aliasname=value
 ```
 
-When setting an alias no spaces are permitted around the equal sign. If value contains spaces or tabs, you must enclose the value within quotation marks. If you look through the list of aliases that have been set for you, `ll` is a good example of this:
+When setting an alias **no spaces are permitted around the equal sign**. If value contains spaces or tabs, you must enclose the value within quotation marks. If you look through the list of aliases that have been set for you, `ll` is a good example of this:
 
 ```bash
 alias ll='ls -l'
@@ -78,14 +78,14 @@ alias ll='ls -l'
 
 Since we have a modifier `-l` and there is a space required, the quotations are necessary.
 
-Let's setup our own alias! Every time we want to start an interactive session we have type out this lengthy command. Wouldn't it be great if we could type in a short name instead? Open up `.bashrc` using `vim`:
+Let's **setup our own alias**! Every time we want to start an interactive session we have type out this lengthy command. Wouldn't it be great if we could type in a short name instead? Open up the `.bashrc` file using `vim`:
 
 ```bash
 
 $ vim ~/.bashrc
 ```
 
-Scroll down to the heading "# User specific aliases and functions" and on the next line you can set your alias:
+Scroll down to the heading "`# User specific aliases and functions`" and on the next line you can set your alias:
 
 ```bash
 
