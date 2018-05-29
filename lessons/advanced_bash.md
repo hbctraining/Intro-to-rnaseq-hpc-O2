@@ -130,7 +130,7 @@ $ ln -s ~/unix_lesson/raw_fastq/*.fq ~/unix_lesson/rnaseq/raw_data/
 Now, if you check the directory where we created the symlinks you should see the filenames listed in cyan text followed by an arrow pointing the actual file location. (_NOTE: If your files are flashing red text, this is an indication your links are broken so you might want to double check the paths._)
 
 ```bash
-ll ~/unix_lesson/rnaseq/raw_data
+$ ll ~/unix_lesson/rnaseq/raw_data
 
 ```
 
