@@ -136,6 +136,11 @@ ll ~/unix_lesson/rnaseq/raw_data
 
 ## Transferring files with `rsync` <a name="rsync"></a>
 
+During this workshop we have mostly used Filezilla to transfer files to and from your laptop to the O2 cluster. At the end of the Alignment/Counting lesson we also introduced how to do this on the command line using `scp`. The way `scp` works is it reads the source file and writes it to the destination. It performs a plain linear copy, locally, or over a network.
+
+When **transferring large files or a large number of files `rsync` is a better command** to use. `rsync` employs a special delta transfer algorithm and a few optimizations to make the operation a lot faster. It will check files sizes and modification timestamps of both file(s) to be copied (A) and the destination (B), and skip any further processing if they match. If the destination file B already exists, the delta transfer algorithm will make sure only differences between A and B are sent over.
+
+
 
 
 ## General Bash commands
