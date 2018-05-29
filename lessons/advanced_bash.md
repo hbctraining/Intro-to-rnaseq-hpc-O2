@@ -16,10 +16,10 @@ As you begin working more with the Shell, you will discover that there are mount
 ## O2-specific utilities
 
 * [Configuring your shell](#config)
-    * `.bashrc` versus `.bash_profile`
-    * Aliases 
+    * [`.bashrc` versus `.bash_profile`](#bashrc)
+    * [Aliases](#alias) 
 * [Symbolic links](#symlinks)
-* Transferring files with `rsync`
+* [Transferring files with `rsync`](#rsync)
 * Working on `/n/scratch2/`
 
 ***
@@ -32,7 +32,7 @@ In your home directory there are two hidden files `.bashrc` and `.bash_profile`.
 > 
 > `$ ls -al ~/`
 
-### `.bashrc` versus `.bash_profile`
+### `.bashrc` versus `.bash_profile` <a name="bashrc"></a>
 
 You can put configurations in either file, and you can create either if it doesn’t exist. **But why two different files? What is the difference?**
 
@@ -56,7 +56,7 @@ fi
 What this means is that if a `.bashrc` files exist, all configuration settings will be sourced upon logging in. Any settings you would like applied to all shell windows (login and interactive) can simply be added directly to the `.bashrc` file rather than in two separate files.
 
 
-### Aliases
+### Aliases <a name="alias"></a>
 
 An alias is a short name that the shell translates into another (usually longer) name or command. They are typically placed in the `.bash_profile` or `.bashrc` startup files so that they are available to all subshells. You can use the `alias` built-in command without any arguments, and the **shell will display a list of all defined aliases**:
 
@@ -133,6 +133,10 @@ Now, if you check the directory where we created the symlinks you should see the
 ll ~/unix_lesson/rnaseq/raw_data
 
 ```
+
+## Transferring files with `rsync` <a name="rsync"></a>
+
+
 
 ## General Bash commands
 
