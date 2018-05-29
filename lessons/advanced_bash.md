@@ -36,9 +36,9 @@ In your home directory there are two hidden files `.bashrc` and `.bash_profile`.
 
 You can put configurations in either file, and you can create either if it doesn’t exist. **But why two different files? What is the difference?**
 
-The difference is that **`.bash_profile` is executed for login shells, while `.bashrc` is executed for interactive non-login shells**. It is helpful to have these separate files when there are preferences you only want to see on the login and not every time you open a new terminal window. For example, suppose you would like to print some lengthy diagnostic information about your machine (load average, memory usage, current users, etc) - the `.bash_profile` would be a good place since you would only want in displayed once when starting out   
+The difference is that **`.bash_profile` is executed for login shells, while `.bashrc` is executed for interactive non-login shells**. It is helpful to have these separate files when there are preferences you only want to see on the login and not every time you open a new terminal window. For example, suppose you would like to print some lengthy diagnostic information about your machine (load average, memory usage, current users, etc) - the `.bash_profile` would be a good place since you would only want in displayed once when starting out.   
 
-Most of the time you don’t want to maintain two separate configuration files for login and non-login shells. For example, when you set a `$PATH`, you want it to apply to both. You can do this by sourcing `.bashrc` from within your   `.bash_profile` file. Take a look at your `.bash_profile` file, it has already been done for you:
+Most of the time you don’t want to maintain two separate configuration files for login and non-login shells. For example, when you export a `$PATH` (as we had done previously), you want it to apply to both. You can do this by sourcing `.bashrc` from within your `.bash_profile` file. Take a look at your `.bash_profile` file, it has already been done for you:
 
 ```bash
 $ less ~/.bash_profile
@@ -58,13 +58,50 @@ What this means is that if a `.bashrc` files exist, all configuration settings w
 
 ## Aliases
 
-An alias is as hort name that the shell translates into another (usually longer) name or command. Aliases allow you to define new commands by substituting a string for the first token of a simple command. They are typically placed in the `.bash_profile` or `.bashrc` startup files so that they are available to all subshells.
+An alias is a short name that the shell translates into another (usually longer) name or command. They are typically placed in the `.bash_profile` or `.bashrc` startup files so that they are available to all subshells. You can use the `alias` built-in command without any arguments, and the shell will display a list of all defined aliases:
+
+```bash
+$ alias
+```
+
+This should return to you the list of aliases that have been set for you, and you can see the syntax used for setting an alias is:
+
+```bash
+alias aliasname=value
+```
+
+When setting an alias no spaces are permitted around the equal sign. If value contains spaces or tabs, you must enclose the value within quotation marks. If you look through the list of aliases that have been set for you, `ll` is a good example of this:
+
+```bash
+alias ll='ls -l'
+```
+
+Since we have a modifier `-l` and there is a space required, the quotations are necessary.
+
+Let's setup our own alias! Every time we want to start an interactive session we have type out this lengthy command. Wouldn't it be great if we could type in a short name instead? Open up `.bashrc` using `vim`:
+
+```bash
+
+$ vim ~/.bashrc
+```
+
+Scroll down to the heading "# User specific aliases and functions" and on the next line you can set your alias:
+
+```bash
+
+o2i='srun --pty -p short -t 0-12:00 --mem 8G --reservation=HBC /bin/bash'
+
+```
+
+Save and quit. Now we can source the `.bash_profile` file and test it out. By typing `o2i` at the command prompt we will request an interactive session for 12 hours with 8G of memory. You can change the directives to those you use more often (i.e add more cores, increase memory).
 
 
-Use alias by itself to see all set aliases
-Use alias followed by alias name to see alias value
-Aliases can be used for security purposes to force you to use certain flagsz 
+```bash
 
+$ source ~/.bash_profile
+
+$ o2i
+```
 
 ## General Bash commands
 
