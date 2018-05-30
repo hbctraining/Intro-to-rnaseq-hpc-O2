@@ -229,7 +229,7 @@ $ sbatch mov10_fastqc.run
 You can check on the status of your job with:
 
 ```bash
-$ squeue -u eCommonsID
+$ sacct
 ```
 
 ```bash
