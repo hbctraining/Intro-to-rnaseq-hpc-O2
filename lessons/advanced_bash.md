@@ -213,7 +213,7 @@ Below is a small subset of characters that can be used for pattern generation in
 
 ## Reintroducing `grep` (GNU regex parser) <a name="grep"></a>
 
-As we have seen in session I, `grep` is a line by line parser by default displays matching lines to the pattern of interest that allows the use of regular expressions (regex) in the specified pattern.
+As we saw yesterday, `grep` is a line by line parser that outputs lines matching a pattern of interest. In addition it also allows the use of regular expressions (regex) in the specified pattern, let's use some regular expressions with `grep`.
 
 **`grep` usage:**
 
@@ -298,9 +298,9 @@ $ sed 's/\s//g' bicycle.txt
 ```
 ***
 
-## Reintroducing `awk` <a name="awk"></a>
+## Introducing `awk` <a name="awk"></a>
 
-`awk is command/script language that turns text into records and fields which can be selected to display as kind of an ad hoc database.  With awk you can perform many manipulations to these fields or records before they are displayed. 
+`awk` is command/script language that turns text into records and fields which can be selected to display as kind of an ad hoc database.  With awk you can perform many manipulations to these fields or records before they are displayed. 
 
 **`awk` usage:** 
 
