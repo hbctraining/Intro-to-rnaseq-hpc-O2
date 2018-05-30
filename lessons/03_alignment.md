@@ -172,12 +172,6 @@ $ cd ~/unix_lesson/rnaseq/raw_data
 $ mkdir ../results/STAR
 ```
 
-We are going to explore how to **automate running the STAR command** by doing the following:
-
-1. running it in the *interactive shell* to ensure the command is functional
-2. specifying *filename as a command line parameter* when running the STAR command from a script
-3. executing the command *in parallel for all files* from a script
-
 ### STAR command in interactive bash
 
 For now, we're going to work on just one sample to set up our workflow. To start we will use the first replicate in the Mov10 over-expression group, `Mov10_oe_1.subset.fq`. Details on STAR and its functionality can be found in the [user manual](https://github.com/alexdobin/STAR/blob/master/doc/STARmanual.pdf); we encourage you to peruse through to get familiar with all available options.
