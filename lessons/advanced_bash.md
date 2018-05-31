@@ -164,7 +164,7 @@ Most HPC environments have a "scratch space" available to use. This is **a tempo
 
 Scratch will not work very well with workflows that write many thousands of small files. It is designed for workflows with medium and large files (> 100 MB), making it ideal for many next-gen sequencing analysis, image analysis, and other bioinformatics workflows that use large files.
 
-When performing your analysis, you may want to take advantage of this space and will want to start by copying over your raw FASTQ files. Rather than using `cp`, the `rsync` command would be benefical since FASTQ files are large in size. As an example we will copy over our FASTQ files to `/n/scratch2`, but first we will need to create a directory to copy them to. You can name this directory with your user login.
+When performing your analysis, you may want to take advantage of this space and will want to start by copying over your raw FASTQ files. Rather than using `cp`, the `rsync` command would be benefical since FASTQ files are large in size. As an example we will copy over our FASTQ files to `/n/scratch2`, but first we will need to create a directory to copy them to. You can name this directory with your user login name.
 
 ```bash
 $ mkdir /n/scratch2/rc_training01
@@ -178,6 +178,11 @@ $ rsync -avr --progress ~/unix_lesson/rnaseq/raw_data /n/scratch2/rc_training01
 ```
 
 Take a look at the directory on scratch and see that the files transferred successfully.
+
+> **NOTE:** If you are copying files from a remote resource to your local laptop (or vice versa), the syntax will change. You will need to add the host address before specifying the path. Below is an example of command you would **run in a Terminal on your local laptop**:
+>
+> `rysnc -avr --progress rc_traning01@transfer.rc.hms.harvard.edu:/home/rc_traning01/unix_lesson/rnaseq/raw_data /path/on/local/machine`
+>
 
 
 ## General Bash commands
