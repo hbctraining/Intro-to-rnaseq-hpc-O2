@@ -20,7 +20,7 @@ As you begin working more with the Shell, you will discover that there are mount
     * [Aliases](#alias) 
 * [Symbolic links](#symlinks)
 * [Transferring files with `rsync`](#rsync)
-    * [Working on `/n/scratch2/`] (#nscratch)
+    * [Working on `/n/scratch2/`](#nscratch)
 
 ***
 
@@ -134,7 +134,7 @@ $ ll ~/unix_lesson/rnaseq/raw_data
 
 During this workshop we have mostly used Filezilla to transfer files to and from your laptop to the O2 cluster. At the end of the Alignment/Counting lesson we also introduced how to do this on the command line using `scp`. The way `scp` works is it reads the source file and writes it to the destination. It performs a plain linear copy, locally, or over a network.
 
-When **transferring large files or a large number of files `rsync` is a better command** to use. `rsync` employs a special delta transfer algorithm and a few optimizations to make the operation a lot faster. It will check files sizes and modification timestamps of both file(s) to be copied (A) and the destination (B), and skip any further processing if they match. If the destination file B already exists, the delta transfer algorithm will make sure only differences between A and B are sent over.
+When **transferring large files or a large number of files `rsync` is a better command** to use. `rsync` employs a special delta transfer algorithm and a few optimizations to make the operation a lot faster. **It will check files sizes and modification timestamps** of both file(s) to be copied and the destination, and skip any further processing if they match. If the destination file(s) already exists, the delta transfer algorithm will **make sure only differences between the two are sent over.**
 
 There are many modifiers for the `rsync` command, but in the examples below we only introduce a select few that we commonly use during a file transfer.
 
@@ -152,11 +152,32 @@ This command would transfer all files matching the pattern *.c from the transfer
 rsync -avr --progress /path/to/transfer/directory /path/to/destination
 ```
 
-This command would recursively transfer all files from the transfer directory into the destination directory. The files are transferred in "archive" mode (`-a`), which ensures that symbolic links, devices, attributes, permissions, ownerships, etc. are preserved in the transfer.
+This command would recursively transfer all files from the transfer directory into the destination directory. The files are transferred in "archive" mode (`-a`), which ensures that symbolic links, devices, attributes, permissions, ownerships, etc. are preserved in the transfer. In both commands, we have additional modifiers for verbosity so we have an idea of how the transfer is progressing (`-v`, `--progress`)
 
 > **NOTE:** A trailing slash on the transfer directory changes the behavior to avoid creating an additional directory level at the destination.  You can think of a trailing `/ ` as meaning "copy the contents of this directory" as opposed to "copy the  directory  by  name".
 
 ### Working on `/n/scratch2` <a name="nscratch"></a>
+
+Typically, the `rsync` command is used to move files between a remote computer and a local computer. But it can also be used to  to move files on the same computer. For example, we could use it to move files across filesystems on O2.
+
+Most HPC environments have a "scratch space" available to use. This is **a temporary filesystem with larger amounts of storage space and resources, which is ideal for running analyses**.  On the O2 cluster, this is located at `/n/scratch2`. Each user is entitled to 10 TB of space in the `/n/scratch2` filesystem. You can create your own directories inside `/n/scratch2/` and put data in there. These files are not backed up and will be deleted if they are not accessed for 30 days.
+
+Scratch will not work very well with workflows that write many thousands of small files. It is designed for workflows with medium and large files (> 100 MB), making it ideal for many next-gen sequencing analysis, image analysis, and other bioinformatics workflows that use large files.
+
+When performing your analysis, you may want to take advantage of this space and will want to start by copying over your raw FASTQ files. Rather than using `cp`, the `rsync` command would be benefical since FASTQ files are large in size. As an example we will copy over our FASTQ files to `/n/scratch2`, but first we will need to create a directory to copy them to. You can name this directory with your user login.
+
+```bash
+$ mkdir /n/scratch2/rc_training01
+```
+
+Now we can copy over the entire directory of FASTQ files:
+
+```bash
+
+$ rsync -avr --progress ~/unix_lesson/rnaseq/raw_data /n/scratch2/rc_training01
+```
+
+Take a look at the directory on scratch and see that the files transferred successfully.
 
 
 ## General Bash commands
