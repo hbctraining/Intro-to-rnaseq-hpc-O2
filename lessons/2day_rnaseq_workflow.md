@@ -196,9 +196,9 @@ Scroll through the SAM file and see how the fields correspond to what we expecte
 
 ### Counting reads
 
-Once we have our reads aligned to the genome, the next step is to count how many reads have been mapped to each gene. The input files required for counting include the BAM file and an associated gene annotation file in GTF format. [htseq-count](http://htseq.readthedocs.io/en/release_0.9.1/count.html) and [featureCounts](http://bioinf.wehi.edu.au/featureCounts/) are 2 commonly used counting tools. Today, we will be using featureCounts to get the *gene* counts. We picked this tool because it is accurate, fast and is relatively easy to use. 
+Once we have our reads aligned to the genome, the next step is to count how many reads have been mapped to each gene. The input files required for counting include the BAM file and an associated gene annotation file in GTF format. [htseq-count](http://htseq.readthedocs.io/en/release_0.9.1/count.html) and [featureCounts](http://bioinf.wehi.edu.au/featureCounts/) are two commonly used counting tools. Today, we will be using featureCounts to get the *gene* counts. We picked this tool because it is accurate, fast and is relatively easy to use. 
 
-`featureCounts` works by **taking the alignment coordinates for each read and cross-referencing that to the coordinates for *features* described in the GTF**. Most commonly a feature is considered to be a gene, which is the union of all exons (which is also a feature type) that make up that gene. *Please note that this tool is best used for counting reads associated with **genes**, and not for splice isoforms or transcripts, we will be covering that later today.* 
+`featureCounts` works by **taking the alignment coordinates for each read and cross-referencing that to the coordinates for *features* described in the GTF**. Most commonly a feature is considered to be a gene, which is the union of all exons (which is also a feature type) that make up that gene. *Please note that this tool is best used for counting reads associated with **genes**, and not for splice isoforms or transcripts.* 
 
 `featureCounts` only includes and counts those reads that map to a single location (uniquely mapping) and follows the scheme in the figure below for assigning reads to a gene/exon. 
 
@@ -268,7 +268,7 @@ $ less results/counts/Mov10_featurecounts.txt
 ```
 The count matrix that we need to perform differential gene expression analysis needs to look something like this:
 
-<img src="../img/count_matrix.png" width=500>
+<img src="../img/count_matrix.png" width="500">
 
 Since the featureCounts output has additional columns with information about genomic coordinates, gene length etc., we can use the `cut` command to select only those columns that you are interested in. 
 	
