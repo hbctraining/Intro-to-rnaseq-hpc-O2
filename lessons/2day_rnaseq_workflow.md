@@ -57,7 +57,7 @@ In the automation script, we will eventually loop over all of our files and have
 ## Read Alignment
 The alignment process consists of choosing an appropriate reference genome to map our reads against, and performing the read alignment using one of several splice-aware alignment tools such as [STAR](https://github.com/alexdobin/STAR) or [HISAT2](https://ccb.jhu.edu/software/hisat2/index.shtml) (HISAT2 is a successor to both HISAT and TopHat2). The choice of aligner is a personal preference and also dependent on the computational resources that are available to you.
  
-For this workshop we will be using STAR (Spliced Transcripts Alignment to a Reference), an aligner designed to specifically address many of the challenges of RNAseq read mapping. STAR is shown to have **high accuracy** and outperforms other aligners by more than a **factor of 50 in mapping speed (but also requires quite a bit of memory**). 
+For this workshop we will be using STAR (Spliced Transcripts Alignment to a Reference), an aligner designed to specifically address many of the challenges of RNAseq read mapping.  
 
 ### STAR Alignment Strategy
 
@@ -68,7 +68,7 @@ STAR is shown to have **high accuracy** and outperforms other aligners by more t
 
 #### Seed searching
 
-For every read that STAR aligns, STAR will search for the longest sequence that exactly matches the reference genome:
+For every read that STAR aligns, STAR will search for the longest sequence that exactly matches the reference genome. **STAR uses an uncompressed suffix array (SA) to efficiently search for the longest matching portions of the read**. The suffix array is an index of the genome (analagous to an index in the back of a textbook), this allows for quick searching against even the largest reference genomes.
 
 ![STAR_step1](../img/alignment_STAR_step1.png)
 	
@@ -78,7 +78,7 @@ STAR will then search again for only the unmapped portion of the read to find th
 
 ![STAR_step2](../img/alignment_STAR_step2.png)
 
-This sequential searching of only the unmapped portions of reads underlies the efficiency of the STAR algorithm. STAR uses an uncompressed suffix array (SA) to efficiently search for the longest matching portions of the read, this allows for quick searching against even the largest reference genomes. Other slower aligners use algorithms that often search for the entire read sequence before splitting reads and performing iterative rounds of mapping. More details on the algorithm itself can be found in the [STAR publication](http://bioinformatics.oxfordjournals.org/content/early/2012/10/25/bioinformatics.bts635). 
+This sequential **searching of only the unmapped portions of reads underlies the efficiency of the STAR algorithm**. Other slower aligners use algorithms that often search for the entire read sequence before splitting reads and performing iterative rounds of mapping. More details on the algorithm itself can be found in the [STAR publication](http://bioinformatics.oxfordjournals.org/content/early/2012/10/25/bioinformatics.bts635).
 
 **If STAR does not find an exact matching sequence** for each part of the read due to mismatches or indels, the seed will be extended.
 
