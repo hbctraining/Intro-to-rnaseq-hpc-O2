@@ -181,7 +181,7 @@ Take a look at the directory on scratch and see that the files transferred succe
 
 ```bash
 ## DO NOT RUN
-$ rysnc -avr --progress rc_traning01@transfer.rc.hms.harvard.edu:/home/rc_traning01/unix_lesson/rnaseq/raw_data /path/on/local/machine
+$ rysnc -avr --progress rc_training01@transfer.rc.hms.harvard.edu:/home/rc_traning01/unix_lesson/rnaseq/raw_data /path/on/local/machine
 ```
 
 
@@ -205,7 +205,7 @@ $ rysnc -avr --progress rc_traning01@transfer.rc.hms.harvard.edu:/home/rc_tranin
 ```bash
 $ cd ~/unix_lesson
 
-$ cp /groups/hbctraining/ngs-data-analysis-longcourse/unix_lesson/bicycle.txt .
+$ cp /n/groups/hbctraining/ngs-data-analysis-longcourse/unix_lesson/bicycle.txt .
 ```
 ***
 
