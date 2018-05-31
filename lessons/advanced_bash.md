@@ -20,7 +20,7 @@ As you begin working more with the Shell, you will discover that there are mount
     * [Aliases](#alias) 
 * [Symbolic links](#symlinks)
 * [Transferring files with `rsync`](#rsync)
-* Working on `/n/scratch2/`
+    * [Working on `/n/scratch2/`] (#nscratch)
 
 ***
 
@@ -136,7 +136,27 @@ During this workshop we have mostly used Filezilla to transfer files to and from
 
 When **transferring large files or a large number of files `rsync` is a better command** to use. `rsync` employs a special delta transfer algorithm and a few optimizations to make the operation a lot faster. It will check files sizes and modification timestamps of both file(s) to be copied (A) and the destination (B), and skip any further processing if they match. If the destination file B already exists, the delta transfer algorithm will make sure only differences between A and B are sent over.
 
+There are many modifiers for the `rsync` command, but in the examples below we only introduce a select few that we commonly use during a file transfer.
 
+**Example 1:**
+
+```
+rsync -t --progress /path/to/transfer/files/*.c /path/to/destination
+```
+
+This command would transfer all files matching the pattern *.c from the transfer directory to the destination directory. If any of the files already exist at the destination then the rsync remote-update protocol is used to update the file by sending only the differences.
+
+**Example 2:**
+
+```
+rsync -avr --progress /path/to/transfer/directory /path/to/destination
+```
+
+This command would recursively transfer all files from the transfer directory into the destination directory. The files are transferred in "archive" mode (`-a`), which ensures that symbolic links, devices, attributes, permissions, ownerships, etc. are preserved in the transfer.
+
+> **NOTE:** A trailing slash on the transfer directory changes the behavior to avoid creating an additional directory level at the destination.  You can think of a trailing `/ ` as meaning "copy the contents of this directory" as opposed to "copy the  directory  by  name".
+
+### Working on `/n/scratch2` <a name="nscratch"></a>
 
 
 ## General Bash commands
