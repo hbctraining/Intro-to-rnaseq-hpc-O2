@@ -183,7 +183,8 @@ Take a look at the directory on scratch and see that the files transferred succe
 > 
 
 ```bash
-rysnc -avr --progress rc_traning01@transfer.rc.hms.harvard.edu:/home/rc_traning01/unix_lesson/rnaseq/raw_data /path/on/local/machine
+## DO NOT RUN
+$ rysnc -avr --progress rc_traning01@transfer.rc.hms.harvard.edu:/home/rc_traning01/unix_lesson/rnaseq/raw_data /path/on/local/machine
 ```
 
 
