@@ -58,8 +58,6 @@ These probabaility values are the results from the base calling algorithm and de
 |20	|1 in 100|	99%|
 |30	|1 in 1000|	99.9%|
 |40	|1 in 10,000|	99.99%|
-|50	|1 in 100,000|	99.999%|
-|60	|1 in 1,000,000|	99.9999%|
 
 Therefore, for the first nucleotide in the read (C), there is less than a 1 in 1000 chance that the base was called incorrectly. Whereas, for the the end of the read there is greater than 50% probabaility that the base is called incorrectly.
 
