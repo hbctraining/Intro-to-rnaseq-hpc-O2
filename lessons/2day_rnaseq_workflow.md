@@ -17,7 +17,7 @@ Approximate time: 90 minutes
 To get started with this lesson, we will start an interactive session and ask for 6 cores, by adding `-n 6` to the `srun` command:
 
 ```bash
-$ srun --pty -p short -t 0-12:00 -n 6 --mem 8G --reservation=hbc bash	
+$ srun --pty -p short -t 0-12:00 -n 6 --mem 8G --reservation=HBC /bin/bash	
 ```
 
 Change directories into the `rnaseq` directory:
@@ -166,6 +166,7 @@ $ STAR --runThreadN 6 \
 --outSAMunmapped Within \
 --outSAMattributes NH HI NM MD AS
 ```
+
 ***
 
 **Exercise**
@@ -175,6 +176,7 @@ $ STAR --runThreadN 6 \
 	1. How many reads are uniquely mapped?
 	2. How many reads map to more than 10 locations on the genome?
 	3. How many reads are unmapped due to read length?
+	
 ***
 
 ### Alignment Outputs (SAM/BAM)
