@@ -50,7 +50,6 @@ You should see the following lines:
 if [ -f ~/.bashrc ]; then
    source ~/.bashrc
 fi
-
 ```
 
 What this means is that if a `.bashrc` files exist, all configuration settings will be sourced upon logging in. Any settings you would like applied to all shell windows (login and interactive) can simply be added directly to the `.bashrc` file rather than in two separate files.
@@ -81,7 +80,6 @@ Since we have a modifier `-l` and there is a space required, the quotations are 
 Let's **setup our own alias**! Every time we want to start an interactive session we have type out this lengthy command. Wouldn't it be great if we could type in a short name instead? Open up the `.bashrc` file using `vim`:
 
 ```bash
-
 $ vim ~/.bashrc
 ```
 
@@ -173,7 +171,6 @@ $ mkdir /n/scratch2/rc_training01
 Now we can copy over the entire directory of FASTQ files:
 
 ```bash
-
 $ rsync -avr --progress ~/unix_lesson/rnaseq/raw_data /n/scratch2/rc_training01
 ```
 
