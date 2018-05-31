@@ -245,7 +245,7 @@ How would you run `rnaseq_analysis_on_allfiles.slurm`, i.e. the above script?
 
 ## Parallelizing the analysis for efficiency
 
-Parallelization will save you a lot of time with real (large) datasets. To parallelize our analysis, we will still need to write a second script that will call the original script we just wrote. We will still use a `for` loop, but we will be creating a regular shell script and we will be specifying the SLURM directives differently. 
+Parallelization will save you a lot of time with real (large) datasets. To parallelize our analysis, we will still need to write a second script that will call the script we just wrote that takes a fastq file as input (rnaseq_analysis_on_input_file.sh). We will still use a `for` loop, but we will be creating a regular shell script and we will be specifying the SLURM directives differently. 
 
 Use `vim` to start a new shell script called `rnaseq_analysis_on_allfiles-for_slurm.sh`: 
 
