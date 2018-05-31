@@ -180,9 +180,11 @@ $ rsync -avr --progress ~/unix_lesson/rnaseq/raw_data /n/scratch2/rc_training01
 Take a look at the directory on scratch and see that the files transferred successfully.
 
 > **NOTE:** If you are copying files from a remote resource to your local laptop (or vice versa), the syntax will change. You will need to add the host address before specifying the path. Below is an example of command you would **run in a Terminal on your local laptop**:
->
-> ```rysnc -avr --progress rc_traning01@transfer.rc.hms.harvard.edu:/home/rc_traning01/unix_lesson/rnaseq/raw_data /path/on/local/machine```
->
+> 
+
+```bash
+rysnc -avr --progress rc_traning01@transfer.rc.hms.harvard.edu:/home/rc_traning01/unix_lesson/rnaseq/raw_data /path/on/local/machine
+```
 
 
 ## General Bash commands
