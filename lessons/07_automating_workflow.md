@@ -18,7 +18,7 @@ This will ensure that you run every sample with the exact same parameters, and w
 Before we start with the script, let's check how many cores our interactive session has by using `squeue`. 
 
 ```bash
-$ squeue -u eCommonsID
+$ sacct
 ```
 
 We need to have an interactive session with 6 cores, if you already have one you are set. If you have a session with fewer cores then `exit` out of your current interactive session and start a new one with `-n 6`.
@@ -270,7 +270,7 @@ done
 
 What you should see on the output of your screen would be the jobIDs that are returned from the scheduler for each of the jobs that your script submitted.
 
-You can use `squeue -u eCommonsID` to check progress.
+You can use `sacct` to check progress.
 
 Don't forget about the `scancel` command, should something go wrong and you need to cancel your jobs.
 
