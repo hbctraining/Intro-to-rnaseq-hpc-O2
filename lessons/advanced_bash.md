@@ -86,7 +86,7 @@ $ vim ~/.bashrc
 Scroll down to the heading "`# User specific aliases and functions`" and on the next line you can set your alias:
 
 ```bash
-o2i='srun --pty -p short -t 0-12:00 --mem 8G --reservation=HBC /bin/bash'
+o2i='srun --pty -p short -t 0-12:00 --mem 8G /bin/bash'
 ```
 
 Save and quit. Now we can source the `.bash_profile` file and test it out. By typing `o2i` at the command prompt we will request an interactive session for 12 hours with 8G of memory. You can change the directives to those you use more often (i.e add more cores, increase memory).
