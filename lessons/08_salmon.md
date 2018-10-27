@@ -133,7 +133,7 @@ To run the quantification step on a single sample we have the command provided b
 
 ```bash
 $ salmon quant -i /n/groups/hbctraining/ngs-data-analysis-longcourse/rnaseq/salmon.ensembl38.idx \
- -l SR \
+ -l A \
  -r ~/unix_lesson/rnaseq/raw_data/Mov10_oe_1.subset.fq \
  -o Mov10_oe_1.subset.salmon \
  --seqBias \
