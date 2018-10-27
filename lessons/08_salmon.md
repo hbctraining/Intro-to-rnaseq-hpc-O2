@@ -201,7 +201,13 @@ Let's start by opening up a script in `vim`:
 
 Let's start our script with a **shebang line followed by SBATCH directives which describe the resources we are requesting from O2**. We will ask for 6 cores and take advantage of Salmon's multi-threading capabilities. Note that we also removed the `--reservation` from our SBATCH options.
 
-Next we can **create a for loop to iterate over all FASTQ samples**. Inside the loop we will create a variable that stores the prefix we will use for naming output files, then we run Salmon. Note, that we are **adding a couple of new parameters**. First, since we are **multithreading** with 6 cores we will use `-p 6`. Another new parameter we have added is called `--numBootstraps`. Salmon has the ability to optionally compute bootstrapped abundance estimates. **Bootstraps are required for estimation of technical variance**. We will discuss this in more detail when we talk about transcript-level differential exporession analysis.
+Next we will do the following:
+
+1. **Create a for loop to iterate over all FASTQ samples**. 
+2. Inside the loop we will create a variable that stores the prefix we will use for naming output files.
+3. Then we run Salmon. 
+
+> **NOTE:** We have **added a couple of new parameters**. First, since we are **multithreading** with 6 cores we will use `-p 6`. Another new parameter we have added is called `--numBootstraps`. Salmon has the ability to optionally compute bootstrapped abundance estimates. **Bootstraps are required for estimation of technical variance**. We will discuss this in more detail when we talk about transcript-level differential exporession analysis.
 
 The final script is shown below:
 
@@ -248,7 +254,6 @@ Save and close the script. This is now ready to run.
 **Exercise**
 
 We learned in automation that we can be more efficient by runnning our jobs in parallel. In this way, each sample is run as an independent job and not waiting for the previous sample to finish. **Create a new script to run Salmon in parallel**.
-
 
 ***
 
