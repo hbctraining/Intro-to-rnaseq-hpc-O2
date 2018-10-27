@@ -121,13 +121,13 @@ $ salmon index -t transcripts.fa -i transcripts_index --type quasi -k 31
 **Step 2: Quantification:**
 Get the transcript abundance estimates using the `quant` command and the parameters described below (more information on parameters can be found [here](http://salmon.readthedocs.io/en/latest/salmon.html#id5)):
 
-* `-i`: specify the location of the index directory; for us it is `/n/groups/hbctraining/intro_rnaseq_hpc/salmon.ensembl37.idx/`
-* `-l SR`: library type - specify stranded single-end reads (more info available [here](http://salmon.readthedocs.io/en/latest/salmon.html#what-s-this-libtype))
+* `-i`: specify the location of the index directory; for us it is `n/groups/hbctraining/ngs-data-analysis-longcourse/rnaseq/salmon.ensembl38.idx`
+* `-l A`: auto-detect library type. *You can also specify stranded single-end reads, more info available [here](http://salmon.readthedocs.io/en/latest/salmon.html#what-s-this-libtype)*
 * `-r`: list of files for sample
 * `--useVBOpt`: use variational Bayesian EM algorithm rather than the ‘standard EM’ to optimize abundance estimates (more accurate) 
 * `-o`: output quantification file name
 * `--seqBias` will enable Salmon to learn and correct for sequence-specific biases in the input data
-* `--writeMappings=salmon.out`: creates a SAM-like file of all of the mappings. *We won't add this parameter as it creates large files that will take up too much space in your home directory.* 
+* `--writeMappings=salmon.out`: creates a SAM-like file of all of the mappings. **We won't add this parameter, as it creates large files that will take up too much space in your home directory.** 
    
 To run the quantification step on a single sample we have the command provided below. Let's try running it on our subset sample for `Mov10_oe_1.subset.fq`:
 
