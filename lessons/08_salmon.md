@@ -124,9 +124,9 @@ Get the transcript abundance estimates using the `quant` command and the paramet
 * `-i`: specify the location of the index directory; for us it is `n/groups/hbctraining/ngs-data-analysis-longcourse/rnaseq/salmon.ensembl38.idx`
 * `-l A`: auto-detect library type. *You can also specify stranded single-end reads, more info available [here](http://salmon.readthedocs.io/en/latest/salmon.html#what-s-this-libtype)*
 * `-r`: list of files for sample
-* `--useVBOpt`: use variational Bayesian EM algorithm rather than the ‘standard EM’ to optimize abundance estimates (more accurate) 
 * `-o`: output quantification file name
 * `--seqBias` will enable Salmon to learn and correct for sequence-specific biases in the input data
+* `--useVBOpt`: use variational Bayesian EM algorithm rather than the ‘standard EM’ to optimize abundance estimates (more accurate) 
 * `--writeMappings=salmon.out`: creates a SAM-like file of all of the mappings. **We won't add this parameter, as it creates large files that will take up too much space in your home directory.** 
    
 To run the quantification step on a single sample we have the command provided below. Let's try running it on our subset sample for `Mov10_oe_1.subset.fq`:
@@ -164,13 +164,14 @@ This is the **quantification file** in which each row corresponds to a transcrip
 
 ```bash
 Name    Length  EffectiveLength TPM     NumReads
-ENST00000632684.1       12      3.00168 0       0
-ENST00000434970.2       9       2.81792 0       0
-ENST00000448914.1       13      3.04008 0       0
-ENST00000415118.1       8       2.72193 0       0
-ENST00000631435.1       12      3.00168 0       0
-ENST00000390567.1       20      3.18453 0       0
-ENST00000439842.1       11      2.95387 0       0
+ENST00000456328 1657    1407.000        0.000000        0.000
+ENST00000450305 632     382.000 0.000000        0.000
+ENST00000488147 1351    1101.000        0.000000        0.000
+ENST00000619216 68      3.000   0.000000        0.000
+ENST00000473358 712     462.000 0.000000        0.000
+ENST00000469289 535     285.000 0.000000        0.000
+ENST00000607096 138     5.000   0.000000        0.000
+ENST00000417324 1187    937.000 0.000000        0.000
 
 ....
 
