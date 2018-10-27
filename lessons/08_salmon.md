@@ -215,7 +215,7 @@ The final script is shown below:
 #SBATCH -o %j.out 
 #SBATCH -e %j.err
 
-cd ~/unix_lesson/rnaseq/results/salmon
+cd ~/unix_lesson/rnaseq/salmon
 
 for fq in /n/groups/hbctraining/ngs-data-analysis-longcourse/rnaseq/full_dataset/*.fastq 
 
