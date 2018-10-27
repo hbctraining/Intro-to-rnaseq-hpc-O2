@@ -255,7 +255,7 @@ Save and close the script. This is now ready to run.
 
 **Exercise**
 
-We learned in the [Automation lessn](https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/lessons/07_automating_workflow.html) that we can be more efficient by runnning our jobs in parallel. In this way, each sample is run as an independent job and not waiting for the previous sample to finish. **Create a new script to run Salmon in parallel**.
+We learned in the [Automation lesson](https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/lessons/07_automating_workflow.html) that we can be more efficient by running our jobs in parallel. In this way, each sample is run as an independent job and not waiting for the previous sample to finish. **Create a new script to run Salmon in parallel**.
 
 ***
 
