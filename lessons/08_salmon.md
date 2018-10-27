@@ -250,7 +250,9 @@ done
 Save and close the script. This is now ready to run.
 
 	$ sbatch salmon_all_samples.sbatch
-	
+
+Once you have run Salmon on all of your samples, you will need to decide whether you would like to perform gene-level or isoform-level analysis. The **output directory from Salmon for each sample will be required as input for any of these downstream tools**. In our standard workflow we ended up with a count matrix where all expression data was nicely summarized into a single file, but with this alternative approach the downstream tools for differential expression will take care of compiling it for you.
+
 ***
 
 **Exercise**
