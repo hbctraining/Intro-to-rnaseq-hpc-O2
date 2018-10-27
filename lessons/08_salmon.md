@@ -18,7 +18,7 @@ Approximate time: 1.25 hours
 
 In the standard RNA-seq pipeline that we have presented so far, we have taken our reads post-QC and aligned them to the genome using our transcriptome annotation (GTF) as guidance. The goal is to identify the genomic location where these reads originated from. **Another strategy for quantification which has more recently been introduced involves transcriptome mapping**. Tools that fall in this category include [Kallisto](https://pachterlab.github.io/kallisto/about), [Sailfish](http://www.nature.com/nbt/journal/v32/n5/full/nbt.2862.html) and [Salmon](https://combine-lab.github.io/salmon/); each working slightly different from one another. (For this workshop we will explore Salmon in more detail.) Common to all of these tools is that **base-to-base alignment of the reads is avoided**, which is a time-consuming step, and these tools **provide quantification estimates much faster than do standard approaches** (typically more than 20 times faster) with **improvements in accuracy** at **the transcript level**. These transcript expression estimates, often referred to as 'pseudocounts', can be converted for use with DGE tools like DESeq2 or the estimates can be used directly for isoform-level differential expression using a tool like [Sleuth](http://www.biorxiv.org/content/biorxiv/early/2016/06/10/058164.full.pdf). 
 
-<img src="../img/alignmentfree_workflow_aug2017.png" width="500">
+<img src="../img/salmon_workflow_updated.png" width="400">
 
 The improvement in accuracy for lightweight alignment tools in comparison with the standard alignment/counting methods primarily relate to the ability of the lightweight alignment tools to quantify multimapping reads. This has been shown by Robert et. al by comparing the accuracy of 12 different alignment/quantification methods using simulated data to estimate the gene expression of 1000 perfect RNA-Seq read pairs from each of of the genes [[1](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-015-0734-x)]. As shown in the figures below taken from the paper, the **standard alignment and counting methods such as STAR/htseq or Tophat2/htseq result in underestimates of many genes - particularly those genes comprised of multimapping reads** [[1](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-015-0734-x)]. 
 
@@ -126,30 +126,31 @@ Get the transcript abundance estimates using the `quant` command and the paramet
 * `-r`: list of files for sample
 * `--useVBOpt`: use variational Bayesian EM algorithm rather than the ‘standard EM’ to optimize abundance estimates (more accurate) 
 * `-o`: output quantification file name
-* `--writeMappings=salmon.out`: instead of printing to screen write to a file
+* `--seqBias` will enable Salmon to learn and correct for sequence-specific biases in the input data
+* `--writeMappings=salmon.out`: creates a SAM-like file of all of the mappings. *We won't add this parameter as it creates large files that will take up too much space in your home directory.* 
    
 To run the quantification step on a single sample we have the command provided below. Let's try running it on our subset sample for `Mov10_oe_1.subset.fq`:
 
 ```bash
-$ salmon quant -i /n/groups/hbctraining/intro_rnaseq_hpc/salmon.ensembl37.idx/ \
+$ salmon quant -i /n/groups/hbctraining/ngs-data-analysis-longcourse/rnaseq/salmon.ensembl38.idx \
  -l SR \
  -r ~/unix_lesson/rnaseq/raw_data/Mov10_oe_1.subset.fq \
  -o Mov10_oe_1.subset.salmon \
- --writeMappings=salmon.out \
- --useVBOpt 
+ --seqBias \
+ --useVBOpt
 ```
 
->**NOTE:** Paired-end reads require both sets of reads to be given in addition to a [paired-end specific library type](http://salmon.readthedocs.io/en/latest/salmon.html#what-s-this-libtype):
+>**NOTE 1:** Paired-end reads require both sets of reads to be given in addition to a [paired-end specific library type](http://salmon.readthedocs.io/en/latest/salmon.html#what-s-this-libtype):
 `salmon quant -i transcripts_index -l <LIBTYPE> -1 reads1.fq -2 reads2.fq -o transcripts_quant`
 > 
-> To have Salmon correct for RNA-Seq biases you will need to specify the appropriate parameters when you run it. Before using these parameters it is advisable to assess your data using tools like [Qualimap](http://qualimap.bioinfo.cipf.es/) to look specifically for the presence of these biases in your data and decide on which parameters would be appropriate. 
+
+> **NOTE 2:** To have Salmon correct for other RNA-Seq biases you will need to specify the appropriate parameters when you run it. Before using these parameters it is advisable to assess your data using tools like [Qualimap](http://qualimap.bioinfo.cipf.es/) to look specifically for the presence of these biases in your data and decide on which parameters would be appropriate. 
 > 
 > To correct for the various sample-specific biases you could add the following parameters to the Salmon command:
 >
-> * `--seqBias` will enable it to learn and correct for sequence-specific biases in the input data.
 > * `--gcBias` to learn and correct for fragment-level GC biases in the input data
 > * `--posBias` will enable modeling of a position-specific fragment start distribution
->
+
 
 ## Salmon output
 
@@ -176,45 +177,84 @@ ENST00000439842.1       11      2.95387 0       0
 ```
 
 *  The first two columns are self-explanatory, the **name** of the transcript and the **length of the transcript** in base pairs (bp). 
-*  The **effective length** represents the the various factors that effect the length of transcript due to technical limitations of the sequencing platform.
+*  The **effective length** represents the the various factors that effect the length of transcript (i.e degraation, technical limitations of the sequencing platform)
 * Salmon outputs ‘pseudocounts’ which predict the relative abundance of different isoforms in the form of three possible metrics (KPKM, RPKM, and TPM). **TPM (transcripts per million)** is a commonly used normalization method as described in [[1]](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2820677/) and is computed based on the effective length of the transcript.
 * Estimated **number of reads** (an estimate of the number of reads drawn from this transcript given the transcript’s relative abundance and length)
 
  
 ## Running Salmon on multiple samples 
 
-We just ran Salmon on a single sample (and keep in mind a subset of chr1 from the original data). To obtain meaningful results we need to run this on **all samples for the full dataset**. To do so, we will create a shell script which will submit each Salmon run as a job to O2.
+We just ran Salmon on a single sample (and keep in mind only on a subset of chr1 from the original data). To obtain meaningful results we need to run this on **all samples for the full dataset**. To do so, we will need to create a job submission script.
 
-Open up a script in `vim`:
-
-	$ vim salmon_all_samples.sh
-
-Now we can create a for loop to iterate over all FASTQ samples, and submit a job to **run Salmon on each sample in parallel**. We begin by listing all BSUB directives to specify the resources we are requesting including memory, cores and wall time.
-
-Next comes the Salmon command. Note, that we are adding a parameter called `--numBootstraps` to the Salmon command. Salmon has the ability to optionally compute bootstrapped abundance estimates. **Bootstraps are required for estimation of technical variance**. Bootstrapping essentially takes a different sub-sample of reads for each bootstapping run for estimating the transcript abundances. The technical variance is the variation in transcript abundance estimates calculated for each of the different sub-samplings (or bootstraps). We will discuss this in more detail in the next lesson.
-
-> *NOTE:* We are iterating over FASTQ files in the full dataset directory, located at `/n/groups/hbctraining/intro_rnaseq_hpc/full_dataset/`
+> *NOTE:* We are iterating over FASTQ files in the **full dataset directory**, located at `/n/groups/hbctraining/ngs-data-analysis-longcourse/rnaseq/full_dataset`
 
 
-```bash
-#!/bin/bash/
+### Create a job submission script to run Salmon in serial
 
-for fq in /n/groups/hbctraining/intro_rnaseq_hpc/full_dataset/*.fastq
-do 
-   base=`basename $fq .fastq`
-   sbatch -p short -n 6 -t 0-1:30 --mem 8G --reservation=HSPH --job-name $base.mov10_salmon -o %j.$base.out -e %j.$base.err \
-   --wrap="salmon quant -i /n/groups/hbctraining/intro_rnaseq_hpc/salmon.ensembl37.idx/ \
-   -p 6 -l SR -r $fq --useVBOpt --numBootstraps 30 -o $base.salmon"
+Since Salmon is only able to take a single file as input, one way in which we can do this is to use a for loop to run Salmon on all samples in serial. What this means is that Salmon will process the dataset one sample at a time.
+
+Let's start by opening up a script in `vim`:
+
+	$ vim salmon_all_samples.sbatch
+
+
+Let's start our script with a **shebang line followed by SBATCH directives which describe the resources we are requesting from O2**. We will ask for 6 cores and take advantage of Salmon's multi-threading capabilities. Note that we also removed the `--reservation` from our SBATCH options.
+
+Next we can **create a for loop to iterate over all FASTQ samples**. Inside the loop we will create a variable that stores the prefix we will use for naming output files, then we run Salmon. Note, that we are **adding a couple of new parameters**. First, since we are **multithreading** with 6 cores we will use `-p 6`. Another new parameter we have added is called `--numBootstraps`. Salmon has the ability to optionally compute bootstrapped abundance estimates. **Bootstraps are required for estimation of technical variance**. We will discuss this in more detail when we talk about transcript-level differential exporession analysis.
+
+The final script is shown below:
+
+```
+#!/bin/bash
+
+#SBATCH -p short 
+#SBATCH -c 6 
+#SBATCH -t 0-12:00 
+#SBATCH --mem 8G 
+#SBATCH --job-name salmon_in_serial 
+#SBATCH -o %j.out 
+#SBATCH -e %j.err
+
+cd ~/unix_lesson/rnaseq/results/salmon
+
+for fq in /n/groups/hbctraining/ngs-data-analysis-longcourse/rnaseq/full_dataset/*.fastq 
+
+do
+
+# create a prefix
+base=`basename $fq .fastq`
+
+# run salmon
+salmon quant -i /n/groups/hbctraining/ngs-data-analysis-longcourse/rnaseq/salmon.ensembl38.idx \
+ -l A \
+ -r $fq \
+ -p 6 \
+ -o $base.salmon \
+ --seqBias \
+ --useVBOpt \
+ --numBootstraps 30
+
 done
+
 ```
 
-Save and close the script. This is now ready to run. **We are not going to run this script in class**, since it might take a while.
+Save and close the script. This is now ready to run.
 
-> *NOTE:* **Window users** will want to add the `--auxDir` parameter to the Salmon command and provide an alternate name for the directory. By default it will be named `aux` which interferes with the decompressing process when bringing files over locally to run `tximport/DESeq2` in R.  
+	$ sbatch salmon_all_samples.sbatch
+	
+***
+
+**Exercise**
+
+We learned in automation that we can be more efficient by runnning our jobs in parallel. In this way, each sample is run as an independent job and not waiting for the previous sample to finish. **Create a new script to run Salmon in parallel**.
+
+
+***
+
 
 ## Next steps:  Performing DE analysis on Pseudocounts
 
-The pseudocounts generated by Salmon are represented as normalized TPM (transcripts per million) counts and map to transcripts or genes, depending on the input in the index step; in our case it was transcripts. These **need to be converted into non-normalized count estimates for performing DE analysis using existing count-based tools**. We will not cover this in the workshop but have [additional material](DE_analysis.md) to walk you through it if you are interested. 
+The pseudocounts generated by Salmon are represented as normalized TPM (transcripts per million) counts and map to transcripts or genes, depending on the input in the index step; in our case it was transcripts. These **need to be converted into non-normalized count estimates at the gene-level for performing DE analysis using existing count-based tools**. We will not cover this in the workshop but have [additional material](DE_analysis.md) to walk you through it if you are interested. 
 
 
 ***
