@@ -29,11 +29,9 @@ To make proteins, the DNA is transcribed into messenger RNA, or mRNA, which is t
 
  <img src="../img/Gene_products.png" width="400">
 
-To be translated into proteins, mRNA must undergo processing, as detailed below:
+To be translated into proteins, mRNA must undergo processing. In the figure below, the top strand in the image represents a gene in the DNA, comprised of the untranslated regions (UTRs) and the open read frame. Genes are transcribed into pre-mRNA, which still contains the intronic sequences.  After post-transciptional processing, the introns are spliced out and a polyA tail and 5' cap are added to yield mature mRNA transcripts, which can be translated into proteins.
 
  <img src="../img/Gene_structure.png" width="600">
- 
-In this figure, the top strand in the image represents a gene in the DNA, comprised of the untranslated regions (UTRs), highlighted in blue, and the open read frame, highlighted in red. Genes are transcribed into pre-mRNA, which still contains the intronic sequences.  Transcription represents the blue portion of the image. After post-transciptional processing, the introns are spliced out and a polyA tail and 5' cap are added to yield mature mRNA transcripts. The mature mRNA transcripts can be translated into protein, shown in the red portion of the image.
 
 **While mRNA transcripts have a polyA tail, many of the non-coding RNA transcripts do not as the post-transcriptional processing is different for these transcripts.**
 
