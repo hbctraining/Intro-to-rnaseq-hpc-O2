@@ -64,7 +64,7 @@ The cDNA libraries can be generated in a way to retain information about which s
 There are 3 types of cDNA libraries available:
 
 - Forward (secondstrand) – reads resemble the gene sequence or the secondstrand cDNA sequence
-- Reverse (firststrand)– reads resemble the complementary gene sequence or firststrand cDNA sequence (TruSeq)
+- Reverse (firststrand) – reads resemble the complementary gene sequence or firststrand cDNA sequence (TruSeq)
 - Unstranded 
 
 > **NOTE:** This workflow is specific to Illumina sequencing, which is currently the most utilized sequencing method. But there are other long-read methods worth noting, such as:
@@ -76,8 +76,6 @@ There are 3 types of cDNA libraries available:
 > Advantages and disadvantages of these technologies can be explored in the table below:
 >
 > <img src="../img/long_read_tech.png" width="700">
-
-
 
 ## Illumina Sequencing
 
@@ -96,7 +94,6 @@ There are a variety of Illumina platforms to choose from to sequence the cDNA li
 <img src="../img/illumina_platforms.png" width="800">
 
  *Image credit: Adapted from [Illumina](www.illumina.com)*
-
 
 Differences in platform can alter the length of reads generated as well as the total number of reads sequenced per run and the amount of time required to sequence the libraries. The different platforms each use a different flow cell, which is a glass surface coated with an arrangement of paired oligos that are complementary to the adapters added to your template molecules. The flow cell is where the sequencing reactions take place.
 
