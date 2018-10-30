@@ -104,7 +104,9 @@ Differences in platform can alter the length of reads generated as well as the t
 
 Let's explore how Illumina sequencing is performed:
 
-[<img src="../img/illumina_sequencing.png" width="400">](https://www.dropbox.com/s/f4t94tcw06f9stg/Illumina%20Sequencing%20by%20Synthesis-14840.mp4?dl=0)
+[<img src="../img/illumina_sequencing.png" width="400">](https://www.youtube.com/watch?v=fCd6B5HRaZ8&t=3s)
+
+(https://www.dropbox.com/s/f4t94tcw06f9stg/Illumina%20Sequencing%20by%20Synthesis-14840.mp4?dl=0)
 
 
 - Number of clusters ~= Number of reads
