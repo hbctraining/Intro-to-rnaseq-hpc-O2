@@ -64,7 +64,7 @@ The cDNA libraries can be generated in a way to retain information about which s
 There are 3 types of cDNA libraries available:
 
 - Forward (secondstrand) – reads resemble the gene sequence or the secondstrand cDNA sequence
-- Reverse (firststrand) – reads resemble the complementary gene sequence or firststrand cDNA sequence (TruSeq)
+- Reverse (firststrand) – reads resemble the complement of the gene sequence or firststrand cDNA sequence (TruSeq)
 - Unstranded 
 
 > **NOTE:** This workflow is specific to Illumina sequencing, which is currently the most utilized sequencing method. But there are other long-read methods worth noting, such as:
