@@ -93,10 +93,11 @@ Following the header is the **alignment section**. Each line that follows corres
 
 ![SAM1](../img/sam_bam.png)
 
-An example read mapping is displayed above. *Note that the example above spans two lines, but in the file it is a single line.* Let's go through the fields one at a time. First, you have the read name (`QNAME`), followed by a `FLAG` 
+An example read mapping is displayed above. *Note that the example above spans two lines, but in the file it is a single line.* Let's go through the fields one at a time. 
 
+We are going to go through this out of order. Let's start with `QNAME` which is the read name. `RNAME` is the reference sequence name, which is 'chr1' in this example. `POS` refers to the 1-based leftmost position of the alignment. `MAPQ` is giving us the alignment quality, the scale of which will depend on the aligner being used. 
 
-The `FLAG` value that is displayed can be translated into information about the mapping. 
+Next, we the `FLAG`. The `FLAG` value represents various things about the alignment. that is displayed can be translated into information about the mapping. 
 
 | Flag | Description |
 | ------:|:----------------------:|
@@ -113,40 +114,12 @@ The `FLAG` value that is displayed can be translated into information about the 
 | 1024| read is PCR or optical duplicate |
 
 * For a given alignment, each of these flags are either **on or off** indicating the condition is **true or false**. 
-* The `FLAG` is a combination of all of the individual flags (from the table above) that are true for the alignment 
+* The `FLAG` is a combination (additive) of all of the individual flags (from the table above) that are true for the alignment 
 * The beauty of the flag values is that any combination of flags can only result in one sum.
 
-In our example we have a number that exist in the table, making it relatively easy to translate. But suppose our read alignment has a flag of 163 -- what does this translate to? It is the sum of 4 different flags:
+In our example we have a number that exist in the table, making it relatively easy to translate. But suppose our read alignment has a flag of 163; this means it is some combination of the list above and you can find out what this mean using various online tools like [this one from Picard](https://broadinstitute.github.io/picard/explain-flags.html)**
 
-`163 = 1 + 2 + 32 + 128`
-
-Which tells us that:  
-
-1. the read is mapped
-2. the read is mapped as part of a pair
-3. this is the mate reverse strand
-4. this read is the second of the pair
-
-**There are tools that help you translate the bitwise flag, for example [this one from Picard](https://broadinstitute.github.io/picard/explain-flags.html)**
-
-Moving along the fields of the SAM file, we then have `RNAME` which is the reference sequence name. The example read is from chromosome 1 which explains why we see 'chr1'. `POS` refers to the 1-based leftmost position of the alignment. `MAPQ` is giving us the alignment quality, the scale of which will depend on the aligner being used. 
-
-
-`CIGAR` is a sequence of letters and numbers that represent the *edits or operations* required to match the read to the reference. The letters are operations that are used to indicate which bases align to the reference (i.e. match, mismatch, deletion, insertion), and the numbers indicate the associated base lengths for each 'operation'.
-
-| Operation | Description |
-| ------:|:----------------------:|
-| M | sequence match or mismatch |
-| I | insertion to the reference |
-| D | deletion from reference |
-| N | skipped region from the reference|
-
-
-Suppose our read has a CIGAR string of `50M3I80M2D` which translates to:
-* 50 matches or mismatches
-* 3 bp insertion
-* 80 matches/mismatches
-* 2 bp deletion
+`CIGAR` is a sequence of letters and numbers that represent the *edits or operations* required to match the read to the reference. The letters are operations that are used to indicate which bases align to the reference (i.e. match, mismatch, deletion, insertion), and the numbers indicate the associated base lengths for each 'operation'. This is used by some downstream tools to quickly assess the alignment.
 
 Now to the remaning fields in our SAM file:
 
@@ -176,50 +149,42 @@ $ samtools view -h Mov10_oe_1_Aligned.sortedByCoord.out.bam | less
 
 ``` 
 
-### Filtering the SAM file
-
-Now we know that we have all of this information for each of the reads -- wouldn't it be useful to summarize and filter based on selected criteria? Suppose we wanted to set a **threshold on mapping quality**. For example, we want to know how many reads aligned with a quality score higher than 30. To do this, we can combine the `view` command with additional flags `q 30` and `-c` (to count):
-
-```
-$ samtools view -q 30 -c Mov10_oe_1_Aligned.sortedByCoord.out.bam
-
-```
-*How many of reads have a mapping quality of 30 or higher?*
-
-We can also **apply filters to select reads based on where they fall within the `FLAG` categories**. Remember that the bitwise flags are like boolean values. If the flag exists, the statement is true. Similar to when filtering by quality we need to use the `samtools view` command, however this time use the `-F` or `-f` flags.
-
-* `-f` - to find the reads that agree with the flag statement 
-* `-F`  - to find the reads that do not agree with the flag statement
-
-```
-## This will tell us how many reads are unmapped
-$ samtools view -f 4 -c Mov10_oe_1_Aligned.sortedByCoord.out.bam
-
-## This should give us the remaining reads that do not have this flag set (i.e reads that are mapped)
-$ samtools view -F 4 -c Mov10_oe_1_Aligned.sortedByCoord.out.bam
-```
+> ### Filtering the SAM file
+> 
+> Now we know that we have all of this information for each of the reads -- wouldn't it be useful to summarize and filter based on selected criteria? Suppose we wanted to set a **threshold on mapping quality**. For example, we want to know how many reads aligned with a quality score higher than 30. To do this, we can combine the `view` command with additional flags `q 30` and `-c` (to count):
+> 
+> ```
+> $ samtools view -q 30 -c Mov10_oe_1_Aligned.sortedByCoord.out.bam
+> 
+> ```
+> *How many of reads have a mapping quality of 30 or higher?*
+> 
+> We can also **apply filters to select reads based on where they fall within the `FLAG` categories**. Remember that the bitwise flags are like boolean values. If the flag exists, the statement is true. Similar to when filtering by quality we need to use the `samtools view` command, however this time use the `-F` or `-f` flags.
+> 
+> * `-f` - to find the reads that agree with the flag statement 
+> * `-F`  - to find the reads that do not agree with the flag statement
+> 
+> ```
+> ## This will tell us how many reads are unmapped
+> $ samtools view -f 4 -c Mov10_oe_1_Aligned.sortedByCoord.out.bam
+> 
+> ## This should give us the remaining reads that do not have this flag set (i.e reads that are mapped)
+> $ samtools view -F 4 -c Mov10_oe_1_Aligned.sortedByCoord.out.bam
+> ```
 
 ### Indexing the BAM file
 
-To perform some functions (i.e. subsetting, visualization) on the BAM file, an index is required. Think of an index located at the back of a textbook. When you are interested in a particular subject area you look for the keyword in the index and identify the pages that contain the relevant information. Similaril indexing the BAM file aims to achieve fast retrieval of alignments overlapping a specified region without going through the whole alignment file. In order to index a BAM file, it must first be sorted by the reference ID and then the leftmost coordinate, which can also be done with `samtools`. However, in our case we had included a parameter in our STAR alignment run so we know our BAM files are already sorted.
+To perform some functions (i.e. subsetting, visualization) on the BAM file, an index is required, but this index is different from the genomic index we worked with in the last lesson. In order to index a BAM file, it must first be sorted in one way or another. `samtools` can perform this sorting, however in our case STAR performed a coordinate sort for us because of a parameter we had specified.
 
 To index the BAM file we use the `index` command:
 
-    $ samtools index Mov10_oe_1_Aligned.sortedByCoord.out.bam
+```bash
+$ samtools index Mov10_oe_1_Aligned.sortedByCoord.out.bam
+```
 
 This will create an index in the same directory as the BAM file, which will be identical to the input file in name but with an added extension of `.bai`.
 
-
 ****
-
-**Exercise:**
-
-The STAR log file for `Mov10_oe_1` indicated that there were a certain number of reads mapping to multiple locations. When this happens, one of these alignments is considered
-primary and all the other alignments have the secondary alignment flag set in the SAM records. **Use `samtools` and your knowledge of [bitwise flags](https://github.com/hbc/NGS_Data_Analysis_Course/blob/master/sessionII/lessons/03_alignment_quality.md#bitwise-flags-explained) to find count how many secondary reads there are for `Mov10_oe_1`.**
-
-
-***
-
 
 ## Visualization
 
@@ -227,7 +192,7 @@ Another method for assessing the quality of your alignment is to visualize the a
 
 ### Transfer files
 
-In order to visualize our alignments we will first need to move over the relevant files. We previously used FileZilla to transfer files from O2 to your laptop. However, there is another way to do so using the command line interface. **This option is only available for Mac and Linux users! PC users can use Filezilla.**  Similar to the `cp` command to copy there is a command that allows you to securely copy files between computers. **The command is called `scp` and allows files to be copied to, from, or between different hosts.** It uses ssh for data transfer and provides the same authentication and same level of security as ssh. 
+In order to visualize our alignments we will first need to move over the relevant files. We previously used FileZilla to transfer files from O2 to your laptop. However, there is another way to do so using the command line interface. Similar to the `cp` command to copy there is a command that allows you to securely copy files between computers. **The command is called `scp` and allows files to be copied to, from, or between different remote computers.** 
 
 First, identify the location of the _origin file_ you intend to copy, followed by the _destination_ of that file. Since the origin file is located on O2, this requires you to provide remote host and login information.
 
@@ -238,15 +203,15 @@ The following 2 files need to be moved from O2 to your local machine,
 `Mov10_oe_1_Aligned.sortedByCoord.out.bam.bai` 
 
 ```
-$ scp user_name@o2.hms.harvard.edu:/home/user_name/unix_lesson/rnaseq/results/Mov10_oe_1_Aligned.sortedByCoord.out.bam* /path/to/directory_on_laptop
+$ scp user_name@o2.hms.harvard.edu:/home/$USER/unix_lesson/rnaseq/results/Mov10_oe_1_Aligned.sortedByCoord.out.bam* /path/to/directory_on_laptop
 ```
-
 
 ### Visualize
 
 * Start [IGV](https://www.broadinstitute.org/software/igv/download) _You should have this previously installed on your laptop_
 * Load the Human genome (hg19) into IGV using the dropdown menu at the top left of your screen. _Note: there is also an option to "Load Genomes from File..." under the "Genomes" pull-down menu - this is useful when working with non-model organisms_
 * Load the .bam file using the **"Load from File..."** option under the **"File"** pull-down menu. *IGV requires the .bai file to be in the same location as the .bam file that is loaded into IGV, but there is no direct use for that file.*
+* Type MOV10 into the search bar.
 
 ![IGV screenshot](../img/IGV_mov10.png)
 
@@ -254,7 +219,7 @@ $ scp user_name@o2.hms.harvard.edu:/home/user_name/unix_lesson/rnaseq/results/Mo
 
 **Exercise**
 
-Take a look at a few other genes by typing into the search bar. For example, PPM1J and PTPN22. How do these genes look?
+Take a look at a few genes by typing into the search bar. Anything interesting about PPM1J and PTPN22?
 
 ***
 
