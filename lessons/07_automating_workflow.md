@@ -115,7 +115,7 @@ We'll create output directories, but with the `-p` option. This will make sure t
 # The -p option means mkdir will create the whole path if it 
 # does not exist and refrain from complaining if it does exist
 
-mkdir -p ~/unix_lesson/rnaseq/results/fastqc/
+mkdir -p ~/unix_lesson/rnaseq/results/fastqc
 mkdir -p ~/unix_lesson/rnaseq/results/STAR
 mkdir -p ~/unix_lesson/rnaseq/results/counts
 ```
@@ -125,7 +125,7 @@ Now that we have already created our output directories, we can now specify vari
 ```
 # set up output filenames and locations
 
-fastqc_out=~/unix_lesson/rnaseq/results/fastqc/
+fastqc_out=~/unix_lesson/rnaseq/results/fastqc
 align_out=~/unix_lesson/rnaseq/results/STAR/${base}_
 counts_input_bam=~/unix_lesson/rnaseq/results/STAR/${base}_Aligned.sortedByCoord.out.bam
 counts=~/unix_lesson/rnaseq/results/counts/${base}_featurecounts.txt
