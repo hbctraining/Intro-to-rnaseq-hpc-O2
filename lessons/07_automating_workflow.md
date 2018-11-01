@@ -219,7 +219,7 @@ Below is what this second script (`rnaseq_analysis_on_allfiles.slurm`) would loo
 
 #SBATCH -p medium 		# partition name
 #SBATCH -t 0-2:00 		# hours:minutes runlimit after which job will be killed
-#SBATCH -n 6 		# number of cores requested -- this needs to be greater than or equal to the number of cores you plan to use to run your job
+#SBATCH -c 6 		# number of cores requested -- this needs to be greater than or equal to the number of cores you plan to use to run your job
 #SBATCH --job-name STAR_mov10 		# Job name
 #SBATCH -o %j.out			# File to which standard out will be written
 #SBATCH -e %j.err 		# File to which standard err will be written
@@ -261,7 +261,7 @@ This script loops through the same files as in the previous (demo) script, but t
 for fq in ~/unix_lesson/rnaseq/raw_data/*.fq
 do
 
-sbatch -p short -t 0-2:00 -n 6 --job-name rnaseq-workflow --wrap="sh ~/unix_lesson/rnaseq/scripts/rnaseq_analysis_on_input_file.sh $fq"
+sbatch -p short -t 0-2:00 -c 6 --job-name rnaseq-workflow --wrap="sh ~/unix_lesson/rnaseq/scripts/rnaseq_analysis_on_input_file.sh $fq"
 sleep 1	# wait 1 second between each job submission
   
 done
