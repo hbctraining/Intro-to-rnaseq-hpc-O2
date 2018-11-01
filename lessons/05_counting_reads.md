@@ -46,7 +46,7 @@ featureCounts can also take into account whether your data are **stranded** or n
 First things first, start an interactive session with 4 cores:
 	
 ``` bash
-$ srun --pty -p short -t 0-12:00 -n 4 --mem 8G --reservation=HBC /bin/bash
+$ srun --pty -p short -t 0-12:00 -c 4 --mem 8G --reservation=HBC /bin/bash
 ```
 
 Now, change directories to your rnaseq directory and start by creating 2 directories, (1) a directory for the output and (2) a directory for the bam files:
