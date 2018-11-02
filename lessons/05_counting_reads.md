@@ -104,6 +104,16 @@ $ featureCounts -T 4 -s 2 \
   ~/unix_lesson/rnaseq/results/STAR/bams/*.out.bam
 ```
 
+>> NOTE: try the following
+>>
+>> ```bash
+>> $ featureCounts -T 4 -s 2 \
+>>  -a /n/groups/shared_databases/igenome/Homo_sapiens/UCSC/hg19/Annotation/Genes/genes.gtf \
+>>  -o ~/unix_lesson/rnaseq/results/counts/Mov10_featurecounts.txt \
+>>  ~/unix_lesson/rnaseq/results/STAR/bams/*.out.bam
+>>  2> /unix_lesson/rnaseq/results/counts/Mov10_featurecounts.screen-output
+>>
+
 > If you wanted to collect the information that is on the screen as the job runs, you can modify the command and add the `2>` redirection at the end. This type of redirection will collect all the information from the terminal/screen into a file.
 
 ``` bash
