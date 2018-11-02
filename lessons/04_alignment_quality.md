@@ -67,6 +67,7 @@ We will not be performing this step in the workshop, but we describe some of the
 * **Junction analysis**: analysis of junction positions in spliced alignments (i.e known, partly known, novel) 
 * **Strand specificity:** assess the performance of strand-specific library construction methods. The percentage of sense-derived reads is given for each end of the read pair. A non-strand-specific protocol would give values of 50%/50%, whereas strand-specific protocols typically yield 99%/1% or 1%/99% for this metric.
 
+>**NOTE:** If interested in using Qualimap, we have [materials available](https://hbctraining.github.io/Intro-to-rnaseq-hpc-salmon/lessons/03_QC_STAR_and_Qualimap_run.html#qualimap) that you can walk through.
 
 ## Alignment file format: SAM/BAM
 
