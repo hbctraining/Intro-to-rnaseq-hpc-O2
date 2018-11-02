@@ -60,7 +60,7 @@ Rather than using the BAM file we generated in the last lesson, let's copy over 
 	
 ``` bash
 
-$ cp /n/groups/hbctraining/intro_rnaseq_hpc/bam_STAR/*bam ~/unix_lesson/rnaseq/results/STAR/bams
+$ cp /n/groups/hbctraining/intro_rnaseq_hpc/bam_STAR38/*bam ~/unix_lesson/rnaseq/results/STAR/bams
 ```
 featureCounts is not available as a module on O2, but we have already added the path for it to our `$PATH` variable last time. 
 
@@ -104,15 +104,6 @@ $ featureCounts -T 4 -s 2 \
   ~/unix_lesson/rnaseq/results/STAR/bams/*.out.bam
 ```
 
->> NOTE: try the following
->>
->> ```bash
->> $ featureCounts -T 4 -s 2 \
->>  -a /n/groups/shared_databases/igenome/Homo_sapiens/UCSC/hg19/Annotation/Genes/genes.gtf \
->>  -o ~/unix_lesson/rnaseq/results/counts/Mov10_featurecounts.txt \
->>  ~/unix_lesson/rnaseq/results/STAR/bams/*.out.bam
->> ```
-
 > If you wanted to collect the information that is on the screen as the job runs, you can modify the command and add the `2>` redirection at the end. This type of redirection will collect all the information from the terminal/screen into a file.
 
 ``` bash
@@ -123,7 +114,7 @@ $ featureCounts -T 4 -s 2 \
   -a /n/groups/hbctraining/intro_rnaseq_hpc/reference_data_ensembl38/Homo_sapiens.GRCh38.92.gtf \
   -o ~/unix_lesson/rnaseq/results/counts/Mov10_featurecounts.txt \
   ~/unix_lesson/rnaseq/results/STAR/bams/*.out.bam \
-  2> /unix_lesson/rnaseq/results/counts/Mov10_featurecounts.screen-output
+  2> ~/unix_lesson/rnaseq/results/counts/Mov10_featurecounts.screen-output.log
 ```
 #### featureCounts output
 
