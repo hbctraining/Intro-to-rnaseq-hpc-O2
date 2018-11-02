@@ -60,8 +60,8 @@ This step involves creating an index to evaluate the sequences for all possible 
 
 **The index helps creates a signature for each transcript in our reference transcriptome.** The Salmon index has two components:
 
-- a suffix array (SA) of the reference transcriptome
-- a hash table to map each transcript in the reference transcriptome to it's location in the SA (is not required, but improves the speed of mapping drastically)
+1. a **suffix array** (SA) of the reference transcriptome
+2. a **hash table** to map each transcript in the reference transcriptome to it's location in the SA (is not required, but improves the speed of mapping drastically)
 
 #### **Quasi-mapping and quantification** 
 
