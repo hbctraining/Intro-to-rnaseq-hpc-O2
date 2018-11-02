@@ -60,12 +60,12 @@ This step involves creating an index to evaluate the sequences for all possible 
 
 **The index helps creates a signature for each transcript in our reference transcriptome.** The Salmon index has two components:
 
-1. a **suffix array** (SA) of the reference transcriptome
-2. a **hash table** to map each transcript in the reference transcriptome to it's location in the SA (is not required, but improves the speed of mapping drastically)
+1. a **suffix array** (SA) of the reference transcriptome sequence
+2. a **hash table** to map each k-mer occurring in the reference transcriptome to it's location in the SA (is not required, but improves the speed of mapping drastically)
 
 #### **Quasi-mapping and quantification** 
 
-The quasi-mapping approach estimates the numbers of reads mapping to each transcript, then generates final transcript abundance estimates after modeling sample-specific parameters and biases. The quasi-mapping approach is described below, with details provided by the Rapmap tool [[3](https://academic.oup.com/bioinformatics/article/32/12/i192/2288985/RapMap-a-rapid-sensitive-and-accurate-tool-for)], which provides the underlying algorithm for the quasi-mapping.
+The quasi-mapping approach estimates the numbers of reads mapping to each transcript, and is described below. We have details and a schematic provided by the Rapmap tool [[3](https://academic.oup.com/bioinformatics/article/32/12/i192/2288985/RapMap-a-rapid-sensitive-and-accurate-tool-for)], which provides the underlying algorithm for the quasi-mapping.
 
 - **Step 1: Quasi mapping and abundance estimation**
 
