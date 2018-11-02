@@ -73,7 +73,7 @@ The quasi-mapping approach estimates the numbers of reads mapping to each transc
 	
 	>RapMap: a rapid, sensitive and accurate tool for mapping RNA-seq reads to transcriptomes. A. Srivastava, H. Sarkar, N. Gupta, R. Patro. Bioinformatics (2016) 32 (12): i192-i200.
 	
-	To determine the best mapping for each read/fragment and estimate the number of reads/fragments mapping to each transcript, the quasi-mapping procedure performs the following steps [[3](https://academic.oup.com/bioinformatics/article/32/12/i192/2288985/RapMap-a-rapid-sensitive-and-accurate-tool-for)]:
+	The quasi-mapping procedure performs the following steps [[3](https://academic.oup.com/bioinformatics/article/32/12/i192/2288985/RapMap-a-rapid-sensitive-and-accurate-tool-for)]:
 
 	1. The read is scanned from left to right until a k-mer that appears in the hash table is discovered.
 	2. The k-mer is looked up in the hash table and the SA intervals are retrieved, giving all suffixes containing that k-mer
