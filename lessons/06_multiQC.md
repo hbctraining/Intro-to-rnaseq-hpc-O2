@@ -22,7 +22,7 @@ Manually tracking these metrics is tedious and prone to errors. Several tools ex
 
 ### Tracking and aggregating results from workflow tools with *MultiQC*
 
-Today we will be using MultiQC, which aggregates results from several tools and generates a single HTML report with plots to visualize and compare various QC metrics between the samples.
+Today we will be using [MultiQC](https://multiqc.info/), which aggregates results from several tools and generates a single HTML report with plots to visualize and compare various QC metrics between the samples.
 
 MultiQC can generate this report from 36 different bioinformatics tools, and these tools span various NGS analyses, e.g., basic QC, RNA-seq, variant calling, genome annotation, etc. Today we are going to use it to aggregate information from the results of [FastQC](http://multiqc.info/docs/#fastqc), [STAR](http://multiqc.info/docs/#star), and [featureCounts](http://multiqc.info/docs/#featurecounts). MultiQC can parse the information from specific output files from each of these tools and the manual page specifies the required output from each of the tools that should be used as input to MultiQC.
 
