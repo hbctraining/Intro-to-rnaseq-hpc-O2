@@ -18,6 +18,8 @@ An important QC step is to make sure these metrics are consistent across the sam
 
 Manually tracking these metrics is tedious and prone to errors. Several tools exist that help you with the documentation and QC assessment. Some of these also have really nice visualizations to easily identify any issues, e.g. [Qualimap](http://qualimap.bioinfo.cipf.es/doc_html/index.html), [MultiQC](http://multiqc.info/). These tools have some overlap, but Qualimap is focused on count data whereas MultiQC is able to make a report from the output of many different tools (for RNA-seq analysis and other NGS workflows) and is a little simpler to use.
 
+>**NOTE:** If interested in using Qualimap, we have [materials available](https://hbctraining.github.io/Intro-to-rnaseq-hpc-salmon/lessons/03_QC_STAR_and_Qualimap_run.html#qualimap) that you can walk through.
+
 ### Tracking and aggregating results from workflow tools with *MultiQC*
 
 Today we will be using MultiQC, which aggregates results from several tools and generates a single HTML report with plots to visualize and compare various QC metrics between the samples.
