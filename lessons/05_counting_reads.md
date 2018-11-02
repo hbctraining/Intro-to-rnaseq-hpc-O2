@@ -33,7 +33,7 @@ Simply speaking, the genomic coordinates of where the read is mapped (BAM) are c
 
 These are the "raw" counts and will be used in statistical programs downstream for differential gene expression.
 
-<img src="../img/count-matrix.png" width="300">
+<img src="../img/count-matrix.png" width="600">
 
 ### Counting using featureCounts
 Today, we will be using the [featureCounts](http://bioinf.wehi.edu.au/featureCounts/) tool to get the *gene* counts. We picked this tool because it is accurate, fast and is relatively easy to use. It counts reads that map to a single location (uniquely mapping) and follows the scheme in the figure below for assigning reads to a gene/exon. 
