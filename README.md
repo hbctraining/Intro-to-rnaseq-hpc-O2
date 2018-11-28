@@ -1,8 +1,8 @@
 # Introduction to RNA-seq using high-performance computing (HPC)
 
-| Audience | Computational Skills Required | Duration |
-:----------|:----------|:----------|:----------|
-| Biologists | None | 2-day workshop (~13 hours of trainer-led time)|
+| Audience | Computational skills required | Duration |
+:----------|:-------------|:----------|
+| Biologists | None | 2-day workshop (~ 13 hours of trainer-led time)|
 
 ### Description
 
