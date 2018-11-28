@@ -21,9 +21,26 @@ The schedule for using the materials in a 2-day trainer-led workshop can be [fou
 
 The schedule for using the materials in a 3-day trainer-led workshop can be [found here](https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/schedule/)  
 
+### Installation Requirements
+
+***All:***
+
+* [FileZilla](https://filezilla-project.org/download.php?type=client) (make sure you get 'FileZilla Client')
+* [Integrative Genomics Viewer (IGV)](http://software.broadinstitute.org/software/igv/) (scroll down on the page for Download options). If you have trouble opening IGV after installing it, you may need to install [Java](https://www.java.com/en/download/).
+
+***Mac users:***
+
+* Plain text editor like [Sublime text](http://www.sublimetext.com/) or similar
+
+***Windows users:***
+
+* [GitBash](https://git-scm.com/download/win)
+* Plain text editor like [Notepad++](http://notepad-plus-plus.org/) or similar
+
 ### Dataset
 
-[Day 1](https://www.dropbox.com/s/3lua2h1oo18gbug/unix_lesson.tar.gz?dl=1)
+* Day 1 - [Introduction to Shell: Dataset](https://www.dropbox.com/s/3lua2h1oo18gbug/unix_lesson.tar.gz?dl=1)
+* Days 2 and 3 - RNA-seq analysis (coming soon)
 
 ***
 *These materials have been developed by members of the teaching team at the [Harvard Chan Bioinformatics Core (HBC)](http://bioinformatics.sph.harvard.edu/). These are open access materials distributed under the terms of the [Creative Commons Attribution license](https://creativecommons.org/licenses/by/4.0/) (CC BY 4.0), which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.*
