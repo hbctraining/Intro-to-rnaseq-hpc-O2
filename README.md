@@ -17,9 +17,10 @@ This repository has teaching materials for a 2-day Introduction to RNA-sequencin
 
 ### Lessons
 
-The schedule for using the materials in a 2-day trainer-led workshop can be [found here](https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/schedule/2-day)  
+Below are links to the lessons and suggested schedules:
 
-The schedule for using the materials in a 3-day trainer-led workshop can be [found here](https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/schedule/)  
+* [2 day schedule](https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/schedule/2-day)  
+* [3 day schedule](https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/schedule/)  
 
 ### Installation Requirements
 
