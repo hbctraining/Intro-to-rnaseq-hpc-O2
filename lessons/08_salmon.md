@@ -178,7 +178,7 @@ ENST00000417324 1187    937.000 0.000000        0.000
 ```
 
 *  The first two columns are self-explanatory, the **name** of the transcript and the **length of the transcript** in base pairs (bp). 
-*  The **effective length** represents the the various factors that effect the length of transcript (i.e degraation, technical limitations of the sequencing platform)
+*  The **effective length** represents the various factors that effect the length of transcript (i.e degradation, technical limitations of the sequencing platform)
 * Salmon outputs ‘pseudocounts’ which predict the relative abundance of different isoforms in the form of three possible metrics (KPKM, RPKM, and TPM). **TPM (transcripts per million)** is a commonly used normalization method as described in [[1]](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2820677/) and is computed based on the effective length of the transcript.
 * Estimated **number of reads** (an estimate of the number of reads drawn from this transcript given the transcript’s relative abundance and length)
 
@@ -207,7 +207,7 @@ Next we will do the following:
 2. Inside the loop we will create a variable that stores the prefix we will use for naming output files.
 3. Then we run Salmon. 
 
-> **NOTE:** We have **added a couple of new parameters**. First, since we are **multithreading** with 6 cores we will use `-p 6`. Another new parameter we have added is called `--numBootstraps`. Salmon has the ability to optionally compute bootstrapped abundance estimates. **Bootstraps are required for estimation of technical variance**. We will discuss this in more detail when we talk about transcript-level differential exporession analysis.
+> **NOTE:** We have **added a couple of new parameters**. First, since we are **multithreading** with 6 cores we will use `-p 6`. Another new parameter we have added is called `--numBootstraps`. Salmon has the ability to optionally compute bootstrapped abundance estimates. **Bootstraps are required for estimation of technical variance**. We will discuss this in more detail when we talk about transcript-level differential expression analysis.
 
 The final script is shown below:
 
