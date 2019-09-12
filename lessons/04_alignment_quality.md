@@ -36,7 +36,7 @@ Having completed the alignment, the first thing we want to know is how well did 
 
 	$ less Mov10_oe_1_Log.final.out
 	
-The log file provides information on reads that 1) mapped uniquely, 2) reads that mapped to mutliple locations and 3) reads that are unmapped. Additionally, we get details on splicing, insertion and deletion. From this file the most informative statistics include the **mapping rate and the number of multimappers**.
+The log file provides information on reads that 1) mapped uniquely, 2) reads that mapped to multiple locations and 3) reads that are unmapped. Additionally, we get details on splicing, insertion and deletion. From this file the most informative statistics include the **mapping rate and the number of multimappers**.
 
 * As an example, a good quality sample will have **at least 75% of the reads uniquely mapped**. Once values start to drop lower than 60% it's advisable to start troubleshooting. The lower the number of uniquely mapping reads means the higher the number of reads that are mapping to multiple locations. It is best to keep this number low because multi-mappers are not included when we start counting reads
 
@@ -57,14 +57,14 @@ Using the less command take a look at `Mov10_oe_1_Log.final.out` and answer the 
 
 ## Other quality checks
 
-In addition to the aligner-specific summary we can also obtain quality metrics using tools like [Qualimap](http://qualimap.bioinfo.cipf.es/doc_html/intro.html#what-is-qualimap) or [RNASeQC](https://www.broadinstitute.org/publications/broad4133). These tools examine sequencing alignment data according to the features of the mapped reads and their genomic properties and **provide an overall view of the data that helps to to the detect biases in the sequencing and/or mapping of the data**.The input can be one or more BAM files and the output consists of HTML or PDF reports with useful figures and tab delimited files of metrics data.
+In addition to the aligner-specific summary we can also obtain quality metrics using tools like [Qualimap](http://qualimap.bioinfo.cipf.es/doc_html/intro.html#what-is-qualimap) or [RNASeQC](https://www.broadinstitute.org/publications/broad4133). These tools examine sequencing alignment data according to the features of the mapped reads and their genomic properties and **provide an overall view of the data that helps to detect biases in the sequencing and/or mapping of the data**. The input can be one or more BAM files and the output consists of HTML or PDF reports with useful figures and tab delimited files of metrics data.
 
 We will not be performing this step in the workshop, but we describe some of the features below to point out things to look for when assessing alignment quality of RNA-seq data:
 
 * **Reads genomic origin**: Even if you have high genomic mapping rate for all samples, check to see where the reads are mapping. Ensure that there is not an unusually high number of **reads mapping to intronic regions** (~30% expected) and fewer than normally observed **mapping to exons** (~55%). A high intronic mapping suggests possible genomic DNA contamination and/or pre-mRNA. 
 * **Ribosomal RNA (rRNA)** constitutes a large majority of the RNA species in any total RNA preparation. Despite depletion methods, you can never achieve complete rRNA removal. Even with Poly-A enrichment a small percentage of ribosomal RNA can stick to the enrichment beads non-specifically. **Excess ribosomal content (> 2%)** will normally have to be filtered out so that differences in rRNA mapped reads across samples do not affect alignment rates and skew subsequent normalization of the data.
-* **Transcript coverage and 5'-3' bias**: assesing the affect on expression level and on levels of transcript GC content
-* **Junction analysis**: analysis of junction positions in spliced alignments (i.e known, partly known, novel) 
+* **Transcript coverage and 5'-3' bias**: assessing the affect on expression level and on levels of transcript GC content
+* **Junction analysis**: analysis of junction positions in spliced alignments (i.e. known, partly known, novel) 
 * **Strand specificity:** assess the performance of strand-specific library construction methods. The percentage of sense-derived reads is given for each end of the read pair. A non-strand-specific protocol would give values of 50%/50%, whereas strand-specific protocols typically yield 99%/1% or 1%/99% for this metric.
 
 >**NOTE:** If interested in using Qualimap, we have [materials available](https://hbctraining.github.io/Intro-to-rnaseq-hpc-salmon/lessons/03_QC_STAR_and_Qualimap_run.html#qualimap) that you can walk through.
@@ -98,7 +98,7 @@ An example read mapping is displayed above. *Note that the example above spans t
 
 We are going to go through this out of order. Let's start with `QNAME` which is the read name. `RNAME` is the reference sequence name, which is 'chr1' in this example. `POS` refers to the 1-based leftmost position of the alignment. `MAPQ` is giving us the alignment quality, the scale of which will depend on the aligner being used. 
 
-Next, we the `FLAG`. The `FLAG` value represents various things about the alignment. that is displayed can be translated into information about the mapping. 
+Next, we the consider the `FLAG` value, which represents one or more facts about the alignment. A single alignment fact is represented by a `FLAG` value corresponding to one of the values below, while multiple facts are represented by a sum of the values for each corresponding fact.
 
 | Flag | Description |
 | ------:|:----------------------:|
@@ -118,7 +118,7 @@ Next, we the `FLAG`. The `FLAG` value represents various things about the alignm
 * The `FLAG` is a combination (additive) of all of the individual flags (from the table above) that are true for the alignment 
 * The beauty of the flag values is that any combination of flags can only result in one sum.
 
-In our example we have a number that exist in the table, making it relatively easy to translate. But suppose our read alignment has a flag of 163; this means it is some combination of the list above and you can find out what this mean using various online tools like [this one from Picard](https://broadinstitute.github.io/picard/explain-flags.html)**
+In our example we have a number that exists in the table, making it relatively easy to translate. But suppose our read alignment has a flag of 163; this means it is some combination of the list above and you can find out what this mean using various online tools like [this one from Picard](https://broadinstitute.github.io/picard/explain-flags.html)**
 
 `CIGAR` is a sequence of letters and numbers that represent the *edits or operations* required to match the read to the reference. The letters are operations that are used to indicate which bases align to the reference (i.e. match, mismatch, deletion, insertion), and the numbers indicate the associated base lengths for each 'operation'. This is used by some downstream tools to quickly assess the alignment.
 
@@ -133,7 +133,7 @@ Finally, you have the data from the original FASTQ file stored for each read. Th
 
 ## `samtools`
 
-[SAMtools](http://www.htslib.org/) is a tool that provides alot of functionality in dealing with SAM files. SAMtools utilities include, but are not limited to, viewing, sorting, filtering, merging, and indexing alignments in the SAM format. In this lesson we will explore a few of these utilities on our alignment files. To use this we need to load the module.
+[SAMtools](http://www.htslib.org/) is a tool that provides a lot of functionality in dealing with SAM files. SAMtools utilities include, but are not limited to, viewing, sorting, filtering, merging, and indexing alignments in the SAM format. In this lesson we will explore a few of these utilities on our alignment files. To use this we need to load the module.
 
 ```
 $ module load samtools/1.3.1
@@ -168,8 +168,8 @@ $ samtools view -h Mov10_oe_1_Aligned.sortedByCoord.out.bam | less
 > ```
 > ## This will tell us how many reads are unmapped
 > $ samtools view -f 4 -c Mov10_oe_1_Aligned.sortedByCoord.out.bam
-> 
-> ## This should give us the remaining reads that do not have this flag set (i.e reads that are mapped)
+>
+> ## This should give us the remaining reads that do not have this flag set (i.e. reads that are mapped)
 > $ samtools view -F 4 -c Mov10_oe_1_Aligned.sortedByCoord.out.bam
 > ```
 
